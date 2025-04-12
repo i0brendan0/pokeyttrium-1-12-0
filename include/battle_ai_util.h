@@ -104,13 +104,6 @@ bool32 BattlerStatCanRise(u32 battler, u32 battlerAbility, u32 stat);
 bool32 AreBattlersStatsMaxed(u32 battler);
 u32 CountPositiveStatStages(u32 battlerId);
 u32 CountNegativeStatStages(u32 battlerId);
-bool32 ShouldLowerAttack(u32 battlerAtk, u32 battlerDef, u32 defAbility);
-bool32 ShouldLowerDefense(u32 battlerAtk, u32 battlerDef, u32 defAbility);
-bool32 ShouldLowerSpeed(u32 battlerAtk, u32 battlerDef, u32 defAbility);
-bool32 ShouldLowerSpAtk(u32 battlerAtk, u32 battlerDef, u32 defAbility);
-bool32 ShouldLowerSpDef(u32 battlerAtk, u32 battlerDef, u32 defAbility);
-bool32 ShouldLowerAccuracy(u32 battlerAtk, u32 battlerDef, u32 defAbility);
-bool32 ShouldLowerEvasion(u32 battlerAtk, u32 battlerDef, u32 defAbility);
 
 // move checks
 bool32 IsAffectedByPowder(u32 battler, u32 ability, u32 holdEffect);
@@ -220,6 +213,7 @@ bool32 SideHasMoveCategory(u32 battlerId, u32 category);
 // score increases
 u32 IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId);
 u32 IncreaseStatUpScoreContrary(u32 battlerAtk, u32 battlerDef, u32 statId);
+u32 IncreaseStatDownScore(u32 battlerAtk, u32 battlerDef, u32 stat);
 void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score);
 void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score);
 void IncreaseParalyzeScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score);
@@ -239,5 +233,6 @@ bool32 IsBattlerItemEnabled(u32 battler);
 bool32 IsBattlerPredictedToSwitch(u32 battler);
 bool32 HasLowAccuracyMove(u32 battlerAtk, u32 battlerDef);
 bool32 HasBattlerSideAbility(u32 battlerDef, u32 ability, struct AiLogicData *aiData);
+bool32 HasBattlerSideMoveEffect(u32 battler, u32 moveEffect);
 
 #endif //GUARD_BATTLE_AI_UTIL_H

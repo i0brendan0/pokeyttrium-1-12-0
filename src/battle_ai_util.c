@@ -1861,8 +1861,7 @@ bool32 ShouldLowerStat(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 stat)
     case ABILITY_FULL_METAL_BODY:
         return FALSE;
     }
-    
-    // This should be a viability check
+
     if (stat == STAT_SPEED)
     {
         // If AI is faster and doesn't have any mons left, lowering speed doesn't give any
@@ -1872,6 +1871,73 @@ bool32 ShouldLowerStat(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 stat)
     }
 
     return TRUE;
+}
+
+u32 IncreaseStatDownScore(u32 battlerAtk, u32 battlerDef, u32 stat)
+{
+    u32 tempScore = NO_INCREASE;
+
+    // Don't increase score if target is already -3 stat stage
+    if (stat != STAT_SPEED && gBattleMons[battlerDef].statStages[stat] <= DEFAULT_STAT_STAGE - 3)
+        return NO_INCREASE;
+
+    // Don't decrease stat if target will die to residual damage
+    if (GetBattlerSecondaryDamage(battlerDef) >= gBattleMons[battlerDef].hp)
+        return NO_INCREASE;
+
+    // Don't decrese stat if opposing battler has Encore
+    if (HasBattlerSideMoveEffect(battlerDef, EFFECT_ENCORE))
+        return NO_INCREASE;
+
+    // TODO: Avoid decreasing stat if
+    // player can kill ai in 2 hits with decreased attack / sp atk stages
+    // ai can kill target in 2 hits without decreasing defense / sp def stages
+
+    switch (stat)
+    {
+    case STAT_ATK:
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))
+            tempScore += DECENT_EFFECT;
+        break;
+    case STAT_DEF:
+        if (HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_PHYSICAL))
+            tempScore += DECENT_EFFECT;
+        break;
+    case STAT_SPEED:
+        if (AI_IsSlower(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered))
+            tempScore += DECENT_EFFECT;
+        break;
+    case STAT_SPATK:
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL))
+            tempScore += DECENT_EFFECT;
+        break;
+    case STAT_SPDEF:
+        if (HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_SPECIAL))
+            tempScore += DECENT_EFFECT;
+        break;
+    case STAT_ACC:
+        if (gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)
+            tempScore += WEAK_EFFECT;
+        if (gStatuses3[battlerDef] & STATUS3_LEECHSEED)
+            tempScore += WEAK_EFFECT;
+        if (gStatuses3[battlerDef] & STATUS3_ROOTED)
+            tempScore += WEAK_EFFECT;
+        if (gBattleMons[battlerDef].status2 & STATUS2_CURSED)
+            tempScore += WEAK_EFFECT;
+        break;
+    case STAT_EVASION:
+        if (gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)
+            tempScore += WEAK_EFFECT;
+        if (gStatuses3[battlerDef] & STATUS3_LEECHSEED)
+            tempScore += WEAK_EFFECT;
+        if (gStatuses3[battlerDef] & STATUS3_ROOTED)
+            tempScore += WEAK_EFFECT;
+        if (gBattleMons[battlerDef].status2 & STATUS2_CURSED)
+            tempScore += WEAK_EFFECT;
+        break;
+    }
+
+    return (tempScore > BEST_EFFECT) ? BEST_EFFECT : tempScore; // don't inflate score so only max +4
 }
 
 bool32 BattlerStatCanRise(u32 battler, u32 battlerAbility, u32 stat)
@@ -1927,84 +1993,6 @@ u32 CountNegativeStatStages(u32 battlerId)
             count++;
     }
     return count;
-}
-
-bool32 ShouldLowerAttack(u32 battlerAtk, u32 battlerDef, u32 defAbility)
-{
-    if (!ShouldLowerStat(battlerAtk, battlerDef, defAbility, STAT_ATK))
-        return FALSE;
-
-    if (gBattleMons[battlerDef].statStages[STAT_ATK] > 4
-     && HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))
-        return TRUE;
-
-    return FALSE;
-}
-
-bool32 ShouldLowerDefense(u32 battlerAtk, u32 battlerDef, u32 defAbility)
-{
-    if (!ShouldLowerStat(battlerAtk, battlerDef, defAbility, STAT_DEF))
-        return FALSE;
-
-    if (gBattleMons[battlerDef].statStages[STAT_DEF] > 4
-     && HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_PHYSICAL))
-        return TRUE;
-
-    return FALSE;
-}
-
-bool32 ShouldLowerSpeed(u32 battlerAtk, u32 battlerDef, u32 defAbility)
-{
-    if (!ShouldLowerStat(battlerAtk, battlerDef, defAbility, STAT_SPEED))
-        return FALSE;
-
-    return AI_IsSlower(battlerAtk, battlerDef, AI_THINKING_STRUCT->moveConsidered);
-}
-
-bool32 ShouldLowerSpAtk(u32 battlerAtk, u32 battlerDef, u32 defAbility)
-{
-    if (!ShouldLowerStat(battlerAtk, battlerDef, defAbility, STAT_SPATK))
-        return FALSE;
-
-    if (gBattleMons[battlerDef].statStages[STAT_SPATK] > 4
-     && HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL))
-        return TRUE;
-
-    return FALSE;
-}
-
-bool32 ShouldLowerSpDef(u32 battlerAtk, u32 battlerDef, u32 defAbility)
-{
-    if (!ShouldLowerStat(battlerAtk, battlerDef, defAbility, STAT_SPDEF))
-        return FALSE;
-
-    if (gBattleMons[battlerDef].statStages[STAT_SPDEF] > 4
-     && HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_SPECIAL))
-        return TRUE;
-
-    return FALSE;
-}
-
-bool32 ShouldLowerAccuracy(u32 battlerAtk, u32 battlerDef, u32 defAbility)
-{
-    if (!ShouldLowerStat(battlerAtk, battlerDef, defAbility, STAT_ACC))
-        return FALSE;
-
-    if (gBattleMons[battlerDef].statStages[STAT_ACC] > DEFAULT_STAT_STAGE)
-        return TRUE;
-
-    return TRUE;
-}
-
-bool32 ShouldLowerEvasion(u32 battlerAtk, u32 battlerDef, u32 defAbility)
-{
-    if (!ShouldLowerStat(battlerAtk, battlerDef, defAbility, STAT_EVASION))
-        return FALSE;
-
-    if (gBattleMons[battlerDef].statStages[STAT_EVASION] > DEFAULT_STAT_STAGE)
-        return TRUE;
-
-    return TRUE;
 }
 
 bool32 CanIndexMoveFaintTarget(u32 battlerAtk, u32 battlerDef, u32 moveIndex, enum DamageCalcContext calcContext)
@@ -4453,6 +4441,15 @@ bool32 HasBattlerSideAbility(u32 battler, u32 ability, struct AiLogicData *aiDat
     if (aiData->abilities[battler] == ability)
         return TRUE;
     if (IsDoubleBattle() && AI_DATA->abilities[BATTLE_PARTNER(battler)] == ability)
+        return TRUE;
+    return FALSE;
+}
+
+bool32 HasBattlerSideMoveEffect(u32 battler, u32 moveEffect)
+{
+    if (HasMoveEffect(battler, moveEffect))
+        return TRUE;
+    if (IsDoubleBattle() && HasMoveEffect(BATTLE_PARTNER(battler), moveEffect))
         return TRUE;
     return FALSE;
 }
