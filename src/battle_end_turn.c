@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_anim.h"
 #include "battle_util.h"
 #include "battle_controllers.h"
 #include "battle_ai_util.h"
@@ -63,6 +64,7 @@ enum EndTurnResolutionOrder
     ENDTURN_ABILITIES,
     ENDTURN_FOURTH_EVENT_BLOCK,
     ENDTURN_DYNAMAX,
+    ENDTURN_REVERSE_MODE,
     ENDTURN_COUNT,
 };
 
@@ -1506,6 +1508,29 @@ static bool32 HandleEndTurnDynamax(u32 battler)
     return effect;
 }
 
+static bool32 HandleEndTurnReverseMode(u32 battler)
+{
+    bool32 effect = FALSE;
+
+    u32 ability = GetBattlerAbility(battler);
+
+    gBattleStruct->turnEffectsBattlerId++;
+
+    if (gBattleMons[battler].isReverse
+        && IsBattlerAlive(battler)
+        && !IsBattlerProtectedByMagicGuard(battler, ability))
+    {
+        gBattleStruct->moveDamage[battler] = (GetNonDynamaxMaxHP(battler) / 16) + (Random() % 3) - 1;
+        if (gBattleStruct->moveDamage[battler] == 0)
+            gBattleStruct->moveDamage[battler] = 1;
+        BattleScriptExecute(BattleScript_ReverseModeTurnDmg);
+        LaunchStatusAnimation(battler, B_ANIM_STATUS_REVERSE_MODE);
+        effect = TRUE;
+    }
+
+    return effect;
+}
+
 static bool32 (*const sEndTurnEffectHandlers[])(u32 battler) =
 {
     [ENDTURN_ORDER] = HandleEndTurnOrder,
@@ -1555,6 +1580,7 @@ static bool32 (*const sEndTurnEffectHandlers[])(u32 battler) =
     [ENDTURN_ABILITIES] = HandleEndTurnAbilities,
     [ENDTURN_FOURTH_EVENT_BLOCK] = HandleEndTurnFourthEventBlock,
     [ENDTURN_DYNAMAX] = HandleEndTurnDynamax,
+    [ENDTURN_REVERSE_MODE] = HandleEndTurnReverseMode,
 };
 
 u32 DoEndTurnEffects(void)

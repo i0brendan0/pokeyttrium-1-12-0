@@ -40,6 +40,7 @@
 #define sSWITCH_CASE                 (gBattleScripting + 0x36) // switchCase
 #define sBERRY_OVERRIDE              (gBattleScripting + 0x37) // overrideBerryRequirements
 #define sSTICKY_WEB_STAT_DROP        (gBattleScripting + 0x38) // stickyWebStatDrop
+#define sHEARTVALUE_STATE            (gBattleScripting + 0x39) // heartValueState
 
 // Array entries for battle communication
 #define MULTIUSE_STATE          0
@@ -206,6 +207,8 @@ enum CmdVarious
     VARIOUS_SAVE_BATTLER_ITEM,
     VARIOUS_RESTORE_BATTLER_ITEM,
     VARIOUS_BATTLER_ITEM_TO_LAST_USED_ITEM,
+    VARIOUS_MODIFY_HEART_VALUE,
+    VARIOUS_COLLECT_SNAGGED_MONS,
 };
 
 // Cmd_manipulatedamage
@@ -289,6 +292,7 @@ enum MoveEndEffects
     MOVEEND_CLEAR_BITS,
     MOVEEND_DANCER,
     MOVEEND_PURSUIT_NEXT_ACTION,
+    MOVEEND_ENTER_REVERSE_MODE,
     MOVEEND_COUNT,
 };
 

@@ -2354,6 +2354,14 @@
 	callnative BS_RestoreSavedMove
 	.endm
 
+	.macro modifyheartvalue battler:req
+	various \battler, VARIOUS_MODIFY_HEART_VALUE
+	.endm
+
+	.macro collectsnags
+	various BS_ATTACKER, VARIOUS_COLLECT_SNAGGED_MONS
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER, \stat | \stages << 3 | \down << 7

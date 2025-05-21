@@ -388,6 +388,7 @@ static u32 GetMaxPowerTier(u32 move)
     {
         case EFFECT_BIDE:
         case EFFECT_SUPER_FANG:
+        case EFFECT_SHADOW_HALF:
         case EFFECT_LEVEL_DAMAGE:
         case EFFECT_PSYWAVE:
         case EFFECT_COUNTER:
