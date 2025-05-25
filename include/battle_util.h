@@ -383,5 +383,6 @@ u32 RestoreWhiteHerbStats(u32 battler);
 bool32 IsFutureSightAttackerInParty(u32 battlerAtk, u32 battlerDef, u32 move);
 bool32 HadMoreThanHalfHpNowDoesnt(u32 battler);
 void UpdateStallMons(void);
+u32 GetMonVolatileStatus(u32 battler, enum VolatileStatus volatileStatus);
 
 #endif // GUARD_BATTLE_UTIL_H
