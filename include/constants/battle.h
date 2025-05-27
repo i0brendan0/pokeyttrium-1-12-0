@@ -135,7 +135,65 @@ enum BattlerId
 #define STATUS1_REFRESH          (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FROSTBITE)
 
 // Volatile status ailments
-// These are removed after exiting the battle or switching out
+// These are removed after exiting the battle or switching 
+// #define UNPACK_VOLATILE_STATUS_ENUM_ANY(enum, ...) enum,
+// #define UNPACK_VOLATILE_STATUS_ENUM_U32 UNPACK_VOLATILE_STATUS_ENUM_ANY
+// #define UNPACK_VOLATILE_STATUS_ENUM(memberArr) UNPACK_VOLATILE_STATUS_ENUM##memberArr
+// #define UNPACK_VOLATILE_STATUS_ENUMS(...) enum VolatileStatus { RECURSIVELY(R_FOR_EACH(UNPACK_VOLATILE_STATUS_ENUM, __VA_ARGS__)) };
+/* Definitions with names e.g. "Confusion" are accessible in the debug menu */
+#define VOLATILE_STATUS_DEFINITIONS \
+    _U32(VOLATILE_STATUS_CONFUSION, confusionTurns, 3, "Confusion"), \
+    _U32(VOLATILE_STATUS_FLINCHED, flinched, 1, "Flinched"), \
+    _U32(VOLATILE_STATUS_UPROAR, uproarTurns, 3), \
+    _U32(VOLATILE_STATUS_TORMENT, torment, 1, "Torment"), \
+    _U32(VOLATILE_STATUS_BIDE, bideTurns, 2), \
+    _U32(VOLATILE_STATUS_LOCK_CONFUSE, lockConfusionTurns, 2), \
+    _U32(VOLATILE_STATUS_MULTIPLETURNS, multipleTurns, 1), \
+    _U32(VOLATILE_STATUS_WRAPPED, wrapped, 1), \
+    _U32(VOLATILE_STATUS_POWDER, powder, 1, "Powder"), \
+    _U32(VOLATILE_STATUS_UNUSED, padding, 1), \
+    _U32(VOLATILE_STATUS_INFATUATION, infatuation, 4), \
+    _U32(VOLATILE_STATUS_DEFENSE_CURL, defenseCurl, 1, "Defense Curl"), \
+    _U32(VOLATILE_STATUS_TRANSFORMED, transformed, 1), \
+    _U32(VOLATILE_STATUS_RECHARGE, recharge, 1, "Recharge"), \
+    _U32(VOLATILE_STATUS_RAGE, rage, 1, "Rage"), \
+    _U32(VOLATILE_STATUS_SUBSTITUTE, substitute, 1), \
+    _U32(VOLATILE_STATUS_DESTINY_BOND, destinyBond, 1, "Destiny Bond"), \
+    _U32(VOLATILE_STATUS_ESCAPE_PREVENTION, escapePrevention, 1, "Escape Prevention"), \
+    _U32(VOLATILE_STATUS_NIGHTMARE, nightmare, 1), \
+    _U32(VOLATILE_STATUS_CURSED, cursed, 1, "Cursed"), \
+    _U32(VOLATILE_STATUS_FORESIGHT, foresight, 1, "Foresight"), \
+    _U32(VOLATILE_STATUS_DRAGON_CHEER, dragonCheer, 1, "Dragon Cheer"), \
+    _U32(VOLATILE_STATUS_FOCUS_ENERGY, focusEnergy, 1, "Focus Energy")
+
+enum VolatileStatus
+{
+    VOLATILE_STATUS_CONFUSION,
+    VOLATILE_STATUS_FLINCHED,
+    VOLATILE_STATUS_UPROAR,
+    VOLATILE_STATUS_TORMENT,
+    VOLATILE_STATUS_BIDE,
+    VOLATILE_STATUS_LOCK_CONFUSE,
+    VOLATILE_STATUS_MULTIPLETURNS,
+    VOLATILE_STATUS_WRAPPED,
+    VOLATILE_STATUS_POWDER,
+    VOLATILE_STATUS_UNUSED,
+    VOLATILE_STATUS_INFATUATION,
+    VOLATILE_STATUS_DEFENSE_CURL,
+    VOLATILE_STATUS_TRANSFORMED,
+    VOLATILE_STATUS_RECHARGE,
+    VOLATILE_STATUS_RAGE,
+    VOLATILE_STATUS_SUBSTITUTE,
+    VOLATILE_STATUS_DESTINY_BOND,
+    VOLATILE_STATUS_ESCAPE_PREVENTION,
+    VOLATILE_STATUS_NIGHTMARE,
+    VOLATILE_STATUS_CURSED,
+    VOLATILE_STATUS_FORESIGHT,
+    VOLATILE_STATUS_DRAGON_CHEER,
+    VOLATILE_STATUS_FOCUS_ENERGY,
+};
+
+// Old flags
 #define STATUS2_CONFUSION             (1 << 0 | 1 << 1 | 1 << 2)
 #define STATUS2_CONFUSION_TURN(num)   ((num) << 0)
 #define STATUS2_FLINCHED              (1 << 3)
@@ -149,6 +207,7 @@ enum BattlerId
 #define STATUS2_MULTIPLETURNS         (1 << 12)
 #define STATUS2_WRAPPED               (1 << 13)
 #define STATUS2_POWDER                (1 << 14)
+//#define STATUS2_UNUSED                (1 << 15)
 #define STATUS2_INFATUATION           (1 << 16 | 1 << 17 | 1 << 18 | 1 << 19)  // 4 bits, one for every battler
 #define STATUS2_INFATUATED_WITH(battler) (1u << (battler + 16))
 #define STATUS2_DEFENSE_CURL          (1 << 20)

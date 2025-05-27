@@ -11442,3 +11442,40 @@ void UpdateStallMons(void)
     }
     //  Handling for moves that target multiple opponents in doubles not handled currently
 }
+
+#define UNPACK_VOLATILE_STATUS_GETTER_U32(enum, fieldName, ...) case enum: return gBattleMons[battler].volatileStatuses.fieldName;
+#define UNPACK_VOLATILE_STATUS_GETTER(caseArr) UNPACK_VOLATILE_STATUS_GETTER##caseArr
+#define UNPACK_VOLATILE_STATUS_GETTERS(...) RECURSIVELY(R_FOR_EACH(UNPACK_VOLATILE_STATUS_GETTER, __VA_ARGS__))
+
+// Gets the value of a volatile status flag for a certain battler
+u32 GetMonVolatileStatus(u32 battler, enum VolatileStatus volatileStatus)
+{
+    switch (volatileStatus)
+    {
+        /* Expands to:
+        case VOLATILE_STATUS_CONFUSION:
+            return gBattleMons[battler].volatileStatuses.confusionTurns;
+        */
+        UNPACK_VOLATILE_STATUS_GETTERS(VOLATILE_STATUS_DEFINITIONS)
+        default: // invalid volatile status
+            return 0;
+    }
+}
+
+#define UNPACK_VOLATILE_STATUS_SETTER_U32(enum, fieldName, bitSize, ...) case enum: gBattleMons[battler].volatileStatuses.fieldName = min((1 << bitSize) - 1, newValue); break;
+#define UNPACK_VOLATILE_STATUS_SETTER(caseArr) UNPACK_VOLATILE_STATUS_SETTER##caseArr
+#define UNPACK_VOLATILE_STATUS_SETTERS(...) RECURSIVELY(R_FOR_EACH(UNPACK_VOLATILE_STATUS_SETTER, __VA_ARGS__))
+
+// Sets the value of a volatile status flag for a certain battler
+void SetMonVolatileStatus(u32 battler, enum VolatileStatus volatileStatus, u32 newValue)
+{
+    switch (volatileStatus)
+    {
+        /* Expands to (includes sanitation):
+        case VOLATILE_STATUS_CONFUSION:
+            gBattleMons[battler].volatileStatuses.confusionTurns = min((1 << 3) - 1, newValue);
+            break;
+        */
+        UNPACK_VOLATILE_STATUS_SETTERS(VOLATILE_STATUS_DEFINITIONS)
+    }
+}
