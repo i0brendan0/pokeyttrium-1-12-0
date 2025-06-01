@@ -958,8 +958,22 @@ static const struct {
   u16 move;
 } sBreedingSpecialMoveItemTable[] =
 {
-    // Offspring,    Item,            Move
-    { SPECIES_PICHU, ITEM_LIGHT_BALL, MOVE_VOLT_TACKLE },
+    // Offspring,        Item,                Move
+    { SPECIES_PICHU,     ITEM_LIGHT_BALL,     MOVE_VOLT_TACKLE   },
+    { SPECIES_FARFETCHD, ITEM_LEEK,           MOVE_SKY_ATTACK    },
+    { SPECIES_CHANSEY,   ITEM_LUCKY_PUNCH,    MOVE_MACH_PUNCH    },
+    { SPECIES_HAPPINY,   ITEM_LUCKY_PUNCH,    MOVE_MACH_PUNCH    },
+    { SPECIES_CUBONE,    ITEM_THICK_CLUB,     MOVE_BONE_RUSH     },
+    { SPECIES_SNEASEL,   ITEM_RAZOR_CLAW,     MOVE_NIGHT_SLASH   },
+    { SPECIES_GLIGAR,    ITEM_RAZOR_FANG,     MOVE_LEECH_LIFE    },
+    { SPECIES_CLAMPERL,  ITEM_DEEP_SEA_SCALE, MOVE_PSYCHIC       },
+    { SPECIES_CLAMPERL,  ITEM_DEEP_SEA_TOOTH, MOVE_CRUNCH        },
+    { SPECIES_HORSEA,    ITEM_DRAGON_SCALE,   MOVE_DRAGON_BREATH },
+    { SPECIES_ELEKID,    ITEM_ELECTIRIZER,    MOVE_DISCHARGE     },
+    { SPECIES_MAGBY,     ITEM_MAGMARIZER,     MOVE_LAVA_PLUME    },
+    { SPECIES_RHYDON,    ITEM_PROTECTOR,      MOVE_HEAD_SMASH    },
+    { SPECIES_DUSKULL,   ITEM_REAPER_CLOTH,   MOVE_OMINOUS_WIND  },
+    { SPECIES_FEEBAS,    ITEM_PRISM_SCALE,    MOVE_AQUA_JET      },
 };
 
 static void GiveMoveIfItem(struct Pokemon *mon, struct DayCare *daycare)
