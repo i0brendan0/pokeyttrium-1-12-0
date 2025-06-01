@@ -3466,8 +3466,9 @@ static void PrintMonOTID(void)
 
 static void PrintMonAbilityName(void)
 {
-    u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].name, 0, 1, 0, 1);
+    u8 abilityNumZ = sMonSummaryScreen->summary.abilityNum;
+    u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNumZ);
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].name, 0, 1, 0, (abilityNumZ == 3 ? 2 : 1));
 }
 
 static void PrintMonAbilityDescription(void)
