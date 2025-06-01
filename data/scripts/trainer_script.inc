@@ -26,3 +26,11 @@ EventScript_ObjectApproachPlayer::
 	special DoTrainerApproach
 	waitstate
 	gotonative LoadTrainerObjectScript
+
+EventScript_TrainerRematchGiveItem::
+    randompercentage VAR_0x8009
+    goto_if_eq VAR_RESULT, FALSE, EventScript_TrainerRematchDontGiveItem
+    msgbox EventScript_Text_TrainerRematchGiveItem, MSGBOX_DEFAULT
+    giveitem VAR_0x8008, VAR_0x800A
+EventScript_TrainerRematchDontGiveItem::
+    return

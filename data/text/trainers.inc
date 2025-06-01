@@ -4794,3 +4794,6 @@ VSSeeker_Text_TrainersNotReady::
 	.string "The other Trainers don't appear\n"
 	.string "to be ready for battle.\p"
 	.string "Let's wait till later.{PAUSE_UNTIL_PRESS}$"
+
+EventScript_Text_TrainerRematchGiveItem::
+    .string "Here's a gift for beating me.$"
