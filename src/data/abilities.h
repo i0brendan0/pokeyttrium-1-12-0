@@ -2408,4 +2408,109 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .cantBeSwapped = TRUE,
         .cantBeTraced = TRUE,
     },
+
+    [ABILITY_CACOPHONY] =
+    {
+        .name = _("Cacophony"),
+        .description = COMPOUND_STRING("Makes sounds stronger."),
+        .aiRating = 5,
+    },
+     
+    [ABILITY_STANDARD] =
+    {
+        .name = _("Standard"),
+        .description = COMPOUND_STRING("Ups Normal moves in a pinch."),
+        .aiRating = 5,
+    },
+    
+    [ABILITY_WRESTLE] =
+    {
+        .name = _("Wrestle"),
+        .description = COMPOUND_STRING("Ups Fight moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_AIRBORNE] =
+    {
+        .name = _("Airborne"),
+        .description = COMPOUND_STRING("Ups Flying moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_VENOMOUS] =
+    {
+        .name = _("Venomous"),
+        .description = COMPOUND_STRING("Ups Poison moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FOUNDATION] =
+    {
+        .name = _("Foundation"),
+        .description = COMPOUND_STRING("Ups Ground moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_RUBBLE] =
+    {
+        .name = _("Rubble"),
+        .description = COMPOUND_STRING("Ups Rock moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_PHANTASM] =
+    {
+        .name = _("Phantasm"),
+        .description = COMPOUND_STRING("Ups Ghost moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FORTIFY] =
+    {
+        .name = _("Fortify"),
+        .description = COMPOUND_STRING("Ups Steel moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_OVERCHARGE] =
+    {
+        .name = _("Overcharge"),
+        .description = COMPOUND_STRING("Ups Electr moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_MYSTIC] =
+    {
+        .name = _("Mystic"),
+        .description = COMPOUND_STRING("Ups Psychc moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_CHILL] =
+    {
+        .name = _("Chill"),
+        .description = COMPOUND_STRING("Ups Ice moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_HYDRA] =
+    {
+        .name = _("Hydra"),
+        .description = COMPOUND_STRING("Ups Dragon moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_DREAD] =
+    {
+        .name = _("Dread"),
+        .description = COMPOUND_STRING("Ups Dark moves in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_PIXIE] =
+    {
+        .name = _("Pixie"),
+        .description = COMPOUND_STRING("Ups Fairy moves in a pinch."),
+        .aiRating = 5,
+    },
 };
