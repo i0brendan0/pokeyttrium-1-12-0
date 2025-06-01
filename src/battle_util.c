@@ -8614,6 +8614,28 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
     return uq4_12_multiply_by_int_half_down(modifier, basePower);
 }
 
+static const u16 sTypeToTrainer[NUMBER_OF_MON_TYPES] =
+{
+    [TYPE_NORMAL] = FLAG_NORMAL_TRAINER_DEFEATED,
+    [TYPE_FIGHTING] = FLAG_FIGHTING_TRAINER_DEFEATED,
+    [TYPE_FLYING] = FLAG_FLYING_TRAINER_DEFEATED,
+    [TYPE_POISON] = FLAG_POISON_TRAINER_DEFEATED,
+    [TYPE_GROUND] = FLAG_GROUND_TRAINER_DEFEATED,
+    [TYPE_ROCK] = FLAG_ROCK_TRAINER_DEFEATED,
+    [TYPE_BUG] = FLAG_BUG_TRAINER_DEFEATED,
+    [TYPE_GHOST] = FLAG_GHOST_TRAINER_DEFEATED,
+    [TYPE_STEEL] = FLAG_STEEL_TRAINER_DEFEATED,
+    [TYPE_FIRE] = FLAG_FIRE_TRAINER_DEFEATED,
+    [TYPE_WATER] = FLAG_WATER_TRAINER_DEFEATED,
+    [TYPE_GRASS] = FLAG_GRASS_TRAINER_DEFEATED,
+    [TYPE_ELECTRIC] = FLAG_ELECTRIC_TRAINER_DEFEATED,
+    [TYPE_PSYCHIC] = FLAG_PSYCHIC_TRAINER_DEFEATED,
+    [TYPE_ICE] = FLAG_ICE_TRAINER_DEFEATED,
+    [TYPE_DRAGON] = FLAG_DRAGON_TRAINER_DEFEATED,
+    [TYPE_DARK] = FLAG_DARK_TRAINER_DEFEATED,
+    [TYPE_FAIRY] = FLAG_FAIRY_TRAINER_DEFEATED,
+};
+
 static inline u32 CalcAttackStat(struct DamageCalculationData *damageCalcData, u32 atkAbility, u32 defAbility, enum ItemHoldEffect holdEffectAtk, u32 weather)
 {
     u8 atkStage;
@@ -8877,6 +8899,11 @@ static inline u32 CalcAttackStat(struct DamageCalculationData *damageCalcData, u
     if (ShouldGetStatBadgeBoost(B_FLAG_BADGE_BOOST_SPATK, battlerAtk) && IsBattleMoveSpecial(move))
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.1));
 
+    // A boost to moves of each type can be obtained by defeating a trainer of the designated type.
+    // They are littered throughout the Hoenn region and can only be battled after the HoF.
+    if (FlagGet(sTypeToTrainer[moveType]))
+        modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.1));
+    
     return uq4_12_multiply_by_int_half_down(modifier, atkStat);
 }
 
