@@ -13,6 +13,8 @@
         (MAX_MONEY > 99) ? 3 : \
         (MAX_MONEY > 9) ? 2 : 1)
 
+#define STARTING_MONEY 5000
+
 u32 GetMoney(u32 *moneyPtr);
 void SetMoney(u32 *moneyPtr, u32 newValue);
 bool8 IsEnoughMoney(u32 *moneyPtr, u32 cost);
