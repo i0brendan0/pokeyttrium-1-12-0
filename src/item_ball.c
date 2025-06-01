@@ -11,6 +11,9 @@ static u32 GetItemBallAmountFromTemplate(u32 itemBallId)
 {
     u32 amount = gMapHeader.events->objectEvents[itemBallId].movementRangeX;
 
+    if (amount == 0)
+        amount = gMapHeader.events->objectEvents[itemBallId].movementRangeY;
+
     if (amount > MAX_BAG_ITEM_CAPACITY)
         return MAX_BAG_ITEM_CAPACITY;
 
