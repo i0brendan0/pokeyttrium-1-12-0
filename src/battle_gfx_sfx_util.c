@@ -234,11 +234,7 @@ u16 ChooseMoveAndTargetInBattlePalace(u32 battler)
                 numMultipleMoveGroups++;
             if ((numMovesPerGroup & (0xF << 4)) >= (2 << 4))
                 numMultipleMoveGroups++;
-#ifdef BUGFIX
             if ((numMovesPerGroup & (0xF << 8)) >= (2 << 8))
-#else
-            if ((numMovesPerGroup & (0xF << 4)) >= (2 << 8))
-#endif
                 numMultipleMoveGroups++;
 
 
@@ -269,11 +265,7 @@ u16 ChooseMoveAndTargetInBattlePalace(u32 battler)
                     randSelectGroup = PALACE_MOVE_GROUP_ATTACK;
                 if ((numMovesPerGroup & (0xF << 4)) >= (2 << 4))
                     randSelectGroup = PALACE_MOVE_GROUP_DEFENSE;
-#ifdef BUGFIX
                 if ((numMovesPerGroup & (0xF << 8)) >= (2 << 8))
-#else
-                if ((numMovesPerGroup & (0xF << 4)) >= (2 << 8))
-#endif
                     randSelectGroup = PALACE_MOVE_GROUP_SUPPORT;
 
                 do
