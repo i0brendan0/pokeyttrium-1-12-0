@@ -24,6 +24,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/weather.h"
+#include "constants/rtc.h"
 
 extern const u8 EventScript_SprayWoreOff[];
 
@@ -299,6 +300,8 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
     u8 max;
     u8 range;
     u8 rand;
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    u32 metatileBehavior = MapGridGetMetatileBehaviorAt(playerObjEvent->currentCoords.x, playerObjEvent->currentCoords.y);
 
     if (LURE_STEP_COUNT == 0)
     {
@@ -312,6 +315,18 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
         {
             min = wildPokemon[wildMonIndex].maxLevel;
             max = wildPokemon[wildMonIndex].minLevel;
+        }
+        // If the player is in dark grass or surfing on dark water,
+        // randomly increase the level by up to 10%.
+        if (MetatileBehavior_IsDarkGrass(metatileBehavior) 
+         || MetatileBehavior_IsDarkWater(metatileBehavior))
+        {
+            min += min * (Random() % 10) / 100;
+            max += max * (Random() % 10) / 100;
+            if (min > MAX_LEVEL)
+                min = MAX_LEVEL;
+            if (max > MAX_LEVEL)
+                max = MAX_LEVEL;
         }
         range = max - min + 1;
         rand = Random() % range;
@@ -376,6 +391,7 @@ enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area
 {
     const struct WildPokemonInfo *wildMonInfo;
     enum TimeOfDay timeOfDay = GetTimeOfDay();
+    bool8 alternateEncounters = FlagGet(FLAG_TEMP_USE_ALT_ENCOUNTER_TABLE);
 
     if (!OW_TIME_OF_DAY_ENCOUNTERS)
         return TIME_OF_DAY_DEFAULT;
@@ -451,6 +467,7 @@ enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area
         return OW_TIME_OF_DAY_FALLBACK;
     else
         return timeOfDay;
+        return (alternateEncounters) ? (timeOfDay + TIMES_OF_DAY_COUNT) : timeOfDay;
 }
 
 u8 PickWildMonNature(void)
