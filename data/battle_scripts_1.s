@@ -1109,7 +1109,7 @@ BattleScript_EffectAllySwitch::
 	allyswitchfailchance BattleScript_ButItFailed
 	attackanimation
 	waitanimation
-	@ The actual data/gfx swap happens in the move animation. Here it's just the gBattlerAttacker / scripting battler change
+	@ The actual data/gfx swap happens in the move animation. Here its just the gBattlerAttacker / scripting battler change
 	allyswitchswapbattlers
 	printstring STRINGID_ALLYSWITCHPOSITION
 	waitmessage B_WAIT_TIME_LONG
@@ -4738,7 +4738,7 @@ BattleScript_EffectMementoPrintNoEffect:
 	printstring STRINGID_BUTNOEFFECT
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_EffectMementoTryFaint
-@ If the target is protected there's no need to check the target's stats or animate, the user will just faint
+@ If the target is protected theres no need to check the targets stats or animate, the user will just faint
 BattleScript_MementoTargetProtect:
 	attackstring
 	ppreduce
@@ -7400,7 +7400,7 @@ BattleScript_SpeedBoostActivates::
 BattleScript_SpeedBoostActivatesEnd:
 	end3
 
-@ Can't compare directly to a value, have to compare to value at pointer
+@ Cant compare directly to a value, have to compare to value at pointer
 sZero:
 .byte 0
 
@@ -8280,7 +8280,7 @@ BattleScript_WeakArmorActivates::
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_FELL_EMPTY, BattleScript_WeakArmorActivatesSpeed
 	pause B_WAIT_TIME_SHORTEST
 	printfromtable gStatDownStringIds
-	clearmoveresultflags MOVE_RESULT_MISSED @ Set by statbuffchange when stat can't be decreased
+	clearmoveresultflags MOVE_RESULT_MISSED @ Set by statbuffchange when stat cant be decreased
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_WeakArmorActivatesSpeed
 BattleScript_WeakArmorDefAnim:
@@ -8412,7 +8412,7 @@ BattleScript_RoughSkinActivates::
 	return
 
 BattleScript_RockyHelmetActivates::
-	@ don't play the animation for a fainted mon
+	@ dont play the animation for a fainted mon
 	jumpifabsent BS_TARGET, BattleScript_RockyHelmetActivatesDmg
 	playanimation BS_TARGET, B_ANIM_HELD_ITEM_EFFECT
 	waitanimation
