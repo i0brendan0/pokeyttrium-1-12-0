@@ -7099,7 +7099,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sPhioneLevelUpLearnset,
         .teachableLearnset = sPhioneTeachableLearnset,
-    },
+        .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_MANAPHY, CONDITIONS({IF_MIN_FRIENDSHIP, FRIENDSHIP_EVO_THRESHOLD})}),
+        },
 
     [SPECIES_MANAPHY] =
     {
