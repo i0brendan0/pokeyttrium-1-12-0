@@ -1,0 +1,214 @@
+Lists all things that need to be done.
+If you are checking out this repo and would like to contribute to any of these, either submit a PR or message me on Discord.
+
+### Pokemon Graphics
+
+    - Footprints
+        - Animon
+        - Aquaria
+        - Aquis
+        - Belloyant
+        - Belmitt
+        - Blossomole
+        - Bomsoaker
+        - Chiks
+        - Cruz
+        - Dynabear
+        - Flambear
+        - Beta Gabite
+        - Beta Garchomp
+        - Beta Gible
+        - Gohng
+        - Grimey
+        - Kurstraw
+        - Madame
+        - Meowsy
+        - Minicorn
+        - Owldurn
+        - Pangshi
+        - Para
+        - Plux
+        - Porygon-C
+        - Raitora
+        - Rinring
+        - Swievel
+        - Tangel
+        - Tangrath
+        - Trifox
+        - Volbear
+        - Warwolf
+        - Whimsey
+        - Kiromarill
+        - Beta Celebi
+        - Beta Hoothoot
+        - Woober
+    - Follower Sprites
+        - Anchorage
+        - Animon
+        - Aquaria
+        - Aquis
+        - Belloyant
+        - Belmitt
+        - Blossomole
+        - Bomsoaker
+        - Chiks
+        - Cottoneko
+        - Cruz
+        - Dandeneko
+        - Dynabear
+        - Flambear
+        - Beta Gabite
+        - Beta Garchomp
+        - Beta Gible
+        - Gohng
+        - Golpy
+        - Grimey
+        - Grotess
+        - Kurstraw
+        - Lefneko
+        - Madame
+        - Meowsy
+        - Minicorn
+        - Numpuff
+        - Owldurn
+        - Pangshi
+        - Para
+        - Plux
+        - Porygon-C
+        - Puddi
+        - Raitora
+        - Rayleep
+        - Rinring
+        - Sunmola
+        - Swievel
+        - Tangel
+        - Tangrath
+        - Trifox
+        - Turbann
+        - Twinz
+        - Volbear
+        - Warwolf
+        - Whimsey
+        - Kiromarill
+        - Beta Celebi
+        - Dunslet
+        - Beta Hoothoot
+        - Woober
+    - Animated Front Sprites
+        - Anchorage
+        - Animon
+        - Aquaria
+        - Aquis
+        - Belloyant
+        - Belmitt
+        - Blossomole
+        - Bomsoaker
+        - Chiks
+        - Cottoneko
+        - Cruz
+        - Dandeneko
+        - Dynabear
+        - Flambear
+        - Beta Gabite
+        - Beta Garchomp
+        - Beta Gible
+        - Gohng
+        - Golpy
+        - Grimey
+        - Grotess
+        - Kurstraw
+        - Lefneko
+        - Madame
+        - Meowsy
+        - Minicorn
+        - Numpuff
+        - Owldurn
+        - Pangshi
+        - Para
+        - Plux
+        - Porygon-C
+        - Puddi
+        - Raitora
+        - Rayleep
+        - Rinring
+        - Sunmola
+        - Swievel
+        - Tangel
+        - Tangrath
+        - Trifox
+        - Turbann
+        - Twinz
+        - Volbear
+        - Warwolf
+        - Whimsey
+        - Kiromarill
+        - Beta Celebi
+        - Dunslet
+        - Beta Hoothoot
+        - Woober
+    - Back Sprites
+        - Beta Gabite
+        - Beta Garchomp
+        - Beta Gible
+        - Whimsey
+        - Kiromarill
+        - Beta Celebi
+        - Dunslet
+        - Woober
+    - Icons
+        - Animon
+        - Chiks
+        - Dandeneko
+        - Beta Gabite
+        - Beta Garchomp
+        - Beta Gible
+        - Gohng
+        - Golpy
+        - Grimey
+        - Lefneko
+        - Minicorn
+        - Para
+        - Porygon-C
+        - Swievel
+        - Trifox
+        - Turbann
+        - Whimsey
+        - Kiromarill
+        - Beta Celebi
+        - Dunslet
+        - Woober
+    - Icon Redo
+        - Anchorage
+        - Aquaria
+        - Blossomole
+        - Bomsoaker
+        - Cruz
+        - Dynabear
+        - Meowsy
+        - Numpuff
+        - Pangshi
+        - Rayleep
+        - Rinring
+        - Sunmola
+        - Tangel
+        - Tangrath
+        - Twinz
+        - Volbear
+        - Warwolf
+
+### Graphics
+
+    - Lucy back and overworld sprites
+    - New incense sprites
+    - Title screen version name
+    - Title screen background graphics
+
+### Features
+
+### Misc
+
+    - Come up with a name for the Beta Celebi
+    - Come up with a name for the Beta Gible line
+    - Come up with a name for Bomsoaker's signature ability
+    - Come up with a name for Kurstraw/Pangshi's signature ability
+    - Come up with a name for Twinz's signature ability

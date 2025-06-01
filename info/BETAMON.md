@@ -1,0 +1,165 @@
+    - Lefneko
+        - Grass
+        - Evolves into Dandeneko
+        - Abilities - ???/???/???
+    - Dandeneko
+        - Grass
+        - Evolves into Cottoneko
+    - Cottoneko
+        - Grass
+    - Flambear
+        - Fire
+        - Evolves into Volbear
+    - Volbear
+        - Fire
+        - Evolves into Dynabear
+    - Dynabear
+        - Fire
+    - Cruz
+        - Water
+        - Evolves into Aquis
+    - Aquis
+        - Water
+        - Evolves into Aquaria
+    - Aquaria
+        - Water
+    - Blossomole
+        - Grass/Fairy
+    - Hoothoot - Skåne Regional Variant
+        - Normal/Flying
+        - Evolves into Owldurn
+    - Owldurn
+        - Normal/Flying
+    - Trifox
+        - Fire
+        - Evolves into Vulpix
+    - Tangel
+        - Grass
+        - Evolves into Tangela
+    - Tangrath
+        - Grass/Dark
+        - Evolves from Tangela
+    - Rayleep
+        - Water/Fairy
+    - Numpuff
+        - Water/Poison
+        - Evolves from Qwilfish
+    - Golpy
+        - Water
+        - Evolves into Goldeen
+    - Sunmola
+        - Water
+        - Evolves into Anchorage
+        - Evolves into Grotess
+    - Anchorage
+        - Water/Steel
+    - Grotess
+        - Water/Dark
+    - Para
+        - Bug
+        - Evolves into Paras
+    - Animon
+        - Normal/Steel
+        - Evolves from Ditto
+    - Chiks
+        - Normal
+        - Evolves into Doduo
+    - Meowsy
+        - Normal
+        - Evolves into Kantonian Meowth
+        - Evolves into Alolan Meowth
+        - Evolves into Galarian Meowth
+    - Rinring
+        - Dark/Fairy
+        - Evolves into Belloyant
+    - Belloyant
+        - Dark/Fairy
+    - Minicorn
+        - Fire
+        - Evolves into Ponyta
+    - Turbann
+        - Rock
+    - Grimey
+        - Poison
+        - Evolves into Grimer
+    - Gohng
+        - Fighting/Fairy
+        - Legendary Pokemon
+    - Puddi
+        - Fire
+        - Evolves into Growlithe
+    - Belmitt
+        - Grass/Fighting
+        - Evolves from Weepinbell
+    - Bomsoaker
+        - Fire/Water
+    - Kotora
+        - Electric
+        - Evolves into Raitora
+    - Raitora
+        - Electric
+    - Madame
+        - Normal/Flying
+        - Evolves from Kantonian Farfetch'd
+    - Kurstraw
+        - Ghost
+        - Evolves into Pangshi
+    - Pangshi
+        - Ghost
+        - Evolves into Kurstraw
+    - Plux
+        - Bug/Dark
+    - Wolfman
+        - Ice/Normal
+        - Evolves into Warwolf
+    - Warwolf
+        - Ice/Normal
+    - Porygon-C
+        - Steel
+        - Evolves from Porygon-2
+    - Dunslet
+        - Normal
+        - Evolves into Dunsparce
+    - Swievel
+        - Normal/Ice
+        - Evolves from Sneasel
+    - (UNNAMED) - Beta Celebi
+        - Steel/Fairy
+        - Mythical Pokemon
+    - Woober
+        - Water/Ground
+    - Kiromarill
+        - Water/Fighting
+        - Evolves from Marill
+    - Stingbat
+        - Dark/Flying
+        - Evolves from Gligar
+    - Whimsey
+        - Normal/Fairy
+        - Evolves from Chansey
+    - Twinz
+        - Ghost/Normal
+    - (UNNAMED) - Beta Gible
+        - Dragon/Bug
+        - Pseudo-Legendary
+    - (UNNAMED) - Beta Gabite
+        - Dragon/Bug
+        - Pseudo-Legendary
+    - (UNNAMED) - Beta Garchomp
+        - Dragon/Bug
+        - Pseudo-Legendary
+    
+    - Potentials
+        - Designs from Gen 3 concept art
+            - https://tcrf.net/Development:Pok%C3%A9mon_Ruby_and_Sapphire/Concept_Art
+        - Designs from Gen 3 scratch pad
+            - https://tcrf.net/Development:Pok%C3%A9mon_Ruby_and_Sapphire/Sprites/Pok%C3%A9mon_Scratchpads#Generation_3
+        - Designs from Gen 3 cut scratch pad
+            - https://tcrf.net/Development:Pok%C3%A9mon_Ruby_and_Sapphire/Sprites/Pok%C3%A9mon_Scratchpads#Generation_3_.28Cut.29
+        - Designs from Gen 3 sprites
+            - https://tcrf.net/Development:Pok%C3%A9mon_Ruby_and_Sapphire/Sprites
+        - Designs from Gen 4 sprites
+            - https://tcrf.net/Development:Pok%C3%A9mon_Diamond_and_Pearl/Sprites
+        - Designs from Gen 5 sprites
+            - https://tcrf.net/Development:Pok%C3%A9mon_Black_and_White/Sprites/Pok%C3%A9mon_Sprites
+        
