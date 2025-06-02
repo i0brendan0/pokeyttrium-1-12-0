@@ -4805,7 +4805,11 @@ s32 GetBattleMovePriority(u32 battler, u32 ability, u32 move)
     {
         priority++;
     }
+#if B_DARK_TYPE_IGNORE_PRANKSTER
+    else if (ability == ABILITY_PRANKSTER && IsBattleMoveStatus(move) && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_DARK))
+#else
     else if (ability == ABILITY_PRANKSTER && IsBattleMoveStatus(move))
+#endif
     {
         gProtectStructs[battler].pranksterElevated = 1;
         priority++;

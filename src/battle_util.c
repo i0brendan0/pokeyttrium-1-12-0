@@ -10858,6 +10858,8 @@ bool32 TryRoomService(u32 battler)
 
 bool32 BlocksPrankster(u16 move, u32 battlerPrankster, u32 battlerDef, bool32 checkTarget)
 {
+    if (B_DARK_TYPE_IGNORE_PRANKSTER)
+        return FALSE;
     if (B_PRANKSTER_DARK_TYPES < GEN_7)
         return FALSE;
     if (!gProtectStructs[battlerPrankster].pranksterElevated)
