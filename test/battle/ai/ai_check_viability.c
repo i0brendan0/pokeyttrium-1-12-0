@@ -151,21 +151,21 @@ AI_SINGLE_BATTLE_TEST("AI can choose Counter or Mirror Coat if the predicted mov
 {
     u16 playerMove = MOVE_NONE, opponentMove = MOVE_NONE;
 
-    PARAMETRIZE { playerMove = MOVE_STRENGTH; opponentMove = MOVE_COUNTER; }
+    PARAMETRIZE { playerMove = MOVE_DRAGON_CLAW; opponentMove = MOVE_COUNTER; }
     PARAMETRIZE { playerMove = MOVE_POWER_GEM; opponentMove = MOVE_MIRROR_COAT; }
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_COUNTER) == EFFECT_COUNTER);
         ASSUME(GetMoveEffect(MOVE_MIRROR_COAT) == EFFECT_MIRROR_COAT);
-        ASSUME(GetMoveCategory(MOVE_STRENGTH) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_DRAGON_CLAW) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_POWER_GEM) == DAMAGE_CATEGORY_SPECIAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { Speed(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(102); Speed(100); Moves(opponentMove, MOVE_STRENGTH); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(102); Speed(100); Moves(opponentMove, MOVE_DRAGON_CLAW); }
     } WHEN {
-        TURN { MOVE(player, playerMove); EXPECT_MOVE(opponent, MOVE_STRENGTH); }
+        TURN { MOVE(player, playerMove); EXPECT_MOVE(opponent, MOVE_DRAGON_CLAW); }
         TURN { MOVE(player, playerMove); EXPECT_MOVE(opponent, opponentMove); }
-        TURN { MOVE(player, playerMove); EXPECT_MOVE(opponent, MOVE_STRENGTH); }
+        TURN { MOVE(player, playerMove); EXPECT_MOVE(opponent, MOVE_DRAGON_CLAW); }
     } SCENE {
         MESSAGE("The opposing Wobbuffet fainted!");
     }
