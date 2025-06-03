@@ -1,9 +1,9 @@
 # Pokemon Yttrium
 
 CHANGES TO DO 
-- 200 TMs 4397b3d952
-- Splash redo 376fdfee56
 - General Map Updates 583962dc14
+- Config changes 765a4c7b22
+-CONTINUE FROM- See Switch in Pokemon a513803f19
 
 ## What is this hack
 

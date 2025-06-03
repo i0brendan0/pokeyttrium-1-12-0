@@ -1444,6 +1444,8 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     if (gSpeciesInfo[species].abilities[1])
     {
         value = personality & 1;
+        if (FlagGet(FLAG_FORCE_HIDDEN_ABILITY))
+            value = 2;
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
