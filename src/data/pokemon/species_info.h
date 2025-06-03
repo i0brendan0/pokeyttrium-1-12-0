@@ -170,7 +170,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicSize = MON_COORDS_SIZE(24, 24),
         .backPicYOffset = 20,
         .palette = gMonPalette_Egg,
-        .shinyPalette = gMonPalette_Egg,
+        .shinyPalette = gMonPalette_EggShiny,
         .iconSprite = gMonIcon_Egg,
         .iconPalIndex = 1,
     },
