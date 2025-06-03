@@ -6561,6 +6561,9 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
                 else
                     StringAppend(gStringVar4, COMPOUND_STRING("CW/CCW >10s"));
             break;
+        case EVO_SPECIFIC_LEVEL:
+            StringCopy(gStringVar4, COMPOUND_STRING("Evolves every 10 {LV}s"));
+            break;
         }//Switch end
 
         // Check for additional conditions. Skips if there's no additional conditions.

@@ -5003,6 +5003,10 @@ u32 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 if (evolutions[i].param <= level)
                     conditionsMet = TRUE;
                 break;
+            case EVO_SPECIFIC_LEVEL:
+                if ((level % 10) == 0)
+                    conditionsMet = TRUE;
+                break;
             case EVO_LEVEL_BATTLE_ONLY:
                 if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level)
                     conditionsMet = TRUE;
@@ -5055,6 +5059,10 @@ u32 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
             {
             case EVO_ITEM:
                 if (evolutions[i].param == evolutionItem)
+                    conditionMet = TRUE;
+                break;
+            case EVO_TRADE:
+                if (ITEM_LINKING_CORD == evolutionItem)
                     conditionMet = TRUE;
                 break;
             }
