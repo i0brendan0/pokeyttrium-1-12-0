@@ -3968,7 +3968,7 @@ static bool32 IsDomePopularMove(u32 move)
     u8 i;
     for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
     {
-        if (ItemIdToBattleMoveId(ITEM_TM01 + i) == move)
+        if (ItemIdToBattleMoveId(ITEM_TM001 + i) == move)
             return TRUE;
     }
     if (i == NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES)

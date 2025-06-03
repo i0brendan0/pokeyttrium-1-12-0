@@ -47,4 +47,14 @@
 #define I_FISHING_CHAIN            FALSE      // Introduced in XY, hooking the same Pokémon repeatedly will increase the odds of that mon being shiny. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
 #define I_FISHING_PROXIMITY        FALSE      // Introduced in XY, fishing away from other people in enclosed areas will increase the chances of a Pokémon being hooked. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
 
+// HM Item Flags
+#define I_HM_AXE_FLAG       FLAG_ENABLE_AXE       // Cut
+#define I_HM_PICKAXE_FLAG   FLAG_ENABLE_PICKAXE   // Rock Smash
+#define I_HM_GLOVE_FLAG     FLAG_ENABLE_GLOVE     // Strength
+#define I_HM_SUIT_FLAG      FLAG_ENABLE_SUIT      // Dive
+#define I_HM_LANTERN_FLAG   FLAG_ENABLE_LANTERN   // Flash
+#define I_HM_SURFBOARD_FLAG FLAG_ENABLE_SURFBOARD // Surf
+#define I_HM_WATERFALL_FLAG FLAG_ENABLE_WATERFALL // Waterfall
+#define I_HM_FLY_FLAG       FLAG_ENABLE_FLY // Fly
+
 #endif // GUARD_CONFIG_ITEM_H

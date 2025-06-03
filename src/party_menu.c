@@ -132,14 +132,7 @@ enum {
 // In CursorCb_FieldMove, field moves <= FIELD_MOVE_WATERFALL are assumed to line up with the badge flags.
 // Badge flag names are commented here for people searching for references to remove the badge requirement.
 enum {
-    FIELD_MOVE_CUT,         // FLAG_BADGE01_GET
-    FIELD_MOVE_FLASH,       // FLAG_BADGE02_GET
-    FIELD_MOVE_ROCK_SMASH,  // FLAG_BADGE03_GET
-    FIELD_MOVE_STRENGTH,    // FLAG_BADGE04_GET
-    FIELD_MOVE_SURF,        // FLAG_BADGE05_GET
-    FIELD_MOVE_FLY,         // FLAG_BADGE06_GET
-    FIELD_MOVE_DIVE,        // FLAG_BADGE07_GET
-    FIELD_MOVE_WATERFALL,   // FLAG_BADGE08_GET
+    FIELD_MOVE_FLY,
     FIELD_MOVE_TELEPORT,
     FIELD_MOVE_DIG,
     FIELD_MOVE_SECRET_POWER,
@@ -183,8 +176,7 @@ enum {
 
 static const u16 sHMMoves[] =
 {
-    MOVE_CUT, MOVE_FLY, MOVE_SURF, MOVE_STRENGTH, MOVE_FLASH,
-    MOVE_ROCK_SMASH, MOVE_WATERFALL, MOVE_DIVE, HM_MOVES_END
+    HM_MOVES_END
 };
 
 enum {
@@ -399,8 +391,6 @@ static void Task_SpinTradeYesNo(u8);
 static void Task_HandleSpinTradeYesNoInput(u8);
 static void Task_CancelAfterAorBPress(u8);
 static void DisplayFieldMoveExitAreaMessage(u8);
-static void DisplayCantUseFlashMessage(void);
-static void DisplayCantUseSurfMessage(void);
 static void Task_FieldMoveExitAreaYesNo(u8);
 static void Task_HandleFieldMoveExitAreaYesNoInput(u8);
 static void Task_FieldMoveWaitForFade(u8);
@@ -514,10 +504,7 @@ static void CursorCb_CatalogFan(u8);
 static void CursorCb_CatalogMower(u8);
 static void CursorCb_ChangeForm(u8);
 static void CursorCb_ChangeAbility(u8);
-static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
-static bool8 SetUpFieldMove_Waterfall(void);
-static bool8 SetUpFieldMove_Dive(void);
 void TryItemHoldFormChange(struct Pokemon *mon, s8 slotId);
 static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
@@ -3991,13 +3978,7 @@ static void CursorCb_FieldMove(u8 taskId)
     }
     else
     {
-        // All field moves before WATERFALL are HMs.
-        if (fieldMove <= FIELD_MOVE_WATERFALL && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
-        {
-            DisplayPartyMenuMessage(gText_CantUseUntilNewBadge, TRUE);
-            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
-        }
-        else if (sFieldMoveCursorCallbacks[fieldMove].fieldMoveFunc() == TRUE)
+        if (sFieldMoveCursorCallbacks[fieldMove].fieldMoveFunc() == TRUE)
         {
             switch (fieldMove)
             {
@@ -4032,19 +4013,16 @@ static void CursorCb_FieldMove(u8 taskId)
         // Cant use Field Move
         else
         {
-            switch (fieldMove)
+            if (fieldMove == FIELD_MOVE_FLY && !FlagGet(FLAG_ENABLE_FLY))
             {
-            case FIELD_MOVE_SURF:
-                DisplayCantUseSurfMessage();
-                break;
-            case FIELD_MOVE_FLASH:
-                DisplayCantUseFlashMessage();
-                break;
-            default:
-                DisplayPartyMenuStdMessage(sFieldMoveCursorCallbacks[fieldMove].msgId);
-                break;
+                DisplayPartyMenuStdMessage(PARTY_MSG_UNUSED);
+                gTasks[taskId].func = Task_CancelAfterAorBPress;
             }
-            gTasks[taskId].func = Task_CancelAfterAorBPress;
+            else
+            {
+                DisplayPartyMenuStdMessage(sFieldMoveCursorCallbacks[fieldMove].msgId);
+                gTasks[taskId].func = Task_CancelAfterAorBPress;
+            }
         }
     }
 }
@@ -4158,48 +4136,9 @@ static void Task_CancelAfterAorBPress(u8 taskId)
         CursorCb_Cancel1(taskId);
 }
 
-static void DisplayCantUseFlashMessage(void)
-{
-    if (FlagGet(FLAG_SYS_USE_FLASH) == TRUE)
-        DisplayPartyMenuStdMessage(PARTY_MSG_ALREADY_IN_USE);
-    else
-        DisplayPartyMenuStdMessage(PARTY_MSG_CANT_USE_HERE);
-}
-
-static void FieldCallback_Surf(void)
-{
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    FieldEffectStart(FLDEFF_USE_SURF);
-}
-
-static bool8 SetUpFieldMove_Surf(void)
-{
-    if (!CheckFollowerNPCFlag(FOLLOWER_NPC_FLAG_CAN_SURF))
-        return FALSE;
-
-    if (PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
-    {
-        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
-        gPostMenuFieldCallback = FieldCallback_Surf;
-        return TRUE;
-    }
-    return FALSE;
-}
-
-static void DisplayCantUseSurfMessage(void)
-{
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
-        DisplayPartyMenuStdMessage(PARTY_MSG_ALREADY_SURFING);
-    else
-        DisplayPartyMenuStdMessage(PARTY_MSG_CANT_SURF_HERE);
-}
-
 static bool8 SetUpFieldMove_Fly(void)
 {
-    if (!CheckFollowerNPCFlag(FOLLOWER_NPC_FLAG_CAN_LEAVE_ROUTE))
-        return FALSE;
-
-    if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
+    if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE || !FlagGet(I_HM_FLY_FLAG))
         return TRUE;
     else
         return FALSE;
@@ -4208,50 +4147,6 @@ static bool8 SetUpFieldMove_Fly(void)
 void CB2_ReturnToPartyMenuFromFlyMap(void)
 {
     InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_MON, TRUE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ReturnToFieldWithOpenMenu);
-}
-
-static void FieldCallback_Waterfall(void)
-{
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    FieldEffectStart(FLDEFF_USE_WATERFALL);
-}
-
-static bool8 SetUpFieldMove_Waterfall(void)
-{
-    s16 x, y;
-
-    if (!CheckFollowerNPCFlag(FOLLOWER_NPC_FLAG_CAN_WATERFALL))
-        return FALSE;
-
-    GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
-    if (MetatileBehavior_IsWaterfall(MapGridGetMetatileBehaviorAt(x, y)) == TRUE && IsPlayerSurfingNorth() == TRUE)
-    {
-        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
-        gPostMenuFieldCallback = FieldCallback_Waterfall;
-        return TRUE;
-    }
-    return FALSE;
-}
-
-static void FieldCallback_Dive(void)
-{
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    FieldEffectStart(FLDEFF_USE_DIVE);
-}
-
-static bool8 SetUpFieldMove_Dive(void)
-{
-    if (!CheckFollowerNPCFlag(FOLLOWER_NPC_FLAG_CAN_DIVE))
-        return FALSE;
-
-    gFieldEffectArguments[1] = TrySetDiveWarp();
-    if (gFieldEffectArguments[1] != 0)
-    {
-        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
-        gPostMenuFieldCallback = FieldCallback_Dive;
-        return TRUE;
-    }
-    return FALSE;
 }
 
 static void CreatePartyMonIconSprite(struct Pokemon *mon, struct PartyMenuBox *menuBox, u32 slot)

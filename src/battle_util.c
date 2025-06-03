@@ -10601,7 +10601,7 @@ u8 GetCategoryBasedOnStats(u32 battler)
 
 static u32 GetFlingPowerFromItemId(u32 itemId)
 {
-    if (itemId >= ITEM_TM01 && itemId <= ITEM_HM08)
+    if (itemId >= ITEM_TM001 && itemId <= ITEM_HM08)
     {
         u32 power = GetMovePower(ItemIdToBattleMoveId(itemId));
         if (power > 1)

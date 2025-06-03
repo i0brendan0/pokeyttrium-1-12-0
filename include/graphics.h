@@ -1740,6 +1740,25 @@ extern const u16 gItemIconPalette_SwapSnack[];
 extern const u32 gItemIcon_TwiceSpicedRadish[];
 extern const u16 gItemIconPalette_TwiceSpicedRadish[];
 
+// Custom 
+extern const u32 gItemIcon_PowerGlove[];
+extern const u16 gItemIconPalette_PowerGlove[];
+
+extern const u32 gItemIcon_Pickaxe[];
+extern const u16 gItemIconPalette_Pickaxe[];
+
+extern const u32 gItemIcon_Lantern[];
+extern const u16 gItemIconPalette_Lantern[];
+
+extern const u32 gItemIcon_Axe[];
+extern const u16 gItemIconPalette_Axe[];
+
+extern const u32 gItemIcon_Surfboard[];
+extern const u16 gItemIconPalette_Surfboard[];
+
+extern const u32 gItemIcon_ScubaGear[];
+extern const u16 gItemIconPalette_ScubaGear[];
+
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u16 gItemIconPalette_ReturnToFieldArrow[];
 

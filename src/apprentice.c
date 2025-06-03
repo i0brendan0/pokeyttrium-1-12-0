@@ -354,11 +354,11 @@ static u16 GetRandomAlternateMove(u8 monId)
                 do
                 {
                     id = Random() % (NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES);
-                    shouldUseMove = CanLearnTeachableMove(species, ItemIdToBattleMoveId(ITEM_TM01 + id));
+                    shouldUseMove = CanLearnTeachableMove(species, ItemIdToBattleMoveId(ITEM_TM001 + id));
                 }
                 while (!shouldUseMove);
 
-                move = ItemIdToBattleMoveId(ITEM_TM01 + id);
+                move = ItemIdToBattleMoveId(ITEM_TM001 + id);
                 shouldUseMove = TRUE;
 
                 if (numLearnsetMoves <= MAX_MON_MOVES)

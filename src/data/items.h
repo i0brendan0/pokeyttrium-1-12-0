@@ -14,6 +14,18 @@
 
 #define TREASURE_FACTOR ((I_SELL_VALUE_FRACTION >= GEN_9) ? 2 : 1)
 
+#define OLD_TM_DATA                                   \
+    {                                                 \
+        .name = _("?????"),                           \
+        .price = 0,                                   \
+        .description = sQuestionMarksDesc,            \
+        .pocket = POCKET_ITEMS,                       \
+        .type = ITEM_USE_BAG_MENU,                    \
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, \
+        .iconPic = gItemIcon_QuestionMark,            \
+        .iconPalette = gItemIconPalette_QuestionMark, \
+    }
+
 // Shared Item Description entries
 
 static const u8 sFullHealDesc[]       = _("Heals all the\n"
@@ -137,6 +149,18 @@ static const u8 sTeraShardDesc[]      = _("These shards may\n"
 static const u8 sGenericMulchDesc[]   = _("A fertilizer that\n"
                                           "is unsuitable for\n"
                                           "local soil.");
+
+static const u8 sRichIncenseDesc[]     = _("A hold item that\n"
+                                           "occasionally allows\n"
+                                           "the first strike.");
+
+static const u8 sFlameIncenseDesc[]     = _("A hold item that\n"
+                                            "raises the power of\n"
+                                            "Fire-type moves.");
+
+static const u8 sGrimeIncenseDesc[]     = _("A hold item that\n"
+                                            "raises the power of\n"
+                                            "Poison-type moves.");
 
 const struct Item gItemsInfo[] =
 {
@@ -7295,7 +7319,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_ROSE_INCENSE] =
     {
-        .name = _("Rose Incense"),
+        .name = _("Grass Incense"),
         .price = (I_PRICE >= GEN_7) ? 2000 : 9600,
         .holdEffect = HOLD_EFFECT_TYPE_POWER,
         .holdEffectParam = 20,
@@ -7335,6 +7359,38 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_PureIncense,
         .iconPalette = gItemIconPalette_PureIncense,
+    },
+
+    [ITEM_FLAME_INCENSE] =
+    {
+        .name = _("Flame Incense"),
+        .price = (I_PRICE >= GEN_7) ? 2000 : 9600,
+        .holdEffect = HOLD_EFFECT_TYPE_POWER,
+        .holdEffectParam = 20,
+        .description = sFlameIncenseDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_FIRE,
+        .flingPower = 10,
+        .iconPic = gItemIcon_WaveIncense,
+        .iconPalette = gItemIconPalette_WaveIncense,
+    },
+
+    [ITEM_GRIME_INCENSE] =
+    {
+        .name = _("Grime Incense"),
+        .price = (I_PRICE >= GEN_7) ? 2000 : 9600,
+        .holdEffect = HOLD_EFFECT_TYPE_POWER,
+        .holdEffectParam = 20,
+        .description = sGrimeIncenseDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_POISON,
+        .flingPower = 10,
+        .iconPic = gItemIcon_RoseIncense,
+        .iconPalette = gItemIconPalette_RoseIncense,
     },
 
 // Contest Scarves
@@ -7586,10 +7642,7 @@ const struct Item gItemsInfo[] =
         .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 9800),
         .holdEffect = HOLD_EFFECT_TYPE_POWER,
         .holdEffectParam = TYPE_BOOST_PARAM,
-        .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "raises the power of\n"
-            "Fire-type moves."),
+        .description = sFlameIncenseDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -7699,10 +7752,7 @@ const struct Item gItemsInfo[] =
         .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_TYPE_POWER,
         .holdEffectParam = TYPE_BOOST_PARAM,
-        .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "raises the power of\n"
-            "Poison-type moves."),
+        .description = sGrimeIncenseDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -8273,10 +8323,7 @@ const struct Item gItemsInfo[] =
         .price = (I_PRICE >= GEN_9) ? 8000 : ((I_PRICE >= GEN_7) ? 4000 : 100),
         .holdEffect = HOLD_EFFECT_QUICK_CLAW,
         .holdEffectParam = 20,
-        .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "occasionally allows\n"
-            "the first strike."),
+        .description = sRichIncenseDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -10442,9 +10489,9 @@ const struct Item gItemsInfo[] =
 
 // TMs/HMs. They don't have a set flingPower, as that's handled by GetFlingPowerFromItemId.
 
-    [ITEM_TM_FOCUS_PUNCH] =
+    [ITEM_TM001] =
     {
-        .name = _("TM01"),
+        .name = _("TM001"),
         .price = 3000,
         .description = COMPOUND_STRING(
             "Powerful, but makes\n"
@@ -10457,1356 +10504,2989 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_DRAGON_CLAW] =
+    [ITEM_TM002] =
     {
-        .name = _("TM02"),
+        .name = _("TM002"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Hooks and slashes\n"
-            "the foe with long,\n"
-            "sharp claws."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_DRAGON_CLAW,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_WATER_PULSE] =
+    [ITEM_TM003] =
     {
-        .name = _("TM03"),
+        .name = _("TM003"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Generates an\n"
-            "ultrasonic wave\n"
-            "that may confuse."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_WATER_PULSE,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_CALM_MIND] =
+    [ITEM_TM004] =
     {
-        .name = _("TM04"),
+        .name = _("TM004"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Raises Sp. Atk and\n"
-            "Sp. Def by focusing\n"
-            "the mind."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_CALM_MIND,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_ROAR] =
+    [ITEM_TM005] =
     {
-        .name = _("TM05"),
-        .price = 1000,
-        .description = COMPOUND_STRING(
-            "A savage roar that\n"
-            "makes the foe flee \n"
-            "to end the battle."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_ROAR,
-    },
-
-    [ITEM_TM_TOXIC] =
-    {
-        .name = _("TM06"),
+        .name = _("TM005"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Poisons the foe\n"
-            "with a toxin that\n"
-            "gradually worsens."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_TOXIC,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_HAIL] =
+    [ITEM_TM006] =
     {
-        .name = _("TM07"),
-        .price = 3000,
-        #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_SNOW
-        .description = COMPOUND_STRING(
-            "Raises the Defense\n"
-            "of Ice type {PKMN}\n"
-            "for 5 turns."),
-        #else
-        .description = COMPOUND_STRING(
-            "Creates a hailstorm\n"
-            "that damages all\n"
-            "types except Ice."),
-        #endif
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_HAIL,
-    },
-
-    [ITEM_TM_BULK_UP] =
-    {
-        .name = _("TM08"),
+        .name = _("TM006"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Bulks up the body\n"
-            "to boost both\n"
-            "Attack & Defense."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_BULK_UP,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_BULLET_SEED] =
+    [ITEM_TM007] =
     {
-        .name = _("TM09"),
+        .name = _("TM007"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Shoots 2 to 5 seeds\n"
-            "in a row to strike\n"
-            "the foe."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_BULLET_SEED,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_HIDDEN_POWER] =
+    [ITEM_TM008] =
     {
-        .name = _("TM10"),
+        .name = _("TM008"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "The attack power\n"
-            "varies among\n"
-            "different Pokémon."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_HIDDEN_POWER,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_SUNNY_DAY] =
+    [ITEM_TM009] =
     {
-        .name = _("TM11"),
-        .price = 2000,
-        .description = COMPOUND_STRING(
-            "Raises the power of\n"
-            "Fire-type moves\n"
-            "for 5 turns."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SUNNY_DAY,
-    },
-
-    [ITEM_TM_TAUNT] =
-    {
-        .name = _("TM12"),
+        .name = _("TM009"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Enrages the foe so\n"
-            "it can only use\n"
-            "attack moves."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_TAUNT,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_ICE_BEAM] =
+    [ITEM_TM010] =
     {
-        .name = _("TM13"),
+        .name = _("TM010"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Fires an icy cold\n"
-            "beam that may\n"
-        #if B_USE_FROSTBITE == TRUE
-            "inflict frostbite."),
-        #else
-            "freeze the foe."),
-        #endif
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_ICE_BEAM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_BLIZZARD] =
+    [ITEM_TM011] =
     {
-        .name = _("TM14"),
-        .price = 5500,
-        .description = COMPOUND_STRING(
-        #if B_USE_FROSTBITE == TRUE
-            "A snow-and-wind\n"
-            "attack that may\n"
-            "inflict frostbite."),
-        #else
-            "A brutal snow-and-\n"
-            "wind attack that\n"
-            "may freeze the foe."),
-        #endif
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_BLIZZARD,
-    },
-
-    [ITEM_TM_HYPER_BEAM] =
-    {
-        .name = _("TM15"),
-        .price = 7500,
-        .description = COMPOUND_STRING(
-            "Powerful, but needs\n"
-            "recharging the\n"
-            "next turn."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_HYPER_BEAM,
-    },
-
-    [ITEM_TM_LIGHT_SCREEN] =
-    {
-        .name = _("TM16"),
+        .name = _("TM011"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Creates a wall of\n"
-            "light that lowers\n"
-            "Sp. Atk damage."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_LIGHT_SCREEN,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_PROTECT] =
+    [ITEM_TM012] =
     {
-        .name = _("TM17"),
+        .name = _("TM012"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Negates all damage,\n"
-            "but may fail if used\n"
-            "in succession."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_PROTECT,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_RAIN_DANCE] =
+    [ITEM_TM013] =
     {
-        .name = _("TM18"),
-        .price = 2000,
-        .description = COMPOUND_STRING(
-            "Raises the power of\n"
-            "Water-type moves\n"
-            "for 5 turns."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_RAIN_DANCE,
-    },
-
-    [ITEM_TM_GIGA_DRAIN] =
-    {
-        .name = _("TM19"),
+        .name = _("TM013"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Recovers half the\n"
-            "HP of the damage \n"
-            "this move inflicts."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_GIGA_DRAIN,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_SAFEGUARD] =
+    [ITEM_TM014] =
     {
-        .name = _("TM20"),
+        .name = _("TM014"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Prevents status\n"
-            "abnormality with a\n"
-            "mystical power."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SAFEGUARD,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_FRUSTRATION] =
+    [ITEM_TM015] =
     {
-        .name = _("TM21"),
-        .price = 1000,
-        .description = COMPOUND_STRING(
-            "The less the user\n"
-            "likes you, the more\n"
-            "powerful this move."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_FRUSTRATION,
-    },
-
-    [ITEM_TM_SOLAR_BEAM] =
-    {
-        .name = _("TM22"),
+        .name = _("TM015"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Absorbs sunlight in\n"
-            "the 1st turn, then\n"
-            "attacks next turn."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SOLAR_BEAM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_IRON_TAIL] =
+    [ITEM_TM016] =
     {
-        .name = _("TM23"),
+        .name = _("TM016"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Slams the foe with\n"
-            "a hard tail. It may\n"
-            "lower Defense."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_IRON_TAIL,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_THUNDERBOLT] =
+    [ITEM_TM017] =
     {
-        .name = _("TM24"),
+        .name = _("TM017"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "A powerful electric\n"
-            "attack that may\n"
-            "cause paralysis."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_THUNDERBOLT,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_THUNDER] =
+    [ITEM_TM018] =
     {
-        .name = _("TM25"),
-        .price = 5500,
-        .description = COMPOUND_STRING(
-            "Strikes the foe\n"
-            "with a thunderbolt.\n"
-            "It may paralyze."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_THUNDER,
-    },
-
-    [ITEM_TM_EARTHQUAKE] =
-    {
-        .name = _("TM26"),
+        .name = _("TM018"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Causes a quake\n"
-            "that has no effect\n"
-            "on flying foes."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_EARTHQUAKE,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_RETURN] =
+    [ITEM_TM019] =
     {
-        .name = _("TM27"),
-        .price = 1000,
-        .description = COMPOUND_STRING(
-            "The more the user\n"
-            "likes you, the more\n"
-            "powerful this move."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_RETURN,
-    },
-
-    [ITEM_TM_DIG] =
-    {
-        .name = _("TM28"),
-        .price = 2000,
-        .description = COMPOUND_STRING(
-            "Digs underground\n"
-            "the 1st turn, then\n"
-            "strikes next turn."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_DIG,
-    },
-
-    [ITEM_TM_PSYCHIC] =
-    {
-        .name = _("TM29"),
-        .price = 2000,
-        .description = COMPOUND_STRING(
-            "A powerful psychic\n"
-            "attack that may\n"
-            "lower Sp. Def."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_PSYCHIC,
-    },
-
-    [ITEM_TM_SHADOW_BALL] =
-    {
-        .name = _("TM30"),
+        .name = _("TM019"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Hurls a dark lump\n"
-            "at the foe. It may\n"
-            "lower Sp. Def."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SHADOW_BALL,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_BRICK_BREAK] =
+    [ITEM_TM020] =
     {
-        .name = _("TM31"),
+        .name = _("TM020"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Destroys barriers\n"
-            "like Light Screen\n"
-            "and causes damage."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_BRICK_BREAK,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_DOUBLE_TEAM] =
+    [ITEM_TM021] =
     {
-        .name = _("TM32"),
-        .price = 2000,
-        .description = COMPOUND_STRING(
-            "Creates illusory\n"
-            "copies to enhance\n"
-            "elusiveness."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_DOUBLE_TEAM,
-    },
-
-    [ITEM_TM_REFLECT] =
-    {
-        .name = _("TM33"),
+        .name = _("TM021"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Creates a wall of\n"
-            "light that weakens\n"
-            "physical attacks."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_REFLECT,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_SHOCK_WAVE] =
+    [ITEM_TM022] =
     {
-        .name = _("TM34"),
+        .name = _("TM022"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Zaps the foe with a\n"
-            "jolt of electricity\n"
-            "that never misses."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SHOCK_WAVE,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_FLAMETHROWER] =
+    [ITEM_TM023] =
     {
-        .name = _("TM35"),
+        .name = _("TM023"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Looses a stream of\n"
-            "fire that may burn\n"
-            "the foe."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_FLAMETHROWER,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_SLUDGE_BOMB] =
+    [ITEM_TM024] =
     {
-        .name = _("TM36"),
-        .price = 1000,
-        .description = COMPOUND_STRING(
-            "Hurls sludge at the\n"
-            "foe. It may poison\n"
-            "the foe."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SLUDGE_BOMB,
-    },
-
-    [ITEM_TM_SANDSTORM] =
-    {
-        .name = _("TM37"),
-        .price = 2000,
-        .description = COMPOUND_STRING(
-            "Causes a sandstorm\n"
-            "that hits the foe\n"
-            "over several turns."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SANDSTORM,
-    },
-
-    [ITEM_TM_FIRE_BLAST] =
-    {
-        .name = _("TM38"),
-        .price = 5500,
-        .description = COMPOUND_STRING(
-            "A powerful fire\n"
-            "attack that may\n"
-            "burn the foe."),
-        .importance = I_REUSABLE_TMS,
-        .pocket = POCKET_TM_HM,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_FIRE_BLAST,
-    },
-
-    [ITEM_TM_ROCK_TOMB] =
-    {
-        .name = _("TM39"),
+        .name = _("TM024"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Stops the foe from\n"
-            "moving with rocks.\n"
-            "May lower Speed."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_ROCK_TOMB,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_AERIAL_ACE] =
+    [ITEM_TM025] =
     {
-        .name = _("TM40"),
+        .name = _("TM025"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "An extremely fast\n"
-            "attack that can't\n"
-            "be avoided."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_AERIAL_ACE,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_TORMENT] =
+    [ITEM_TM026] =
     {
-        .name = _("TM41"),
+        .name = _("TM026"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Prevents the foe\n"
-            "from using the same\n"
-            "move in a row."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_TORMENT,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_FACADE] =
+    [ITEM_TM027] =
     {
-        .name = _("TM42"),
+        .name = _("TM027"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Raises Attack when\n"
-            "poisoned, burned,\n"
-            "or paralyzed."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_FACADE,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_SECRET_POWER] =
+    [ITEM_TM028] =
     {
-        .name = _("TM43"),
+        .name = _("TM028"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Adds an effect to\n"
-            "attack depending\n"
-            "on the location."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SECRET_POWER,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_REST] =
+    [ITEM_TM029] =
     {
-        .name = _("TM44"),
+        .name = _("TM029"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "The user sleeps for\n"
-            "2 turns to restore\n"
-            "health and status."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_REST,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_ATTRACT] =
+    [ITEM_TM030] =
     {
-        .name = _("TM45"),
+        .name = _("TM030"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Makes it tough to\n"
-            "attack a foe of the\n"
-            "opposite gender."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_ATTRACT,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_THIEF] =
+    [ITEM_TM031] =
     {
-        .name = _("TM46"),
+        .name = _("TM031"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "While attacking,\n"
-            "it may steal the\n"
-            "foe's held item."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_THIEF,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_STEEL_WING] =
+    [ITEM_TM032] =
     {
-        .name = _("TM47"),
+        .name = _("TM032"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Spreads hard-\n"
-            "edged wings and\n"
-            "slams into the foe."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_STEEL_WING,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_SKILL_SWAP] =
+    [ITEM_TM033] =
     {
-        .name = _("TM48"),
+        .name = _("TM033"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Switches abilities\n"
-            "with the foe on the\n"
-            "turn this is used."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SKILL_SWAP,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_SNATCH] =
+    [ITEM_TM034] =
     {
-        .name = _("TM49"),
+        .name = _("TM034"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Steals the effects\n"
-            "of the move the foe\n"
-            "is trying to use."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SNATCH,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM_OVERHEAT] =
+    [ITEM_TM035] =
     {
-        .name = _("TM50"),
+        .name = _("TM035"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Enables full-power\n"
-            "attack, but sharply\n"
-            "lowers Sp. Atk."),
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_OVERHEAT,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM51] =
+    [ITEM_TM036] =
     {
-        .name = _("TM51"),
+        .name = _("TM036"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM52] =
+    [ITEM_TM037] =
     {
-        .name = _("TM52"),
+        .name = _("TM037"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM53] =
+    [ITEM_TM038] =
     {
-        .name = _("TM53"),
+        .name = _("TM038"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM54] =
+    [ITEM_TM039] =
     {
-        .name = _("TM54"),
+        .name = _("TM039"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM55] =
+    [ITEM_TM040] =
     {
-        .name = _("TM55"),
+        .name = _("TM040"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM56] =
+    [ITEM_TM041] =
     {
-        .name = _("TM56"),
+        .name = _("TM041"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM57] =
+    [ITEM_TM042] =
     {
-        .name = _("TM57"),
+        .name = _("TM042"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM58] =
+    [ITEM_TM043] =
     {
-        .name = _("TM58"),
+        .name = _("TM043"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM59] =
+    [ITEM_TM044] =
     {
-        .name = _("TM59"),
+        .name = _("TM044"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM60] =
+    [ITEM_TM045] =
     {
-        .name = _("TM60"),
+        .name = _("TM045"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM61] =
+    [ITEM_TM046] =
     {
-        .name = _("TM61"),
+        .name = _("TM046"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM62] =
+    [ITEM_TM047] =
     {
-        .name = _("TM62"),
+        .name = _("TM047"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM63] =
+    [ITEM_TM048] =
     {
-        .name = _("TM63"),
+        .name = _("TM048"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM64] =
+    [ITEM_TM049] =
     {
-        .name = _("TM64"),
+        .name = _("TM049"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM65] =
+    [ITEM_TM050] =
     {
-        .name = _("TM65"),
+        .name = _("TM050"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM66] =
+    [ITEM_TM051] =
     {
-        .name = _("TM66"),
+        .name = _("TM051"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM67] =
+    [ITEM_TM052] =
     {
-        .name = _("TM67"),
+        .name = _("TM052"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM68] =
+    [ITEM_TM053] =
     {
-        .name = _("TM68"),
+        .name = _("TM053"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM69] =
+    [ITEM_TM054] =
     {
-        .name = _("TM69"),
+        .name = _("TM054"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM70] =
+    [ITEM_TM055] =
     {
-        .name = _("TM70"),
+        .name = _("TM055"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM71] =
+    [ITEM_TM056] =
     {
-        .name = _("TM71"),
+        .name = _("TM056"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM72] =
+    [ITEM_TM057] =
     {
-        .name = _("TM72"),
+        .name = _("TM057"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM73] =
+    [ITEM_TM058] =
     {
-        .name = _("TM73"),
+        .name = _("TM058"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM74] =
+    [ITEM_TM059] =
     {
-        .name = _("TM74"),
+        .name = _("TM059"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM75] =
+    [ITEM_TM060] =
     {
-        .name = _("TM75"),
+        .name = _("TM060"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM76] =
+    [ITEM_TM061] =
     {
-        .name = _("TM76"),
+        .name = _("TM061"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM77] =
+    [ITEM_TM062] =
     {
-        .name = _("TM77"),
+        .name = _("TM062"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM78] =
+    [ITEM_TM063] =
     {
-        .name = _("TM78"),
+        .name = _("TM063"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM79] =
+    [ITEM_TM064] =
     {
-        .name = _("TM79"),
+        .name = _("TM064"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM80] =
+    [ITEM_TM065] =
     {
-        .name = _("TM80"),
+        .name = _("TM065"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM81] =
+    [ITEM_TM066] =
     {
-        .name = _("TM81"),
+        .name = _("TM066"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM82] =
+    [ITEM_TM067] =
     {
-        .name = _("TM82"),
+        .name = _("TM067"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM83] =
+    [ITEM_TM068] =
     {
-        .name = _("TM83"),
+        .name = _("TM068"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM84] =
+    [ITEM_TM069] =
     {
-        .name = _("TM84"),
+        .name = _("TM069"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM85] =
+    [ITEM_TM070] =
     {
-        .name = _("TM85"),
+        .name = _("TM070"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM86] =
+    [ITEM_TM071] =
     {
-        .name = _("TM86"),
+        .name = _("TM071"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM87] =
+    [ITEM_TM072] =
     {
-        .name = _("TM87"),
+        .name = _("TM072"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM88] =
+    [ITEM_TM073] =
     {
-        .name = _("TM88"),
+        .name = _("TM073"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM89] =
+    [ITEM_TM074] =
     {
-        .name = _("TM89"),
+        .name = _("TM074"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM90] =
+    [ITEM_TM075] =
     {
-        .name = _("TM90"),
+        .name = _("TM075"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM91] =
+    [ITEM_TM076] =
     {
-        .name = _("TM91"),
+        .name = _("TM076"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM92] =
+    [ITEM_TM077] =
     {
-        .name = _("TM92"),
+        .name = _("TM077"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM93] =
+    [ITEM_TM078] =
     {
-        .name = _("TM93"),
+        .name = _("TM078"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM94] =
+    [ITEM_TM079] =
     {
-        .name = _("TM94"),
+        .name = _("TM079"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM95] =
+    [ITEM_TM080] =
     {
-        .name = _("TM95"),
+        .name = _("TM080"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM96] =
+    [ITEM_TM081] =
     {
-        .name = _("TM96"),
+        .name = _("TM081"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM97] =
+    [ITEM_TM082] =
     {
-        .name = _("TM97"),
+        .name = _("TM082"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM98] =
+    [ITEM_TM083] =
     {
-        .name = _("TM98"),
+        .name = _("TM083"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
-    [ITEM_TM99] =
+    [ITEM_TM084] =
     {
-        .name = _("TM99"),
+        .name = _("TM084"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM085] =
+    {
+        .name = _("TM085"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM086] =
+    {
+        .name = _("TM086"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM087] =
+    {
+        .name = _("TM087"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM088] =
+    {
+        .name = _("TM088"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM089] =
+    {
+        .name = _("TM089"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM090] =
+    {
+        .name = _("TM090"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM091] =
+    {
+        .name = _("TM091"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM092] =
+    {
+        .name = _("TM092"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM093] =
+    {
+        .name = _("TM093"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM094] =
+    {
+        .name = _("TM094"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM095] =
+    {
+        .name = _("TM095"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM096] =
+    {
+        .name = _("TM096"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM097] =
+    {
+        .name = _("TM097"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM098] =
+    {
+        .name = _("TM098"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM099] =
+    {
+        .name = _("TM099"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
     [ITEM_TM100] =
     {
         .name = _("TM100"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM101] =
+    {
+        .name = _("TM101"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM102] =
+    {
+        .name = _("TM102"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM103] =
+    {
+        .name = _("TM103"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM104] =
+    {
+        .name = _("TM104"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM105] =
+    {
+        .name = _("TM105"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM106] =
+    {
+        .name = _("TM106"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM107] =
+    {
+        .name = _("TM107"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM108] =
+    {
+        .name = _("TM108"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM109] =
+    {
+        .name = _("TM109"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM110] =
+    {
+        .name = _("TM110"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM111] =
+    {
+        .name = _("TM111"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM112] =
+    {
+        .name = _("TM112"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM113] =
+    {
+        .name = _("TM113"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM114] =
+    {
+        .name = _("TM114"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM115] =
+    {
+        .name = _("TM115"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM116] =
+    {
+        .name = _("TM116"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM117] =
+    {
+        .name = _("TM117"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM118] =
+    {
+        .name = _("TM118"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM119] =
+    {
+        .name = _("TM119"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM120] =
+    {
+        .name = _("TM120"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM121] =
+    {
+        .name = _("TM121"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM122] =
+    {
+        .name = _("TM122"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM123] =
+    {
+        .name = _("TM123"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM124] =
+    {
+        .name = _("TM124"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM125] =
+    {
+        .name = _("TM125"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM126] =
+    {
+        .name = _("TM126"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM127] =
+    {
+        .name = _("TM127"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM128] =
+    {
+        .name = _("TM128"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM129] =
+    {
+        .name = _("TM129"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM130] =
+    {
+        .name = _("TM130"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM131] =
+    {
+        .name = _("TM131"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM132] =
+    {
+        .name = _("TM132"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM133] =
+    {
+        .name = _("TM133"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM134] =
+    {
+        .name = _("TM134"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM135] =
+    {
+        .name = _("TM135"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM136] =
+    {
+        .name = _("TM136"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM137] =
+    {
+        .name = _("TM137"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM138] =
+    {
+        .name = _("TM138"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM139] =
+    {
+        .name = _("TM139"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM140] =
+    {
+        .name = _("TM140"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM141] =
+    {
+        .name = _("TM141"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM142] =
+    {
+        .name = _("TM142"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM143] =
+    {
+        .name = _("TM143"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM144] =
+    {
+        .name = _("TM144"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM145] =
+    {
+        .name = _("TM145"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM146] =
+    {
+        .name = _("TM146"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM147] =
+    {
+        .name = _("TM147"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM148] =
+    {
+        .name = _("TM148"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM149] =
+    {
+        .name = _("TM149"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM150] =
+    {
+        .name = _("TM150"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM151] =
+    {
+        .name = _("TM151"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM152] =
+    {
+        .name = _("TM152"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM153] =
+    {
+        .name = _("TM153"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM154] =
+    {
+        .name = _("TM154"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM155] =
+    {
+        .name = _("TM155"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM156] =
+    {
+        .name = _("TM156"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM157] =
+    {
+        .name = _("TM157"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM158] =
+    {
+        .name = _("TM158"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM159] =
+    {
+        .name = _("TM159"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM160] =
+    {
+        .name = _("TM160"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM161] =
+    {
+        .name = _("TM161"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM162] =
+    {
+        .name = _("TM162"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM163] =
+    {
+        .name = _("TM163"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM164] =
+    {
+        .name = _("TM164"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM165] =
+    {
+        .name = _("TM165"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM166] =
+    {
+        .name = _("TM166"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM167] =
+    {
+        .name = _("TM167"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM168] =
+    {
+        .name = _("TM168"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM169] =
+    {
+        .name = _("TM169"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM170] =
+    {
+        .name = _("TM170"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM171] =
+    {
+        .name = _("TM171"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM172] =
+    {
+        .name = _("TM172"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM173] =
+    {
+        .name = _("TM173"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM174] =
+    {
+        .name = _("TM174"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM175] =
+    {
+        .name = _("TM175"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM176] =
+    {
+        .name = _("TM176"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM177] =
+    {
+        .name = _("TM177"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM178] =
+    {
+        .name = _("TM178"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM179] =
+    {
+        .name = _("TM179"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM180] =
+    {
+        .name = _("TM180"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM181] =
+    {
+        .name = _("TM181"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM182] =
+    {
+        .name = _("TM182"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM183] =
+    {
+        .name = _("TM183"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM184] =
+    {
+        .name = _("TM184"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM185] =
+    {
+        .name = _("TM185"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM186] =
+    {
+        .name = _("TM186"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM187] =
+    {
+        .name = _("TM187"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM188] =
+    {
+        .name = _("TM188"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM189] =
+    {
+        .name = _("TM189"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM190] =
+    {
+        .name = _("TM190"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM191] =
+    {
+        .name = _("TM191"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM192] =
+    {
+        .name = _("TM192"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM193] =
+    {
+        .name = _("TM193"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM194] =
+    {
+        .name = _("TM194"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM195] =
+    {
+        .name = _("TM195"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM196] =
+    {
+        .name = _("TM196"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM197] =
+    {
+        .name = _("TM197"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM198] =
+    {
+        .name = _("TM198"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM199] =
+    {
+        .name = _("TM199"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
+    },
+
+    [ITEM_TM200] =
+    {
+        .name = _("TM200"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Powerful, but makes\n"
+            "the user flinch if\n"
+            "hit by the foe."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_FOCUS_PUNCH,
     },
 
     [ITEM_HM_CUT] =
@@ -14141,4 +15821,201 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+    
+    [ITEM_SURFBOARD] =
+    {
+        .name = _("Surfboard"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "This flat board\n"
+            "is shaped for\n"
+            "riding waves."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Surfboard,
+        .iconPic = gItemIcon_Surfboard,
+        .iconPalette = gItemIconPalette_Surfboard,
+    },
+    
+    [ITEM_AXE] =
+    {
+        .name = _("Axe"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A small cutting\n"
+            "instrument for\n"
+            "clearing bushes."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Axe,
+        .iconPic = gItemIcon_Axe,
+        .iconPalette = gItemIconPalette_Axe,
+    },
+    
+    [ITEM_HAMMER] =
+    {
+        .name = _("Pickaxe"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A sturdy pickaxe\n"
+            "It can break\n"
+            "rocks."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Hammer,
+        .iconPic = gItemIcon_Pickaxe,
+        .iconPalette = gItemIconPalette_Pickaxe,
+    },
+    
+    [ITEM_DIVING_SUIT] =
+    {
+        .name = _("Diving Suit"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Portable suit made\n"
+            "for diving from\n"
+            "the Surfboard."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_DivingSuit,
+        .iconPic = gItemIcon_ScubaGear,
+        .iconPalette = gItemIconPalette_ScubaGear,
+    },
+    
+    [ITEM_LANTERN] =
+    {
+        .name = _("Lantern"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A bright lantern\n"
+            "that can light dark\n"
+            "caves."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Lantern,
+        .iconPic = gItemIcon_Lantern,
+        .iconPalette = gItemIconPalette_Lantern,
+    },
+    
+    [ITEM_POWER_GLOVE] =
+    {
+        .name = _("Power Glove"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A special glove\n"
+            "that makes moving\n"
+            "heavy rocks easy."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_PowerGlove,
+        .iconPic = gItemIcon_PowerGlove,
+        .iconPalette = gItemIconPalette_PowerGlove,
+    },
+    
+    [ITEM_OLD_TM09] = OLD_TM_DATA,
+    [ITEM_OLD_TM10] = OLD_TM_DATA,
+    [ITEM_OLD_TM11] = OLD_TM_DATA,
+    [ITEM_OLD_TM12] = OLD_TM_DATA,
+    [ITEM_OLD_TM13] = OLD_TM_DATA,
+    [ITEM_OLD_TM14] = OLD_TM_DATA,
+    [ITEM_OLD_TM15] = OLD_TM_DATA,
+    [ITEM_OLD_TM16] = OLD_TM_DATA,
+    [ITEM_OLD_TM17] = OLD_TM_DATA,
+    [ITEM_OLD_TM18] = OLD_TM_DATA,
+    [ITEM_OLD_TM19] = OLD_TM_DATA,
+    [ITEM_OLD_TM20] = OLD_TM_DATA,
+    [ITEM_OLD_TM21] = OLD_TM_DATA,
+    [ITEM_OLD_TM22] = OLD_TM_DATA,
+    [ITEM_OLD_TM23] = OLD_TM_DATA,
+    [ITEM_OLD_TM24] = OLD_TM_DATA,
+    [ITEM_OLD_TM25] = OLD_TM_DATA,
+    [ITEM_OLD_TM26] = OLD_TM_DATA,
+    [ITEM_OLD_TM27] = OLD_TM_DATA,
+    [ITEM_OLD_TM28] = OLD_TM_DATA,
+    [ITEM_OLD_TM29] = OLD_TM_DATA,
+    [ITEM_OLD_TM30] = OLD_TM_DATA,
+    [ITEM_OLD_TM31] = OLD_TM_DATA,
+    [ITEM_OLD_TM32] = OLD_TM_DATA,
+    [ITEM_OLD_TM33] = OLD_TM_DATA,
+    [ITEM_OLD_TM34] = OLD_TM_DATA,
+    [ITEM_OLD_TM35] = OLD_TM_DATA,
+    [ITEM_OLD_TM36] = OLD_TM_DATA,
+    [ITEM_OLD_TM37] = OLD_TM_DATA,
+    [ITEM_OLD_TM38] = OLD_TM_DATA,
+    [ITEM_OLD_TM39] = OLD_TM_DATA,
+    [ITEM_OLD_TM40] = OLD_TM_DATA,
+    [ITEM_OLD_TM41] = OLD_TM_DATA,
+    [ITEM_OLD_TM42] = OLD_TM_DATA,
+    [ITEM_OLD_TM43] = OLD_TM_DATA,
+    [ITEM_OLD_TM44] = OLD_TM_DATA,
+    [ITEM_OLD_TM45] = OLD_TM_DATA,
+    [ITEM_OLD_TM46] = OLD_TM_DATA,
+    [ITEM_OLD_TM47] = OLD_TM_DATA,
+    [ITEM_OLD_TM48] = OLD_TM_DATA,
+    [ITEM_OLD_TM49] = OLD_TM_DATA,
+    [ITEM_OLD_TM50] = OLD_TM_DATA,
+    [ITEM_OLD_TM51] = OLD_TM_DATA,
+    [ITEM_OLD_TM52] = OLD_TM_DATA,
+    [ITEM_OLD_TM53] = OLD_TM_DATA,
+    [ITEM_OLD_TM54] = OLD_TM_DATA,
+    [ITEM_OLD_TM55] = OLD_TM_DATA,
+    [ITEM_OLD_TM56] = OLD_TM_DATA,
+    [ITEM_OLD_TM57] = OLD_TM_DATA,
+    [ITEM_OLD_TM58] = OLD_TM_DATA,
+    [ITEM_OLD_TM59] = OLD_TM_DATA,
+    [ITEM_OLD_TM60] = OLD_TM_DATA,
+    [ITEM_OLD_TM61] = OLD_TM_DATA,
+    [ITEM_OLD_TM62] = OLD_TM_DATA,
+    [ITEM_OLD_TM63] = OLD_TM_DATA,
+    [ITEM_OLD_TM64] = OLD_TM_DATA,
+    [ITEM_OLD_TM65] = OLD_TM_DATA,
+    [ITEM_OLD_TM66] = OLD_TM_DATA,
+    [ITEM_OLD_TM67] = OLD_TM_DATA,
+    [ITEM_OLD_TM68] = OLD_TM_DATA,
+    [ITEM_OLD_TM69] = OLD_TM_DATA,
+    [ITEM_OLD_TM70] = OLD_TM_DATA,
+    [ITEM_OLD_TM71] = OLD_TM_DATA,
+    [ITEM_OLD_TM72] = OLD_TM_DATA,
+    [ITEM_OLD_TM73] = OLD_TM_DATA,
+    [ITEM_OLD_TM74] = OLD_TM_DATA,
+    [ITEM_OLD_TM75] = OLD_TM_DATA,
+    [ITEM_OLD_TM76] = OLD_TM_DATA,
+    [ITEM_OLD_TM77] = OLD_TM_DATA,
+    [ITEM_OLD_TM78] = OLD_TM_DATA,
+    [ITEM_OLD_TM79] = OLD_TM_DATA,
+    [ITEM_OLD_TM80] = OLD_TM_DATA,
+    [ITEM_OLD_TM81] = OLD_TM_DATA,
+    [ITEM_OLD_TM82] = OLD_TM_DATA,
+    [ITEM_OLD_TM83] = OLD_TM_DATA,
+    [ITEM_OLD_TM84] = OLD_TM_DATA,
+    [ITEM_OLD_TM85] = OLD_TM_DATA,
+    [ITEM_OLD_TM86] = OLD_TM_DATA,
+    [ITEM_OLD_TM87] = OLD_TM_DATA,
+    [ITEM_OLD_TM88] = OLD_TM_DATA,
+    [ITEM_OLD_TM89] = OLD_TM_DATA,
+    [ITEM_OLD_TM90] = OLD_TM_DATA,
+    [ITEM_OLD_TM91] = OLD_TM_DATA,
+    [ITEM_OLD_TM92] = OLD_TM_DATA,
+    [ITEM_OLD_TM93] = OLD_TM_DATA,
+    [ITEM_OLD_TM94] = OLD_TM_DATA,
+    [ITEM_OLD_TM95] = OLD_TM_DATA,
+    [ITEM_OLD_TM96] = OLD_TM_DATA,
+    [ITEM_OLD_TM97] = OLD_TM_DATA,
+    [ITEM_OLD_TM98] = OLD_TM_DATA,
+    [ITEM_OLD_TM99] = OLD_TM_DATA,
+    [ITEM_OLD_TM100] = OLD_TM_DATA,
+    [ITEM_OLD_HM01] = OLD_TM_DATA,
+    [ITEM_OLD_HM02] = OLD_TM_DATA,
+    [ITEM_OLD_HM03] = OLD_TM_DATA,
+    [ITEM_OLD_HM04] = OLD_TM_DATA,
+    [ITEM_OLD_HM05] = OLD_TM_DATA,
+    [ITEM_OLD_HM06] = OLD_TM_DATA,
+    [ITEM_OLD_HM07] = OLD_TM_DATA,
+    [ITEM_OLD_HM08] = OLD_TM_DATA,
 };
