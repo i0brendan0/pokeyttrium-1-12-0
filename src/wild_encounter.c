@@ -318,7 +318,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
         }
         // If the player is in dark grass or surfing on dark water,
         // randomly increase the level by up to 10%.
-/*        if (MetatileBehavior_IsDarkGrass(metatileBehavior) 
+        if (MetatileBehavior_IsDarkGrass(metatileBehavior) 
          || MetatileBehavior_IsDarkWater(metatileBehavior))
         {
             min += min * (Random() % 10) / 100;
@@ -327,7 +327,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
                 min = MAX_LEVEL;
             if (max > MAX_LEVEL)
                 max = MAX_LEVEL;
-        }*/
+        }
         range = max - min + 1;
         rand = Random() % range;
 
@@ -786,7 +786,7 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
                 // try a regular wild land encounter
                 if (TryGenerateWildMon(gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo, WILD_AREA_LAND, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
                 {
-                    if (TryDoDoubleWildBattle())
+                    if (TryDoDoubleWildBattle(curMetatileBehavior))
                     {
                         struct Pokemon mon1 = gEnemyParty[0];
                         TryGenerateWildMon(gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo, WILD_AREA_LAND, WILD_CHECK_KEEN_EYE);
@@ -831,7 +831,7 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
                 if (TryGenerateWildMon(gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo, WILD_AREA_WATER, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
                 {
                     gIsSurfingEncounter = TRUE;
-                    if (TryDoDoubleWildBattle())
+                    if (TryDoDoubleWildBattle(curMetatileBehavior))
                     {
                         struct Pokemon mon1 = gEnemyParty[0];
                         TryGenerateWildMon(gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo, WILD_AREA_WATER, WILD_CHECK_KEEN_EYE);
@@ -871,18 +871,8 @@ void RockSmashWildEncounter(void)
         else if (WildEncounterCheck(wildPokemonInfo->encounterRate, TRUE) == TRUE
          && TryGenerateWildMon(wildPokemonInfo, WILD_AREA_ROCKS, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
         {
-            if (TryDoDoubleWildBattle())
-            {
-                struct Pokemon mon1 = gEnemyParty[0];
-                TryGenerateWildMon(wildPokemonInfo, WILD_AREA_ROCKS, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE);
-                gEnemyParty[1] = mon1;
-                BattleSetup_StartDoubleWildBattle();
-                gSpecialVar_Result = TRUE;
-            }
-            else {
-                BattleSetup_StartWildBattle();
-                gSpecialVar_Result = TRUE;
-            }
+            BattleSetup_StartWildBattle();
+            gSpecialVar_Result = TRUE;
         }
         else
         {
@@ -1242,7 +1232,7 @@ static void ApplyCleanseTagEncounterRateMod(u32 *encRate)
         *encRate = *encRate * 2 / 3;
 }
 
-bool8 TryDoDoubleWildBattle(void)
+bool8 TryDoDoubleWildBattle(u16 curMetatileBehavior)
 {
     if (GetSafariZoneFlag()
       || (B_DOUBLE_WILD_REQUIRE_2_MONS == TRUE && GetMonsStateToDoubles() != PLAYER_HAS_TWO_USABLE_MONS))
@@ -1252,6 +1242,7 @@ bool8 TryDoDoubleWildBattle(void)
         return TRUE;
     else if (B_FLAG_FORCE_DOUBLE_WILD != 0 && FlagGet(B_FLAG_FORCE_DOUBLE_WILD))
         return TRUE;
+    else if ((B_DOUBLE_WILD_CHANCE != 0) && ((Random() % 100) + 1 <= B_DOUBLE_WILD_CHANCE) && (MetatileBehavior_IsDarkGrass(curMetatileBehavior) || MetatileBehavior_IsDarkWater(curMetatileBehavior)))
         return TRUE;
     return FALSE;
 }
