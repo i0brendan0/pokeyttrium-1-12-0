@@ -563,4 +563,6 @@ gSpecials::
 	def_special UseBlankMessageToCancelPokemonPic
 	def_special EnterCode
 	def_special GetCodeFeedback
+    def_special FindHiddenTreeResult
+    def_special FindHiddenTreePokemon
     def_special TryGiveRandomBabyEgg

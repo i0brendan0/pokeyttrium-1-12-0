@@ -4365,6 +4365,98 @@ void GetCodeFeedback(void)
     else
         gSpecialVar_Result = 0;
 }
+
+static const u16 sHiddenTreeCommonItemList[] =
+{
+    ITEM_NONE,
+    ITEM_NONE,
+    ITEM_NONE,
+    ITEM_NONE,
+    ITEM_NONE,
+};
+
+static const u16 sHiddenTreeUniqueItemList[][4] =
+{
+    {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE}, // Route 102
+};
+
+static const u16 sGetHiddenTreeVarFromMap[][2] =
+{
+//    {MAP_ROUTE102, VAR_HIDDEN_TREE_ROUTE_102},
+};
+
+void SetHiddenTrees(void)
+{
+    u16 i, value;
+    
+    for (i = 0; i < ARRAY_COUNT(sGetHiddenTreeVarFromMap); i++)
+    {
+        if ((Random() & 1) == 0)
+        {
+            if ((Random() % 100) < 20) // 20% chance it grabs a specific item
+            {
+                value = sHiddenTreeUniqueItemList[i][(Random() % 4)];
+            }
+            else // random item from list
+            {
+                value = (Random() % ARRAY_COUNT(sHiddenTreeCommonItemList));
+            }
+            value += (1 << 15);
+        }
+        else
+        {
+            value = ChooseWildMonIndex_WaterRock();
+        }
+        VarSet(sGetHiddenTreeVarFromMap[i][1], value);
+    }
+}
+
+// Checks to see if the tree can give an item or a pokemon
+// VAR_RESULT TRUE if can get item/pokemon
+void FindHiddenTreeResult(void)
+{
+    u16 curMap = gSaveBlock1Ptr->location.mapNum;
+    u16 var;
+    u8 i;
+    
+    for (i = 0; i < ARRAY_COUNT(sGetHiddenTreeVarFromMap); i++)
+    {
+        if (curMap == sGetHiddenTreeVarFromMap[i][0])
+        {
+            var = VarGet(sGetHiddenTreeVarFromMap[i][1]);
+            if (!var)
+            {
+                gSpecialVar_0x8000 = var & 0x7FFF;
+                gSpecialVar_0x8001 = (var >> 15);
+                gSpecialVar_Result = TRUE;
+                VarSet(var, 0);
+                return;
+            }
+        }
+    }
+    gSpecialVar_Result = FALSE;
+}
+
+// VAR_8000 holds species
+// VAR_8001 holds level
+void FindHiddenTreePokemon(void)
+{
+    u16 monNum = gSpecialVar_0x8000;
+    u16 headerId = GetCurrentMapWildMonHeaderId();
+    enum TimeOfDay timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_ROCKS);
+    const struct WildPokemonInfo *hiddenTreeMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].rockSmashMonsInfo;
+    u8 minlvl = hiddenTreeMonsInfo->wildPokemon[monNum].minLevel;
+    u8 maxlvl = hiddenTreeMonsInfo->wildPokemon[monNum].maxLevel;
+
+    if (minlvl > maxlvl)
+        minlvl = maxlvl;
+    if (minlvl != maxlvl)
+        minlvl += (Random() % (maxlvl - minlvl));
+
+    VarSet(gSpecialVar_0x8000, hiddenTreeMonsInfo->wildPokemon[monNum].species);
+    VarSet(gSpecialVar_0x8001, minlvl);
+}
+
 static const u16 sBabySpecies[] =
 {
     SPECIES_PICHU,

@@ -36,6 +36,7 @@ void PreparePartyForSkyBattle(void);
 void GetObjectPosition(u16*, u16*, u32, u32);
 bool32 CheckObjectAtXY(u32, u32);
 bool32 CheckPartyHasSpecies(u32);
+void SetHiddenTrees(void);
 void TryGiveRandomBabyEgg(void);
 
 #endif // GUARD_FIELD_SPECIALS_H

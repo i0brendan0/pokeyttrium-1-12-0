@@ -2487,12 +2487,12 @@ bool8 ScrCmd_cleartrainerflag(struct ScriptContext *ctx)
 
 bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
 {
-    u16 species = ScriptReadHalfword(ctx);
-    u8 level = ScriptReadByte(ctx);
-    u16 item = ScriptReadHalfword(ctx);
-    u16 species2 = ScriptReadHalfword(ctx);
-    u8 level2 = ScriptReadByte(ctx);
-    u16 item2 = ScriptReadHalfword(ctx);
+    u16 species = VarGet(ScriptReadHalfword(ctx));
+    u8 level = VarGet(ScriptReadHalfword(ctx));
+    u16 item = VarGet(ScriptReadHalfword(ctx));
+    u16 species2 = VarGet(ScriptReadHalfword(ctx));
+    u8 level2 = VarGet(ScriptReadHalfword(ctx));
+    u16 item2 = VarGet(ScriptReadHalfword(ctx));
 
     Script_RequestEffects(SCREFF_V1);
 

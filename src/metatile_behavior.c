@@ -1522,3 +1522,10 @@ bool8 MetatileBehavior_IsRockStairs(u8 metatileBehavior)
     else
         return FALSE;
 }
+bool8 MetatileBehavior_IsHiddenTree(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_HIDDEN_TREE)
+        return TRUE;
+    else
+        return FALSE;
+}
