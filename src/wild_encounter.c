@@ -318,7 +318,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
         }
         // If the player is in dark grass or surfing on dark water,
         // randomly increase the level by up to 10%.
-        if (MetatileBehavior_IsDarkGrass(metatileBehavior) 
+/*        if (MetatileBehavior_IsDarkGrass(metatileBehavior) 
          || MetatileBehavior_IsDarkWater(metatileBehavior))
         {
             min += min * (Random() % 10) / 100;
@@ -327,7 +327,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
                 min = MAX_LEVEL;
             if (max > MAX_LEVEL)
                 max = MAX_LEVEL;
-        }
+        }*/
         range = max - min + 1;
         rand = Random() % range;
 
@@ -1253,7 +1253,6 @@ bool8 TryDoDoubleWildBattle(void)
         return TRUE;
     else if (B_FLAG_FORCE_DOUBLE_WILD != 0 && FlagGet(B_FLAG_FORCE_DOUBLE_WILD))
         return TRUE;
-    else if (B_DOUBLE_WILD_CHANCE != 0 && ((Random() % 100) + 1 <= B_DOUBLE_WILD_CHANCE))
         return TRUE;
     return FALSE;
 }
