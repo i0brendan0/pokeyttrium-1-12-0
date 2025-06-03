@@ -556,7 +556,6 @@ static void InitHelpBar(void)
     menu->helpBarWindowId = 0;
     DrawHelpBar(menu->helpBarWindowId);
     PutWindowTilemap(menu->helpBarWindowId);
-    CopyWindowToVram(menu->helpBarWindowId, COPYWIN_FULL);
 }
 
 void PrintHelpBarText(u32 textId)
@@ -564,7 +563,6 @@ void PrintHelpBarText(u32 textId)
     struct Pokenav_MainMenu *menu = GetSubstructPtr(POKENAV_SUBSTRUCT_MAIN_MENU);
 
     DrawHelpBar(menu->helpBarWindowId);
-    AddTextPrinterParameterized3(menu->helpBarWindowId, FONT_NORMAL, 0, 1, sHelpBarTextColors, 0, sHelpBarTexts[textId]);
 }
 
 bool32 WaitForHelpBar(void)
@@ -574,8 +572,6 @@ bool32 WaitForHelpBar(void)
 
 static void DrawHelpBar(u32 windowId)
 {
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(4));
-    FillWindowPixelRect(windowId, PIXEL_FILL(5), 0, 0, 0x80, 1);
 }
 
 static void InitPokenavMainMenuResources(void)

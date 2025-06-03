@@ -1014,7 +1014,7 @@ static void CreateAreaUnknownSprites(void)
         // The current species is absent on the map, try to create "Area Unknown" sprites
         for (i = 0; i < ARRAY_COUNT(sPokedexAreaScreen->areaUnknownSprites); i++)
         {
-            u8 spriteId = CreateSprite(&sAreaUnknownSpriteTemplate, i * 32 + 160, 140, 0);
+            u8 spriteId = CreateSprite(&sAreaUnknownSpriteTemplate, i * 32 + 5 + 16, 140, 0);
             if (spriteId != MAX_SPRITES)
             {
                 gSprites[spriteId].oam.tileNum += i * 16;

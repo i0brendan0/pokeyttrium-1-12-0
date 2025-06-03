@@ -120,7 +120,7 @@ static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/pokenav/region_map
 static const u32 sRegionMapCursorSmallGfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/cursor_small.4bpp.lz");
 static const u32 sRegionMapCursorLargeGfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/cursor_large.4bpp.lz");
 static const u16 sRegionMapBg_Pal[] = INCBIN_U16("graphics/pokenav/region_map/map.gbapal");
-static const u32 sRegionMapBg_GfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/map.8bpp.lz");
+static const u32 sRegionMapBg_GfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/map.4bpp.lz");
 static const u32 sRegionMapBg_TilemapLZ[] = INCBIN_U32("graphics/pokenav/region_map/map.bin.lz");
 static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCBIN_U16("graphics/pokenav/region_map/brendan_icon.gbapal");
 static const u8 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U8("graphics/pokenav/region_map/brendan_icon.4bpp");
@@ -373,8 +373,8 @@ static const struct BgTemplate sFlyMapBgTemplates[] =
         .bg = 2,
         .charBaseIndex = 2,
         .mapBaseIndex = 28,
-        .screenSize = 2,
-        .paletteMode = 1,
+        .screenSize = 0,
+        .paletteMode = 0,
         .priority = 2
     }
 };
@@ -383,7 +383,7 @@ static const struct WindowTemplate sFlyMapWindowTemplates[] =
 {
     [WIN_MAPSEC_NAME] = {
         .bg = 0,
-        .tilemapLeft = 17,
+        .tilemapLeft = 1,
         .tilemapTop = 17,
         .width = 12,
         .height = 2,
@@ -392,7 +392,7 @@ static const struct WindowTemplate sFlyMapWindowTemplates[] =
     },
     [WIN_MAPSEC_NAME_TALL] = {
         .bg = 0,
-        .tilemapLeft = 17,
+        .tilemapLeft = 1,
         .tilemapTop = 15,
         .width = 12,
         .height = 4,
@@ -401,7 +401,7 @@ static const struct WindowTemplate sFlyMapWindowTemplates[] =
     },
     [WIN_FLY_TO_WHERE] = {
         .bg = 0,
-        .tilemapLeft = 1,
+        .tilemapLeft = 15,
         .tilemapTop = 18,
         .width = 14,
         .height = 2,
@@ -603,7 +603,7 @@ bool8 LoadRegionMapGfx(void)
             SetBgAttribute(sRegionMap->bgNum, BG_ATTR_CHARBASEINDEX, sRegionMap->charBaseIdx);
             SetBgAttribute(sRegionMap->bgNum, BG_ATTR_MAPBASEINDEX, sRegionMap->mapBaseIdx);
             SetBgAttribute(sRegionMap->bgNum, BG_ATTR_WRAPAROUND, 1);
-            SetBgAttribute(sRegionMap->bgNum, BG_ATTR_PALETTEMODE, 1);
+            SetBgAttribute(sRegionMap->bgNum, BG_ATTR_PALETTEMODE, 0);
         }
         sRegionMap->initStep++;
         return FALSE;
@@ -1679,7 +1679,7 @@ void CB2_OpenFlyMap(void)
         break;
     case 1:
         ResetBgsAndClearDma3BusyFlags(0);
-        InitBgsFromTemplates(1, sFlyMapBgTemplates, ARRAY_COUNT(sFlyMapBgTemplates));
+        InitBgsFromTemplates(0, sFlyMapBgTemplates, ARRAY_COUNT(sFlyMapBgTemplates));
         gMain.state++;
         break;
     case 2:
