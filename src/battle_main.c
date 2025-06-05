@@ -245,6 +245,7 @@ EWRAM_DATA bool8 gLastUsedBallMenuPresent = FALSE;
 EWRAM_DATA u8 gPartyCriticalHits[PARTY_SIZE] = {0};
 EWRAM_DATA static u8 sTriedEvolving = 0;
 EWRAM_DATA u8 gCategoryIconSpriteId = 0;
+EWRAM_DATA u16 gBomsoakerAbilityTriggered = FALSE;
 
 COMMON_DATA void (*gPreBattleCallback1)(void) = NULL;
 COMMON_DATA void (*gBattleMainFunc)(void) = NULL;
@@ -3934,6 +3935,7 @@ static void HandleEndTurn_ContinueBattle(void)
         gBattleStruct->eventBlockCounter = 0;
         gBattleStruct->turnEffectsBattlerId = 0;
         gBattleStruct->endTurnEventsCounter = 0;
+        gBattleStruct->BomsoakerAbilityTriggered = FALSE;
     }
 }
 

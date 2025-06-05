@@ -8206,6 +8206,18 @@ BattleScript_CursedBodyActivates::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_KurstrawActivates::
+	call BattleScript_AbilityPopUpTarget
+    swapattackerwithtarget
+	printstring STRINGID_PKMNLAIDCURSE
+	cursetarget BattleScript_ButItFailed
+    swapattackerwithtarget
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_TARGET
+	return
+
 BattleScript_MummyActivates::
 .if B_ABILITY_POP_UP == TRUE
 	call BattleScript_AbilityPopUpTarget
