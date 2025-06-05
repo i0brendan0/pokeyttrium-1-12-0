@@ -22,6 +22,7 @@ static void CoordEventWeather_Shade(void);
 static void CoordEventWeather_Drought(void);
 static void CoordEventWeather_Route119Cycle(void);
 static void CoordEventWeather_Route123Cycle(void);
+static void CoordEventWeather_SnowCycle(void);
 
 static const struct CoordEventWeather sCoordEventWeatherFuncs[] =
 {
@@ -103,6 +104,11 @@ static void CoordEventWeather_Route119Cycle(void)
 static void CoordEventWeather_Route123Cycle(void)
 {
     SetWeather(WEATHER_ROUTE123_CYCLE);
+}
+
+static void CoordEventWeather_SnowCycle(void)
+{
+    SetWeather(WEATHER_SNOW_CYCLE);
 }
 
 void DoCoordEventWeather(u8 coordEventWeather)

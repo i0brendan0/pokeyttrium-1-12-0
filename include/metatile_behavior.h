@@ -168,5 +168,6 @@ bool8 MetatileBehavior_IsSidewaysStairsLeftSideAny(u8 metatileBehavior);
 bool8 MetatileBehavior_IsDarkGrass(u8);
 bool8 MetatileBehavior_IsDarkWater(u8);
 bool8 MetatileBehavior_IsHiddenTree(u8);
+bool8 MetatileBehavior_IsSnow(u8);
 
 #endif // GUARD_METATILE_BEHAVIOR_H
