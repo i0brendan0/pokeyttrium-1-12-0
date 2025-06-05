@@ -46,6 +46,7 @@
 #include "union_room_chat.h"
 #include "constants/map_groups.h"
 #include "constants/items.h"
+#include "constants/moves.h"
 #include "difficulty.h"
 #include "follower_npc.h"
 
@@ -151,6 +152,56 @@ void ResetMenuAndMonGlobals(void)
     ResetPokeblockScrollPositions();
 }
 
+static const u16 DevMonMoves[] =
+{
+    MOVE_HORN_DRILL,
+    MOVE_FISSURE,
+    MOVE_SHEER_COLD,
+    MOVE_GUILLOTINE,
+};
+
+void CreateDevMon(void)
+{
+    struct Pokemon mon;
+    u8 i;
+    u8 iv_val = 31;
+    u8 ev_val = 255;
+    u16 species     = SPECIES_MACHAMP;
+    u8 level        = 100;
+    bool8 isShiny   = TRUE;
+    u8 nature       = NATURE_ADAMANT;
+    u8 abilityNum   = 1;
+    u8 gender       = MON_MALE;
+    CreateMonWithGenderNatureLetter(&mon, species, level, USE_RANDOM_IVS, gender, nature, FALSE);
+    SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        SetMonData(&mon, MON_DATA_HP_IV + i, &iv_val);
+    }
+    for (i = 0; i < NUM_STATS; i++)
+    {
+         SetMonData(&mon, MON_DATA_HP_EV + i, &ev_val);
+    }
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        SetMonMoveSlot(&mon, DevMonMoves[i], i);
+    }
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+    CalculateMonStats(&mon);
+    SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+    SetMonData(&mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
+            break;
+    }
+
+    CopyMon(&gPlayerParty[i], &mon, sizeof(mon));
+    gPlayerPartyCount = i + 1;
+
+    FlagSet(FLAG_SYS_POKEMON_GET);
+}
+
 void NewGameInitData(void)
 {
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
@@ -213,6 +264,7 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();
+    CreateDevMon();
 }
 
 static void ResetMiniGamesRecords(void)

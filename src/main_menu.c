@@ -473,8 +473,8 @@ static const union AffineAnimCmd *const sSpriteAffineAnimTable_PlayerShrink[] =
 };
 
 static const struct MenuAction sMenuActions_Gender[] = {
-    {COMPOUND_STRING("BOY"), {NULL}},
-    {COMPOUND_STRING("GIRL"), {NULL}}
+    {COMPOUND_STRING("MALE"), {NULL}},
+    {COMPOUND_STRING("FEMALE"), {NULL}}
 };
 
 static const u8 *const sMalePresetNames[] = {
@@ -494,7 +494,7 @@ static const u8 *const sMalePresetNames[] = {
     COMPOUND_STRING("TERRY"),
     COMPOUND_STRING("CASEY"),
     COMPOUND_STRING("DARREN"),
-    COMPOUND_STRING("LANDON"),
+    COMPOUND_STRING("NOLAND"),
     COMPOUND_STRING("COLLIN"),
     COMPOUND_STRING("STANLEY"),
     COMPOUND_STRING("QUINCY")
@@ -1394,7 +1394,7 @@ static void Task_NewGameBirchSpeechSub_InitPokeBall(u8 taskId)
     gSprites[spriteId].invisible = FALSE;
     gSprites[spriteId].data[0] = 0;
 
-    CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 112, 58, 0, 0, 32, PALETTES_BG, SPECIES_LOTAD);
+    CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 112, 58, 0, 0, 32, PALETTES_BG, SPECIES_KOTORA);
     gTasks[taskId].func = Task_NewGameBirchSpeechSub_WaitForLotad;
     gTasks[sBirchSpeechMainTaskId].tTimer = 0;
 }
@@ -1522,6 +1522,10 @@ static void Task_NewGameBirchSpeech_ChooseGender(u8 taskId)
 {
     int gender = NewGameBirchSpeech_ProcessGenderMenuInput();
     int gender2;
+
+#ifdef ONLY_MALE
+    gender = MALE;
+#endif
 
     switch (gender)
     {
@@ -1896,7 +1900,7 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *sprite)
 
 static u8 NewGameBirchSpeech_CreateLotadSprite(u8 x, u8 y)
 {
-    return CreateMonPicSprite_Affine(SPECIES_LOTAD, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
+    return CreateMonPicSprite_Affine(SPECIES_KOTORA, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
 }
 
 static void AddBirchSpeechObjects(u8 taskId)
