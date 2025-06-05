@@ -11,7 +11,7 @@
 #define CHAR_E_CIRCUMFLEX      0x07
 #define CHAR_E_DIAERESIS       0x08
 #define CHAR_I_GRAVE           0x09
-//#define CHAR_I_ACUTE         0x0A // Is 0x5A instead
+#define CHAR_A_RING            0x0A
 #define CHAR_I_CIRCUMFLEX      0x0B
 #define CHAR_I_DIAERESIS       0x0C
 #define CHAR_O_GRAVE           0x0D
@@ -25,7 +25,7 @@
 #define CHAR_ESZETT            0x15
 #define CHAR_a_GRAVE           0x16
 #define CHAR_a_ACUTE           0x17
-//#define CHAR_a_CIRCUMFLEX    0x18 // Is 0x68 instead
+#define CHAR_a_RING            0x18
 #define CHAR_c_CEDILLA         0x19
 #define CHAR_e_GRAVE           0x1A
 #define CHAR_e_ACUTE           0x1B
