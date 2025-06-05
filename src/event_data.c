@@ -5,6 +5,7 @@
 #define SPECIAL_FLAGS_SIZE  (NUM_SPECIAL_FLAGS / 8)  // 8 flags per byte
 #define TEMP_FLAGS_SIZE     (NUM_TEMP_FLAGS / 8)
 #define DAILY_FLAGS_SIZE    (NUM_DAILY_FLAGS / 8)
+#define RECURRING_ITEMS_SIZE (NUM_RECURRING_ITEMS / 8)
 #define TEMP_VARS_SIZE      (NUM_TEMP_VARS * 2)      // 1/2 var per byte
 
 EWRAM_DATA u16 gSpecialVar_0x8000 = 0;
@@ -69,6 +70,11 @@ void ClearTempFieldEventData(void)
 void ClearDailyFlags(void)
 {
     memset(&gSaveBlock1Ptr->flags[DAILY_FLAGS_START / 8], 0, DAILY_FLAGS_SIZE);
+}
+
+void ResetRecurringItems(void)
+{
+    memset(&gSaveBlock1Ptr->flags[RECURRING_ITEMS_START / 8], 0, RECURRING_ITEMS_SIZE);
 }
 
 void DisableNationalPokedex(void)
