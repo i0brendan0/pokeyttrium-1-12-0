@@ -5,7 +5,7 @@
 
 - Pikachu
     - Evolves into Kanto Raichu with a Thunder Stone.
-    - Evolves into Alolan Raichu after leveling up on (city between route 18 and 19) Beach.
+    - Evolves into Alolan Raichu after leveling up on Sandy Beach.
 
 - Trifox
     - Evolves into Kanto Vulpix with high friendship while it is not snowing.
@@ -54,7 +54,7 @@
     - Evolves into Aquaria at level 34
 
 - Hoothoot - Skåne Regional Variant
-    - Evolves into Owldurn at level #
+    - Evolves into Owldurn at level 20
 
 - Tangel
     - Evolves into Tangela with high friendship
@@ -70,8 +70,8 @@
     - Evolves into Goldeen with high friendship
 
 - Sunmola
-    - Evolves into Anchorage ???
-    - Evolves into Grotess ???
+    - Evolves into Anchorage at level 42 with a Steel type Pokemon in the party.
+    - Evolves into Grotess at level 42 with a Dark type Pokemon in the party.
 
 - Para
     - Evolves into Paras with high friendship
@@ -112,23 +112,23 @@
     - Evolves into Porygon-C with the use of a Metal Coat
 
 - Dunslet
-    - Evolves into Dunsparce with high friendship
+    - Evolves into Dunsparce with high friendship.
 
 - Sneasel
     - Evolves into Weavile at level up holding a Razor Claw at night
-    - Evolves into Swievel ???
+    - Evolves into Swievel at level 30.
 
 - Marill
-    - Evolves into Azumarill at level 18
-    - Evolves into Kiromarill ???
+    - Evolves into Azumarill at level 18.
+    - Evolves into Kiromarill knowing a Fighting type move.
 
 - Gligar
-    - Evolves into Gliscor at level up holding a Razor Fang at night
-    - Evolves into Stingbat ???
+    - Evolves into Gliscor at level up holding a Razor Fang at night.
+    - Evolves into Stingbat at level up holding a Razor Claw at night.
 
 - Chansey
-    - Evolves into Blissey at high friendship
-    - Evolves into Whimsey ???
+    - Evolves into Blissey at high friendship.
+    - Evolves into Whimsey while it is foggy.
 
 - [ Beta Gible ]
     - Evolves into Beta Gabite ???

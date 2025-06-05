@@ -3,7 +3,19 @@
 CHANGES TO DO 
 - General Map Updates 583962dc14
 - Config changes 765a4c7b22
--CONTINUE FROM- See Switch in Pokemon a513803f19
+- Snowy Tileset ecdf3e275f
+- Tileset Updates 6726ab697a
+- New Maps f262dd9935
+- New Map Data 4b4f8c5095
+- Update Snow Metatiles c356afd3e7
+- Update Metatiles 3d3b98716a
+- New Map Updates 2 c4b5e25ca0
+- Config Changes Again 6be940ea95
+- New Map Updates 3 b63e4a5320
+- Map Updates 4 184138bef9
+- Map Updates 5 82a4d0aff9
+- Map Scripts 1 133db8f552
+- Map Updates 6 c6543b4e8c
 
 ## What is this hack
 
