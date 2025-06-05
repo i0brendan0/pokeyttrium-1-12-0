@@ -2682,6 +2682,12 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_HAPPY_HOUR:
             ADJUST_SCORE(-10);
             break;
+        case EFFECT_SPLASH:
+            if (gBattleWeather & B_WEATHER_RAIN)
+                ADJUST_SCORE(WEAK_EFFECT);
+            else
+                ADJUST_SCORE(-10);
+            break;
         case EFFECT_INSTRUCT:
             {
                 u16 instructedMove;

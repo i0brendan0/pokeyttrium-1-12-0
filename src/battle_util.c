@@ -8208,6 +8208,18 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
         else
             basePower = 120;
         break;
+    case EFFECT_SPLASH:
+        weight = GetBattlerWeight(battlerDef);
+        for (i = 0; sWeightToDamageTable[i] != 0xFFFF; i += 2)
+        {
+            if (sWeightToDamageTable[i] > weight)
+                break;
+        }
+        if (sWeightToDamageTable[i] != 0xFFFF)
+            basePower = sWeightToDamageTable[i + 1];
+        else
+            basePower = 120;
+        break;
     case EFFECT_HEAT_CRASH:
         weight = GetBattlerWeight(battlerAtk) / GetBattlerWeight(battlerDef);
         if (weight >= ARRAY_COUNT(sHeatCrashPowerTable))
