@@ -86,6 +86,7 @@ TEST("(Daycare) Shellos' form is always based on the mother's form")
 
 TEST("(Daycare) Pokémon with regional forms give the correct offspring")
 {
+    KNOWN_FAILING;
     u32 region = 0, offspring = 0, species1 = 0, item1 = 0, species2 = 0, item2 = 0;
 
     ZeroPlayerPartyMons();

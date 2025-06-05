@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Techno Blast changes type depending on the drive the user ho
     u16 species;
     u16 item;
 
-    PARAMETRIZE { species = SPECIES_CHARIZARD; item = ITEM_DOUSE_DRIVE; }
+    PARAMETRIZE { species = SPECIES_TYPHLOSION; item = ITEM_DOUSE_DRIVE; }
     PARAMETRIZE { species = SPECIES_BLASTOISE; item = ITEM_SHOCK_DRIVE; }
     PARAMETRIZE { species = SPECIES_VENUSAUR; item = ITEM_BURN_DRIVE; }
     PARAMETRIZE { species = SPECIES_DRATINI; item = ITEM_CHILL_DRIVE; }
