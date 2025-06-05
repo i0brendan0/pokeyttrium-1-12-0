@@ -1047,6 +1047,15 @@ static const struct SpriteTemplate sTrainerBackSpriteTemplates[] =
         .affineAnims = gAffineAnims_BattleSpritePlayerSide,
         .callback = SpriteCB_BattleSpriteStartSlideLeft,
     },
+    [TRAINER_BACK_PIC_NOLAND] = {
+        .tileTag = TAG_NONE,
+        .paletteTag = 0,
+        .oam = &gOamData_BattleSpritePlayerSide,
+        .anims = NULL,
+        .images = gTrainerBackPicTable_Noland,
+        .affineAnims = gAffineAnims_BattleSpritePlayerSide,
+        .callback = SpriteCB_BattleSpriteStartSlideLeft,
+    },
 };
 
 #define NUM_SECRET_BASE_CLASSES 5
@@ -1199,6 +1208,8 @@ STATIC_ASSERT(NUM_VERSIONS < (1 << 4), PokemonSubstruct3_metGame_TooSmall);
 STATIC_ASSERT(MAX_DYNAMAX_LEVEL < (1 << 4), PokemonSubstruct3_dynamaxLevel_TooSmall);
 STATIC_ASSERT(MAX_PER_STAT_IVS < (1 << 5), PokemonSubstruct3_ivs_TooSmall);
 STATIC_ASSERT(NUM_NATURES <= (1 << 5), BoxPokemon_hiddenNatureModifier_TooSmall);
+
+STATIC_ASSERT(HOENN_DEX_x_WOOPER_x < 402, RegionalPokedexTooLarge);
 
 static u32 CompressStatus(u32 status)
 {
@@ -6543,7 +6554,7 @@ u16 PlayerGenderToFrontTrainerPicId(u8 playerGender)
     if (playerGender != MALE)
         return FacilityClassToPicIndex(FACILITY_CLASS_MAY);
     else
-        return FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN);
+        return FacilityClassToPicIndex(FACILITY_CLASS_NOLAND);
 }
 
 void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
@@ -7283,7 +7294,8 @@ bool32 IsSpeciesRegionalForm(u32 species)
     return gSpeciesInfo[species].isAlolanForm
         || gSpeciesInfo[species].isGalarianForm
         || gSpeciesInfo[species].isHisuianForm
-        || gSpeciesInfo[species].isPaldeanForm;
+        || gSpeciesInfo[species].isPaldeanForm
+        || gSpeciesInfo[species].isJohtoForm;
 }
 
 bool32 IsSpeciesRegionalFormFromRegion(u32 species, u32 region)
@@ -7294,6 +7306,7 @@ bool32 IsSpeciesRegionalFormFromRegion(u32 species, u32 region)
     case REGION_GALAR:  return gSpeciesInfo[species].isGalarianForm;
     case REGION_HISUI:  return gSpeciesInfo[species].isHisuianForm;
     case REGION_PALDEA: return gSpeciesInfo[species].isPaldeanForm;
+    case REGION_JOHTO:  return gSpeciesInfo[species].isJohtoForm;
     default:            return FALSE;
     }
 }

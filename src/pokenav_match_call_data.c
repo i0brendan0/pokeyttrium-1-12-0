@@ -315,6 +315,37 @@ static const struct MatchCallRival sBrendanMatchCallHeader =
     .textData = sBrendanTextScripts
 };
 
+static const u8 gText_NolandMatchCallDesc[] = _("FACTORY HEAD");
+
+static const match_call_text_data_t sNolandTextScripts[] = { // x_MODIFY_x
+    { MatchCall_Text_Brendan1,  0xFFFF,                              0xFFFF },
+    { MatchCall_Text_Brendan2,  FLAG_DEFEATED_DEWFORD_GYM,           0xFFFF },
+    { MatchCall_Text_Brendan3,  FLAG_DELIVERED_DEVON_GOODS,          0xFFFF },
+    { MatchCall_Text_Brendan4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       0xFFFF },
+    { MatchCall_Text_Brendan5,  FLAG_RECEIVED_HM_STRENGTH,           0xFFFF },
+    { MatchCall_Text_Brendan6,  FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },
+    { MatchCall_Text_Brendan7,  FLAG_DEFEATED_PETALBURG_GYM,         0xFFFF },
+    { MatchCall_Text_Brendan8,  FLAG_RECEIVED_CASTFORM,              0xFFFF },
+    { MatchCall_Text_Brendan9,  FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
+    { MatchCall_Text_Brendan10, FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, 0xFFFF },
+    { MatchCall_Text_Brendan11, FLAG_MET_TEAM_AQUA_HARBOR,           0xFFFF },
+    { MatchCall_Text_Brendan12, FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, 0xFFFF },
+    { MatchCall_Text_Brendan13, FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, 0xFFFF },
+    { MatchCall_Text_Brendan14, FLAG_DEFEATED_SOOTOPOLIS_GYM,        0xFFFF },
+    { MatchCall_Text_Brendan15, FLAG_SYS_GAME_CLEAR,                 0xFFFF },
+    { NULL,                     0xFFFF,                              0xFFFF }
+};
+
+static const struct MatchCallRival sNolandMatchCallHeader =
+{
+    .type = MC_TYPE_RIVAL,
+    .playerGender = FEMALE,
+    .flag = FLAG_ENABLE_RIVAL_MATCH_CALL,
+    .desc = gText_NolandMatchCallDesc,
+    .name = gText_ExpandedPlaceholder_Noland,
+    .textData = sNolandTextScripts
+};
+
 static const match_call_text_data_t sWallyTextScripts[] = {
     { MatchCall_Text_Wally1, 0xFFFF,                              0xFFFF },
     { MatchCall_Text_Wally2, FLAG_RUSTURF_TUNNEL_OPENED,          0xFFFF },
@@ -602,7 +633,8 @@ static const match_call_t sMatchCallHeaders[] = {
     [MC_HEADER_PHOEBE]     = {.leader = &sPhoebeMatchCallHeader},
     [MC_HEADER_GLACIA]     = {.leader = &sGlaciaMatchCallHeader},
     [MC_HEADER_DRAKE]      = {.leader = &sDrakeMatchCallHeader},
-    [MC_HEADER_WALLACE]    = {.leader = &sWallaceMatchCallHeader}
+    [MC_HEADER_WALLACE]    = {.leader = &sWallaceMatchCallHeader},
+    [MC_HEADER_NOLAND]     = {.rival  = &sNolandMatchCallHeader},
 };
 
 static bool32 (*const sMatchCallGetEnabledFuncs[])(match_call_t) = {
@@ -674,6 +706,11 @@ static const u8 gText_MatchCallMay_Pokemon[] = _("I'll use any POKéMON!");
 static const u8 gText_MatchCallMay_Intro1[] = _("My POKéMON and I help");
 static const u8 gText_MatchCallMay_Intro2[] = _("my father's research.");
 
+static const u8 gText_MatchCallNoland_Strategy[] = _("PLACEHOLDER");
+static const u8 gText_MatchCallNoland_Pokemon[] = _("PLACEHOLDER");
+static const u8 gText_MatchCallNoland_Intro1[] = _("PLACEHOLDER");
+static const u8 gText_MatchCallNoland_Intro2[] = _("PLACEHOLDER");
+
 static const struct MatchCallCheckPageOverride sCheckPageOverrides[] = {
     {
         .idx = MC_HEADER_STEVEN,
@@ -698,10 +735,10 @@ static const struct MatchCallCheckPageOverride sCheckPageOverrides[] = {
         }
     },
     {
-        .idx = MC_HEADER_BRENDAN,
-        .facilityClass = FACILITY_CLASS_BRENDAN,
+        .idx = MC_HEADER_NOLAND,
+        .facilityClass = FACILITY_CLASS_NOLAND,
         .flag = 0xFFFF,
-        .flavorTexts = MCFLAVOR(Brendan)
+        .flavorTexts = MCFLAVOR(Noland)
     },
     {
         .idx = MC_HEADER_MAY,

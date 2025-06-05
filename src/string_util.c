@@ -481,7 +481,7 @@ static const u8 *ExpandPlaceholder_RivalName(void)
     if (gSaveBlock2Ptr->playerGender == MALE)
         return gText_ExpandedPlaceholder_May;
     else
-        return gText_ExpandedPlaceholder_Brendan;
+        return gText_ExpandedPlaceholder_Noland;
 }
 
 static const u8 *ExpandPlaceholder_Version(void)
