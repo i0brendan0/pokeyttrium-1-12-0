@@ -22,22 +22,7 @@
 #include "constants/weather.h"
 #include "config/general.h"
 #include "config/overworld.h"
-
-// enums
-enum MapPopUp_Themes
-{
-    MAPPOPUP_THEME_WOOD,
-    MAPPOPUP_THEME_MARBLE,
-    MAPPOPUP_THEME_STONE,
-    MAPPOPUP_THEME_BRICK,
-    MAPPOPUP_THEME_UNDERWATER,
-    MAPPOPUP_THEME_STONE2,
-};
-
-enum MapPopUp_Themes_BW
-{
-    MAPPOPUP_THEME_BW_DEFAULT,
-};
+#include "constants/map_popup_themes.h"
 
 // static functions
 static void Task_MapNamePopUpWindow(u8 taskId);
@@ -621,14 +606,6 @@ static void LoadMapNamePopUpWindowBg(void)
     if (OW_POPUP_GENERATION == GEN_5)
         secondaryPopUpWindowId = GetSecondaryPopUpWindowId();
 
-    if (regionMapSectionId >= KANTO_MAPSEC_START)
-    {
-        if (regionMapSectionId > KANTO_MAPSEC_END)
-            regionMapSectionId -= KANTO_MAPSEC_COUNT;
-        else
-            regionMapSectionId = 0; // Discard kanto region sections;
-    }
-
     if (OW_POPUP_GENERATION == GEN_5)
     {
         popUpThemeId = sRegionMapSectionId_To_PopUpThemeIdMapping_BW[regionMapSectionId];
@@ -651,7 +628,7 @@ static void LoadMapNamePopUpWindowBg(void)
     }
     else
     {
-        popUpThemeId = sMapSectionToThemeId[regionMapSectionId];
+        popUpThemeId = gMapHeader.popup;
         LoadBgTiles(GetWindowAttribute(popupWindowId, WINDOW_BG), sMapPopUp_OutlineTable[popUpThemeId], 0x400, 0x21D);
         CallWindowFunction(popupWindowId, DrawMapNamePopUpFrame);
         PutWindowTilemap(popupWindowId);

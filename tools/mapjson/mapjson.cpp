@@ -166,7 +166,12 @@ string generate_map_header_text(Json map_data, Json layouts_data) {
          << "\t.byte "  << json_to_string(map_data, "map_type") << "\n";
 
     if (version != "firered")
-        text << "\t.2byte 0\n";
+        text << "\t.byte 0\n";
+    
+    if (map_data.object_items().find("popup") != map_data.object_items().end())
+        text << "\t.byte "  << json_to_string(map_data, "popup") << "\n";
+    else
+        text << "\t.byte 0\n";
 
     if (version == "ruby")
         text << "\t.byte " << json_to_string(map_data, "show_map_name") << "\n";
