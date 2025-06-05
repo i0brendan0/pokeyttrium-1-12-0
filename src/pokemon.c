@@ -2808,6 +2808,9 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_ABILITY_NUM:
             retVal = substruct3->abilityNum;
             break;
+        case MON_DATA_CANT_EVOLVE:
+            retVal = substruct3->cantEvolve;
+            break;
         case MON_DATA_COOL_RIBBON:
             retVal = substruct3->coolRibbon;
             break;
@@ -3306,6 +3309,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_ABILITY_NUM:
             SET8(substruct3->abilityNum);
+            break;
+        case MON_DATA_CANT_EVOLVE:
+            SET8(substruct3->cantEvolve);
             break;
         case MON_DATA_COOL_RIBBON:
             SET8(substruct3->coolRibbon);
@@ -4967,6 +4973,7 @@ u32 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
     u32 holdEffect;
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
+    bool8 cantEvolve = GetMonData(mon, MON_DATA_CANT_EVOLVE);
 
     if (evolutions == NULL)
         return SPECIES_NONE;
@@ -4990,6 +4997,8 @@ u32 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     {
     case EVO_MODE_NORMAL:
     case EVO_MODE_BATTLE_ONLY:
+        if (cantEvolve)
+            return SPECIES_NONE;
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;

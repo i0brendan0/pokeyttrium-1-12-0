@@ -566,3 +566,4 @@ gSpecials::
     def_special FindHiddenTreeResult
     def_special FindHiddenTreePokemon
     def_special TryGiveRandomBabyEgg
+    def_special SetChosenMonCantEvolve
