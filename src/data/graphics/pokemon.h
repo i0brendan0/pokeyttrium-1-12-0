@@ -6775,6 +6775,15 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
+    const u32 gMonFrontPic_HoothootSkane[] = INCBIN_U32("graphics/pokemon/new-x_hoothoot_x/front.4bpp.lz");
+    const u16 gMonPalette_HoothootSkane[] = INCBIN_U16("graphics/pokemon/new-x_hoothoot_x/normal.gbapal");
+    const u32 gMonBackPic_HoothootSkane[] = INCBIN_U32("graphics/pokemon/new-x_hoothoot_x/back.4bpp.lz");
+    const u16 gMonShinyPalette_HoothootSkane[] = INCBIN_U16("graphics/pokemon/new-x_hoothoot_x/shiny.gbapal");
+    const u8 gMonIcon_HoothootSkane[] = INCBIN_U8("graphics/pokemon/new-x_hoothoot_x/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_HoothootSkane[] = INCBIN_U8("graphics/pokemon/new-x_hoothoot_x/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
 #if !P_GBA_STYLE_SPECIES_GFX
     const u32 gMonFrontPic_Noctowl[] = INCBIN_U32("graphics/pokemon/noctowl/anim_front.4bpp.lz");
     const u16 gMonPalette_Noctowl[] = INCBIN_U16("graphics/pokemon/noctowl/normal.gbapal");
@@ -12772,20 +12781,29 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u16 gMonShinyPalette_CastformSnowy[] = INCBIN_U16("graphics/pokemon/castform/snowy/shiny.gbapal");
     const u8 gMonIcon_CastformSnowy[] = INCBIN_U8("graphics/pokemon/castform/snowy/icon.4bpp");
 
+    const u32 gMonFrontPic_CastformSandy[] = INCBIN_U32("graphics/pokemon/castform/sandy/anim_front.4bpp.lz");
+    const u16 gMonPalette_CastformSandy[] = INCBIN_U16("graphics/pokemon/castform/sandy/normal.gbapal");
+    const u32 gMonBackPic_CastformSandy[] = INCBIN_U32("graphics/pokemon/castform/sandy/back.4bpp.lz");
+    const u16 gMonShinyPalette_CastformSandy[] = INCBIN_U16("graphics/pokemon/castform/sandy/shiny.gbapal");
+    const u8 gMonIcon_CastformSandy[] = INCBIN_U8("graphics/pokemon/castform/sandy/icon.4bpp");
+
 #if OW_POKEMON_OBJECT_EVENTS
     const u32 gObjectEventPic_CastformNormal[] = INCBIN_COMP("graphics/pokemon/castform/overworld.4bpp");
     const u32 gObjectEventPic_CastformSunny[] = INCBIN_COMP("graphics/pokemon/castform/sunny/overworld.4bpp");
     const u32 gObjectEventPic_CastformRainy[] = INCBIN_COMP("graphics/pokemon/castform/rainy/overworld.4bpp");
     const u32 gObjectEventPic_CastformSnowy[] = INCBIN_COMP("graphics/pokemon/castform/snowy/overworld.4bpp");
+    const u32 gObjectEventPic_CastformSandy[] = INCBIN_COMP("graphics/pokemon/castform/sandy/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     const u16 gOverworldPalette_CastformNormal[] = INCBIN_U16("graphics/pokemon/castform/overworld_normal.gbapal");
     const u16 gOverworldPalette_CastformSunny[] = INCBIN_U16("graphics/pokemon/castform/sunny/overworld_normal.gbapal");
     const u16 gOverworldPalette_CastformRainy[] = INCBIN_U16("graphics/pokemon/castform/rainy/overworld_normal.gbapal");
     const u16 gOverworldPalette_CastformSnowy[] = INCBIN_U16("graphics/pokemon/castform/snowy/overworld_normal.gbapal");
+    const u16 gOverworldPalette_CastformSandy[] = INCBIN_U16("graphics/pokemon/castform/sandy/overworld_normal.gbapal");
     const u16 gShinyOverworldPalette_CastformNormal[] = INCBIN_U16("graphics/pokemon/castform/overworld_shiny.gbapal");
     const u16 gShinyOverworldPalette_CastformSunny[] = INCBIN_U16("graphics/pokemon/castform/sunny/overworld_shiny.gbapal");
     const u16 gShinyOverworldPalette_CastformRainy[] = INCBIN_U16("graphics/pokemon/castform/rainy/overworld_shiny.gbapal");
     const u16 gShinyOverworldPalette_CastformSnowy[] = INCBIN_U16("graphics/pokemon/castform/snowy/overworld_shiny.gbapal");
+    const u16 gShinyOverworldPalette_CastformSandy[] = INCBIN_U16("graphics/pokemon/castform/sandy/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_CASTFORM
@@ -26731,6 +26749,490 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_PECHARUNT
+
+    const u32 gMonFrontPic_Anchorage[] = INCBIN_U32("graphics/pokemon/new-anchorage/front.4bpp.lz");
+    const u16 gMonPalette_Anchorage[] = INCBIN_U16("graphics/pokemon/new-anchorage/normal.gbapal");
+    const u32 gMonBackPic_Anchorage[] = INCBIN_U32("graphics/pokemon/new-anchorage/back.4bpp.lz");
+    const u16 gMonShinyPalette_Anchorage[] = INCBIN_U16("graphics/pokemon/new-anchorage/shiny.gbapal");
+    const u8 gMonIcon_Anchorage[] = INCBIN_U8("graphics/pokemon/new-anchorage/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Anchorage[] = INCBIN_U8("graphics/pokemon/new-anchorage/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Animon[] = INCBIN_U32("graphics/pokemon/new-animon/front.4bpp.lz");
+    const u16 gMonPalette_Animon[] = INCBIN_U16("graphics/pokemon/new-animon/normal.gbapal");
+    const u32 gMonBackPic_Animon[] = INCBIN_U32("graphics/pokemon/new-animon/back.4bpp.lz");
+    const u16 gMonShinyPalette_Animon[] = INCBIN_U16("graphics/pokemon/new-animon/shiny.gbapal");
+    const u8 gMonIcon_Animon[] = INCBIN_U8("graphics/pokemon/new-animon/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Animon[] = INCBIN_U8("graphics/pokemon/new-animon/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Aquaria[] = INCBIN_U32("graphics/pokemon/new-aquaria/front.4bpp.lz");
+    const u16 gMonPalette_Aquaria[] = INCBIN_U16("graphics/pokemon/new-aquaria/normal.gbapal");
+    const u32 gMonBackPic_Aquaria[] = INCBIN_U32("graphics/pokemon/new-aquaria/back.4bpp.lz");
+    const u16 gMonShinyPalette_Aquaria[] = INCBIN_U16("graphics/pokemon/new-aquaria/shiny.gbapal");
+    const u8 gMonIcon_Aquaria[] = INCBIN_U8("graphics/pokemon/new-aquaria/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Aquaria[] = INCBIN_U8("graphics/pokemon/new-aquaria/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Aquis[] = INCBIN_U32("graphics/pokemon/new-aquis/front.4bpp.lz");
+    const u16 gMonPalette_Aquis[] = INCBIN_U16("graphics/pokemon/new-aquis/normal.gbapal");
+    const u32 gMonBackPic_Aquis[] = INCBIN_U32("graphics/pokemon/new-aquis/back.4bpp.lz");
+    const u16 gMonShinyPalette_Aquis[] = INCBIN_U16("graphics/pokemon/new-aquis/shiny.gbapal");
+    const u8 gMonIcon_Aquis[] = INCBIN_U8("graphics/pokemon/new-aquis/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Aquis[] = INCBIN_U8("graphics/pokemon/new-aquis/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Belloyant[] = INCBIN_U32("graphics/pokemon/new-belloyant/front.4bpp.lz");
+    const u16 gMonPalette_Belloyant[] = INCBIN_U16("graphics/pokemon/new-belloyant/normal.gbapal");
+    const u32 gMonBackPic_Belloyant[] = INCBIN_U32("graphics/pokemon/new-belloyant/back.4bpp.lz");
+    const u16 gMonShinyPalette_Belloyant[] = INCBIN_U16("graphics/pokemon/new-belloyant/shiny.gbapal");
+    const u8 gMonIcon_Belloyant[] = INCBIN_U8("graphics/pokemon/new-belloyant/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Belloyant[] = INCBIN_U8("graphics/pokemon/new-belloyant/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Belmitt[] = INCBIN_U32("graphics/pokemon/new-belmitt/front.4bpp.lz");
+    const u16 gMonPalette_Belmitt[] = INCBIN_U16("graphics/pokemon/new-belmitt/normal.gbapal");
+    const u32 gMonBackPic_Belmitt[] = INCBIN_U32("graphics/pokemon/new-belmitt/back.4bpp.lz");
+    const u16 gMonShinyPalette_Belmitt[] = INCBIN_U16("graphics/pokemon/new-belmitt/shiny.gbapal");
+    const u8 gMonIcon_Belmitt[] = INCBIN_U8("graphics/pokemon/new-belmitt/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Belmitt[] = INCBIN_U8("graphics/pokemon/new-belmitt/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Blossomole[] = INCBIN_U32("graphics/pokemon/new-blossomole/front.4bpp.lz");
+    const u16 gMonPalette_Blossomole[] = INCBIN_U16("graphics/pokemon/new-blossomole/normal.gbapal");
+    const u32 gMonBackPic_Blossomole[] = INCBIN_U32("graphics/pokemon/new-blossomole/back.4bpp.lz");
+    const u16 gMonShinyPalette_Blossomole[] = INCBIN_U16("graphics/pokemon/new-blossomole/shiny.gbapal");
+    const u8 gMonIcon_Blossomole[] = INCBIN_U8("graphics/pokemon/new-blossomole/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Blossomole[] = INCBIN_U8("graphics/pokemon/new-blossomole/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Bomsoaker[] = INCBIN_U32("graphics/pokemon/new-bomsoaker/front.4bpp.lz");
+    const u16 gMonPalette_Bomsoaker[] = INCBIN_U16("graphics/pokemon/new-bomsoaker/normal.gbapal");
+    const u32 gMonBackPic_Bomsoaker[] = INCBIN_U32("graphics/pokemon/new-bomsoaker/back.4bpp.lz");
+    const u16 gMonShinyPalette_Bomsoaker[] = INCBIN_U16("graphics/pokemon/new-bomsoaker/shiny.gbapal");
+    const u8 gMonIcon_Bomsoaker[] = INCBIN_U8("graphics/pokemon/new-bomsoaker/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Bomsoaker[] = INCBIN_U8("graphics/pokemon/new-bomsoaker/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Chiks[] = INCBIN_U32("graphics/pokemon/new-chiks/front.4bpp.lz");
+    const u16 gMonPalette_Chiks[] = INCBIN_U16("graphics/pokemon/new-chiks/normal.gbapal");
+    const u32 gMonBackPic_Chiks[] = INCBIN_U32("graphics/pokemon/new-chiks/back.4bpp.lz");
+    const u16 gMonShinyPalette_Chiks[] = INCBIN_U16("graphics/pokemon/new-chiks/shiny.gbapal");
+    const u8 gMonIcon_Chiks[] = INCBIN_U8("graphics/pokemon/new-chiks/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Chiks[] = INCBIN_U8("graphics/pokemon/new-chiks/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Cottoneko[] = INCBIN_U32("graphics/pokemon/new-cottoneko/front.4bpp.lz");
+    const u16 gMonPalette_Cottoneko[] = INCBIN_U16("graphics/pokemon/new-cottoneko/normal.gbapal");
+    const u32 gMonBackPic_Cottoneko[] = INCBIN_U32("graphics/pokemon/new-cottoneko/back.4bpp.lz");
+    const u16 gMonShinyPalette_Cottoneko[] = INCBIN_U16("graphics/pokemon/new-cottoneko/shiny.gbapal");
+    const u8 gMonIcon_Cottoneko[] = INCBIN_U8("graphics/pokemon/new-cottoneko/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Cottoneko[] = INCBIN_U8("graphics/pokemon/new-cottoneko/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Cruz[] = INCBIN_U32("graphics/pokemon/new-cruz/front.4bpp.lz");
+    const u16 gMonPalette_Cruz[] = INCBIN_U16("graphics/pokemon/new-cruz/normal.gbapal");
+    const u32 gMonBackPic_Cruz[] = INCBIN_U32("graphics/pokemon/new-cruz/back.4bpp.lz");
+    const u16 gMonShinyPalette_Cruz[] = INCBIN_U16("graphics/pokemon/new-cruz/shiny.gbapal");
+    const u8 gMonIcon_Cruz[] = INCBIN_U8("graphics/pokemon/new-cruz/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Cruz[] = INCBIN_U8("graphics/pokemon/new-cruz/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Dandeneko[] = INCBIN_U32("graphics/pokemon/new-dandeneko/front.4bpp.lz");
+    const u16 gMonPalette_Dandeneko[] = INCBIN_U16("graphics/pokemon/new-dandeneko/normal.gbapal");
+    const u32 gMonBackPic_Dandeneko[] = INCBIN_U32("graphics/pokemon/new-dandeneko/back.4bpp.lz");
+    const u16 gMonShinyPalette_Dandeneko[] = INCBIN_U16("graphics/pokemon/new-dandeneko/shiny.gbapal");
+    const u8 gMonIcon_Dandeneko[] = INCBIN_U8("graphics/pokemon/new-dandeneko/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Dandeneko[] = INCBIN_U8("graphics/pokemon/new-dandeneko/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Dynabear[] = INCBIN_U32("graphics/pokemon/new-dynabear/front.4bpp.lz");
+    const u16 gMonPalette_Dynabear[] = INCBIN_U16("graphics/pokemon/new-dynabear/normal.gbapal");
+    const u32 gMonBackPic_Dynabear[] = INCBIN_U32("graphics/pokemon/new-dynabear/back.4bpp.lz");
+    const u16 gMonShinyPalette_Dynabear[] = INCBIN_U16("graphics/pokemon/new-dynabear/shiny.gbapal");
+    const u8 gMonIcon_Dynabear[] = INCBIN_U8("graphics/pokemon/new-dynabear/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Dynabear[] = INCBIN_U8("graphics/pokemon/new-dynabear/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Flambear[] = INCBIN_U32("graphics/pokemon/new-flambear/front.4bpp.lz");
+    const u16 gMonPalette_Flambear[] = INCBIN_U16("graphics/pokemon/new-flambear/normal.gbapal");
+    const u32 gMonBackPic_Flambear[] = INCBIN_U32("graphics/pokemon/new-flambear/back.4bpp.lz");
+    const u16 gMonShinyPalette_Flambear[] = INCBIN_U16("graphics/pokemon/new-flambear/shiny.gbapal");
+    const u8 gMonIcon_Flambear[] = INCBIN_U8("graphics/pokemon/new-flambear/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Flambear[] = INCBIN_U8("graphics/pokemon/new-flambear/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Gohng[] = INCBIN_U32("graphics/pokemon/new-gohng/front.4bpp.lz");
+    const u16 gMonPalette_Gohng[] = INCBIN_U16("graphics/pokemon/new-gohng/normal.gbapal");
+    const u32 gMonBackPic_Gohng[] = INCBIN_U32("graphics/pokemon/new-gohng/back.4bpp.lz");
+    const u16 gMonShinyPalette_Gohng[] = INCBIN_U16("graphics/pokemon/new-gohng/shiny.gbapal");
+    const u8 gMonIcon_Gohng[] = INCBIN_U8("graphics/pokemon/new-gohng/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Gohng[] = INCBIN_U8("graphics/pokemon/new-gohng/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Golpy[] = INCBIN_U32("graphics/pokemon/new-golpy/front.4bpp.lz");
+    const u16 gMonPalette_Golpy[] = INCBIN_U16("graphics/pokemon/new-golpy/normal.gbapal");
+    const u32 gMonBackPic_Golpy[] = INCBIN_U32("graphics/pokemon/new-golpy/back.4bpp.lz");
+    const u16 gMonShinyPalette_Golpy[] = INCBIN_U16("graphics/pokemon/new-golpy/shiny.gbapal");
+    const u8 gMonIcon_Golpy[] = INCBIN_U8("graphics/pokemon/new-golpy/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Golpy[] = INCBIN_U8("graphics/pokemon/new-golpy/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Grimey[] = INCBIN_U32("graphics/pokemon/new-grimey/front.4bpp.lz");
+    const u16 gMonPalette_Grimey[] = INCBIN_U16("graphics/pokemon/new-grimey/normal.gbapal");
+    const u32 gMonBackPic_Grimey[] = INCBIN_U32("graphics/pokemon/new-grimey/back.4bpp.lz");
+    const u16 gMonShinyPalette_Grimey[] = INCBIN_U16("graphics/pokemon/new-grimey/shiny.gbapal");
+    const u8 gMonIcon_Grimey[] = INCBIN_U8("graphics/pokemon/new-grimey/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Grimey[] = INCBIN_U8("graphics/pokemon/new-grimey/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Grotess[] = INCBIN_U32("graphics/pokemon/new-grotess/front.4bpp.lz");
+    const u16 gMonPalette_Grotess[] = INCBIN_U16("graphics/pokemon/new-grotess/normal.gbapal");
+    const u32 gMonBackPic_Grotess[] = INCBIN_U32("graphics/pokemon/new-grotess/back.4bpp.lz");
+    const u16 gMonShinyPalette_Grotess[] = INCBIN_U16("graphics/pokemon/new-grotess/shiny.gbapal");
+    const u8 gMonIcon_Grotess[] = INCBIN_U8("graphics/pokemon/new-grotess/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Grotess[] = INCBIN_U8("graphics/pokemon/new-grotess/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Kotora[] = INCBIN_U32("graphics/pokemon/new-kotora/anim_front.4bpp.lz");
+    const u16 gMonPalette_Kotora[] = INCBIN_U16("graphics/pokemon/new-kotora/normal.gbapal");
+    const u32 gMonBackPic_Kotora[] = INCBIN_U32("graphics/pokemon/new-kotora/back.4bpp.lz");
+    const u16 gMonShinyPalette_Kotora[] = INCBIN_U16("graphics/pokemon/new-kotora/shiny.gbapal");
+    const u8 gMonIcon_Kotora[] = INCBIN_U8("graphics/pokemon/new-kotora/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Kotora[] = INCBIN_U8("graphics/pokemon/new-kotora/footprint.1bpp");
+#endif //P_FOOTPRINTS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_Kotora[] = INCBIN_COMP("graphics/pokemon/new-kotora/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_Kotora[] = INCBIN_U16("graphics/pokemon/new-kotora/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_Kotora[] = INCBIN_U16("graphics/pokemon/new-kotora/overworld_shiny.gbapal");
+#endif
+#endif
+
+    const u32 gMonFrontPic_Kurstraw[] = INCBIN_U32("graphics/pokemon/new-kurstraw/front.4bpp.lz");
+    const u16 gMonPalette_Kurstraw[] = INCBIN_U16("graphics/pokemon/new-kurstraw/normal.gbapal");
+    const u32 gMonBackPic_Kurstraw[] = INCBIN_U32("graphics/pokemon/new-kurstraw/back.4bpp.lz");
+    const u16 gMonShinyPalette_Kurstraw[] = INCBIN_U16("graphics/pokemon/new-kurstraw/shiny.gbapal");
+    const u8 gMonIcon_Kurstraw[] = INCBIN_U8("graphics/pokemon/new-kurstraw/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Kurstraw[] = INCBIN_U8("graphics/pokemon/new-kurstraw/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Lefneko[] = INCBIN_U32("graphics/pokemon/new-lefneko/front.4bpp.lz");
+    const u16 gMonPalette_Lefneko[] = INCBIN_U16("graphics/pokemon/new-lefneko/normal.gbapal");
+    const u32 gMonBackPic_Lefneko[] = INCBIN_U32("graphics/pokemon/new-lefneko/back.4bpp.lz");
+    const u16 gMonShinyPalette_Lefneko[] = INCBIN_U16("graphics/pokemon/new-lefneko/shiny.gbapal");
+    const u8 gMonIcon_Lefneko[] = INCBIN_U8("graphics/pokemon/new-lefneko/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Lefneko[] = INCBIN_U8("graphics/pokemon/new-lefneko/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Madame[] = INCBIN_U32("graphics/pokemon/new-madame/front.4bpp.lz");
+    const u16 gMonPalette_Madame[] = INCBIN_U16("graphics/pokemon/new-madame/normal.gbapal");
+    const u32 gMonBackPic_Madame[] = INCBIN_U32("graphics/pokemon/new-madame/back.4bpp.lz");
+    const u16 gMonShinyPalette_Madame[] = INCBIN_U16("graphics/pokemon/new-madame/shiny.gbapal");
+    const u8 gMonIcon_Madame[] = INCBIN_U8("graphics/pokemon/new-madame/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Madame[] = INCBIN_U8("graphics/pokemon/new-madame/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Meowsy[] = INCBIN_U32("graphics/pokemon/new-meowsy/front.4bpp.lz");
+    const u16 gMonPalette_Meowsy[] = INCBIN_U16("graphics/pokemon/new-meowsy/normal.gbapal");
+    const u32 gMonBackPic_Meowsy[] = INCBIN_U32("graphics/pokemon/new-meowsy/back.4bpp.lz");
+    const u16 gMonShinyPalette_Meowsy[] = INCBIN_U16("graphics/pokemon/new-meowsy/shiny.gbapal");
+    const u8 gMonIcon_Meowsy[] = INCBIN_U8("graphics/pokemon/new-meowsy/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Meowsy[] = INCBIN_U8("graphics/pokemon/new-meowsy/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Minicorn[] = INCBIN_U32("graphics/pokemon/new-minicorn/front.4bpp.lz");
+    const u16 gMonPalette_Minicorn[] = INCBIN_U16("graphics/pokemon/new-minicorn/normal.gbapal");
+    const u32 gMonBackPic_Minicorn[] = INCBIN_U32("graphics/pokemon/new-minicorn/back.4bpp.lz");
+    const u16 gMonShinyPalette_Minicorn[] = INCBIN_U16("graphics/pokemon/new-minicorn/shiny.gbapal");
+    const u8 gMonIcon_Minicorn[] = INCBIN_U8("graphics/pokemon/new-minicorn/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Minicorn[] = INCBIN_U8("graphics/pokemon/new-minicorn/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Numpuff[] = INCBIN_U32("graphics/pokemon/new-numpuff/front.4bpp.lz");
+    const u16 gMonPalette_Numpuff[] = INCBIN_U16("graphics/pokemon/new-numpuff/normal.gbapal");
+    const u32 gMonBackPic_Numpuff[] = INCBIN_U32("graphics/pokemon/new-numpuff/back.4bpp.lz");
+    const u16 gMonShinyPalette_Numpuff[] = INCBIN_U16("graphics/pokemon/new-numpuff/shiny.gbapal");
+    const u8 gMonIcon_Numpuff[] = INCBIN_U8("graphics/pokemon/new-numpuff/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Numpuff[] = INCBIN_U8("graphics/pokemon/new-numpuff/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Owldurn[] = INCBIN_U32("graphics/pokemon/new-owldurn/front.4bpp.lz");
+    const u16 gMonPalette_Owldurn[] = INCBIN_U16("graphics/pokemon/new-owldurn/normal.gbapal");
+    const u32 gMonBackPic_Owldurn[] = INCBIN_U32("graphics/pokemon/new-owldurn/back.4bpp.lz");
+    const u16 gMonShinyPalette_Owldurn[] = INCBIN_U16("graphics/pokemon/new-owldurn/shiny.gbapal");
+    const u8 gMonIcon_Owldurn[] = INCBIN_U8("graphics/pokemon/new-owldurn/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Owldurn[] = INCBIN_U8("graphics/pokemon/new-owldurn/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Pangshi[] = INCBIN_U32("graphics/pokemon/new-pangshi/front.4bpp.lz");
+    const u16 gMonPalette_Pangshi[] = INCBIN_U16("graphics/pokemon/new-pangshi/normal.gbapal");
+    const u32 gMonBackPic_Pangshi[] = INCBIN_U32("graphics/pokemon/new-pangshi/back.4bpp.lz");
+    const u16 gMonShinyPalette_Pangshi[] = INCBIN_U16("graphics/pokemon/new-pangshi/shiny.gbapal");
+    const u8 gMonIcon_Pangshi[] = INCBIN_U8("graphics/pokemon/new-pangshi/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Pangshi[] = INCBIN_U8("graphics/pokemon/new-pangshi/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Para[] = INCBIN_U32("graphics/pokemon/new-para/front.4bpp.lz");
+    const u16 gMonPalette_Para[] = INCBIN_U16("graphics/pokemon/new-para/normal.gbapal");
+    const u32 gMonBackPic_Para[] = INCBIN_U32("graphics/pokemon/new-para/back.4bpp.lz");
+    const u16 gMonShinyPalette_Para[] = INCBIN_U16("graphics/pokemon/new-para/shiny.gbapal");
+    const u8 gMonIcon_Para[] = INCBIN_U8("graphics/pokemon/new-para/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Para[] = INCBIN_U8("graphics/pokemon/new-para/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Plux[] = INCBIN_U32("graphics/pokemon/new-plux/front.4bpp.lz");
+    const u16 gMonPalette_Plux[] = INCBIN_U16("graphics/pokemon/new-plux/normal.gbapal");
+    const u32 gMonBackPic_Plux[] = INCBIN_U32("graphics/pokemon/new-plux/back.4bpp.lz");
+    const u16 gMonShinyPalette_Plux[] = INCBIN_U16("graphics/pokemon/new-plux/shiny.gbapal");
+    const u8 gMonIcon_Plux[] = INCBIN_U8("graphics/pokemon/new-plux/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Plux[] = INCBIN_U8("graphics/pokemon/new-plux/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Porygon_C[] = INCBIN_U32("graphics/pokemon/new-porygon_c/front.4bpp.lz");
+    const u16 gMonPalette_Porygon_C[] = INCBIN_U16("graphics/pokemon/new-porygon_c/normal.gbapal");
+    const u32 gMonBackPic_Porygon_C[] = INCBIN_U32("graphics/pokemon/new-porygon_c/back.4bpp.lz");
+    const u16 gMonShinyPalette_Porygon_C[] = INCBIN_U16("graphics/pokemon/new-porygon_c/shiny.gbapal");
+    const u8 gMonIcon_Porygon_C[] = INCBIN_U8("graphics/pokemon/new-porygon_c/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Porygon_C[] = INCBIN_U8("graphics/pokemon/new-porygon_c/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Puddi[] = INCBIN_U32("graphics/pokemon/new-puddi/front.4bpp.lz");
+    const u16 gMonPalette_Puddi[] = INCBIN_U16("graphics/pokemon/new-puddi/normal.gbapal");
+    const u32 gMonBackPic_Puddi[] = INCBIN_U32("graphics/pokemon/new-puddi/back.4bpp.lz");
+    const u16 gMonShinyPalette_Puddi[] = INCBIN_U16("graphics/pokemon/new-puddi/shiny.gbapal");
+    const u8 gMonIcon_Puddi[] = INCBIN_U8("graphics/pokemon/new-puddi/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Puddi[] = INCBIN_U8("graphics/pokemon/new-puddi/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Raitora[] = INCBIN_U32("graphics/pokemon/new-raitora/front.4bpp.lz");
+    const u16 gMonPalette_Raitora[] = INCBIN_U16("graphics/pokemon/new-raitora/normal.gbapal");
+    const u32 gMonBackPic_Raitora[] = INCBIN_U32("graphics/pokemon/new-raitora/back.4bpp.lz");
+    const u16 gMonShinyPalette_Raitora[] = INCBIN_U16("graphics/pokemon/new-raitora/shiny.gbapal");
+    const u8 gMonIcon_Raitora[] = INCBIN_U8("graphics/pokemon/new-raitora/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Raitora[] = INCBIN_U8("graphics/pokemon/new-raitora/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Rayleep[] = INCBIN_U32("graphics/pokemon/new-rayleep/front.4bpp.lz");
+    const u16 gMonPalette_Rayleep[] = INCBIN_U16("graphics/pokemon/new-rayleep/normal.gbapal");
+    const u32 gMonBackPic_Rayleep[] = INCBIN_U32("graphics/pokemon/new-rayleep/back.4bpp.lz");
+    const u16 gMonShinyPalette_Rayleep[] = INCBIN_U16("graphics/pokemon/new-rayleep/shiny.gbapal");
+    const u8 gMonIcon_Rayleep[] = INCBIN_U8("graphics/pokemon/new-rayleep/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Rayleep[] = INCBIN_U8("graphics/pokemon/new-rayleep/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Rinring[] = INCBIN_U32("graphics/pokemon/new-rinring/front.4bpp.lz");
+    const u16 gMonPalette_Rinring[] = INCBIN_U16("graphics/pokemon/new-rinring/normal.gbapal");
+    const u32 gMonBackPic_Rinring[] = INCBIN_U32("graphics/pokemon/new-rinring/back.4bpp.lz");
+    const u16 gMonShinyPalette_Rinring[] = INCBIN_U16("graphics/pokemon/new-rinring/shiny.gbapal");
+    const u8 gMonIcon_Rinring[] = INCBIN_U8("graphics/pokemon/new-rinring/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Rinring[] = INCBIN_U8("graphics/pokemon/new-rinring/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Sunmola[] = INCBIN_U32("graphics/pokemon/new-sunmola/front.4bpp.lz");
+    const u16 gMonPalette_Sunmola[] = INCBIN_U16("graphics/pokemon/new-sunmola/normal.gbapal");
+    const u32 gMonBackPic_Sunmola[] = INCBIN_U32("graphics/pokemon/new-sunmola/back.4bpp.lz");
+    const u16 gMonShinyPalette_Sunmola[] = INCBIN_U16("graphics/pokemon/new-sunmola/shiny.gbapal");
+    const u8 gMonIcon_Sunmola[] = INCBIN_U8("graphics/pokemon/new-sunmola/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Sunmola[] = INCBIN_U8("graphics/pokemon/new-sunmola/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Swievel[] = INCBIN_U32("graphics/pokemon/new-swievel/front.4bpp.lz");
+    const u16 gMonPalette_Swievel[] = INCBIN_U16("graphics/pokemon/new-swievel/normal.gbapal");
+    const u32 gMonBackPic_Swievel[] = INCBIN_U32("graphics/pokemon/new-swievel/back.4bpp.lz");
+    const u16 gMonShinyPalette_Swievel[] = INCBIN_U16("graphics/pokemon/new-swievel/shiny.gbapal");
+    const u8 gMonIcon_Swievel[] = INCBIN_U8("graphics/pokemon/new-swievel/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Swievel[] = INCBIN_U8("graphics/pokemon/new-swievel/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Tangel[] = INCBIN_U32("graphics/pokemon/new-tangel/front.4bpp.lz");
+    const u16 gMonPalette_Tangel[] = INCBIN_U16("graphics/pokemon/new-tangel/normal.gbapal");
+    const u32 gMonBackPic_Tangel[] = INCBIN_U32("graphics/pokemon/new-tangel/back.4bpp.lz");
+    const u16 gMonShinyPalette_Tangel[] = INCBIN_U16("graphics/pokemon/new-tangel/shiny.gbapal");
+    const u8 gMonIcon_Tangel[] = INCBIN_U8("graphics/pokemon/new-tangel/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Tangel[] = INCBIN_U8("graphics/pokemon/new-tangel/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Tangrath[] = INCBIN_U32("graphics/pokemon/new-tangrath/front.4bpp.lz");
+    const u16 gMonPalette_Tangrath[] = INCBIN_U16("graphics/pokemon/new-tangrath/normal.gbapal");
+    const u32 gMonBackPic_Tangrath[] = INCBIN_U32("graphics/pokemon/new-tangrath/back.4bpp.lz");
+    const u16 gMonShinyPalette_Tangrath[] = INCBIN_U16("graphics/pokemon/new-tangrath/shiny.gbapal");
+    const u8 gMonIcon_Tangrath[] = INCBIN_U8("graphics/pokemon/new-tangrath/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Tangrath[] = INCBIN_U8("graphics/pokemon/new-tangrath/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Trifox[] = INCBIN_U32("graphics/pokemon/new-trifox/front.4bpp.lz");
+    const u16 gMonPalette_Trifox[] = INCBIN_U16("graphics/pokemon/new-trifox/normal.gbapal");
+    const u32 gMonBackPic_Trifox[] = INCBIN_U32("graphics/pokemon/new-trifox/back.4bpp.lz");
+    const u16 gMonShinyPalette_Trifox[] = INCBIN_U16("graphics/pokemon/new-trifox/shiny.gbapal");
+    const u8 gMonIcon_Trifox[] = INCBIN_U8("graphics/pokemon/new-trifox/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Trifox[] = INCBIN_U8("graphics/pokemon/new-trifox/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Turbann[] = INCBIN_U32("graphics/pokemon/new-turbann/front.4bpp.lz");
+    const u16 gMonPalette_Turbann[] = INCBIN_U16("graphics/pokemon/new-turbann/normal.gbapal");
+    const u32 gMonBackPic_Turbann[] = INCBIN_U32("graphics/pokemon/new-turbann/back.4bpp.lz");
+    const u16 gMonShinyPalette_Turbann[] = INCBIN_U16("graphics/pokemon/new-turbann/shiny.gbapal");
+    const u8 gMonIcon_Turbann[] = INCBIN_U8("graphics/pokemon/new-turbann/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Turbann[] = INCBIN_U8("graphics/pokemon/new-turbann/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Twinz[] = INCBIN_U32("graphics/pokemon/new-twinz/front.4bpp.lz");
+    const u16 gMonPalette_Twinz[] = INCBIN_U16("graphics/pokemon/new-twinz/normal.gbapal");
+    const u32 gMonBackPic_Twinz[] = INCBIN_U32("graphics/pokemon/new-twinz/back.4bpp.lz");
+    const u16 gMonShinyPalette_Twinz[] = INCBIN_U16("graphics/pokemon/new-twinz/shiny.gbapal");
+    const u8 gMonIcon_Twinz[] = INCBIN_U8("graphics/pokemon/new-twinz/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Twinz[] = INCBIN_U8("graphics/pokemon/new-twinz/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Volbear[] = INCBIN_U32("graphics/pokemon/new-volbear/front.4bpp.lz");
+    const u16 gMonPalette_Volbear[] = INCBIN_U16("graphics/pokemon/new-volbear/normal.gbapal");
+    const u32 gMonBackPic_Volbear[] = INCBIN_U32("graphics/pokemon/new-volbear/back.4bpp.lz");
+    const u16 gMonShinyPalette_Volbear[] = INCBIN_U16("graphics/pokemon/new-volbear/shiny.gbapal");
+    const u8 gMonIcon_Volbear[] = INCBIN_U8("graphics/pokemon/new-volbear/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Volbear[] = INCBIN_U8("graphics/pokemon/new-volbear/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Warwolf[] = INCBIN_U32("graphics/pokemon/new-warwolf/front.4bpp.lz");
+    const u16 gMonPalette_Warwolf[] = INCBIN_U16("graphics/pokemon/new-warwolf/normal.gbapal");
+    const u32 gMonBackPic_Warwolf[] = INCBIN_U32("graphics/pokemon/new-warwolf/back.4bpp.lz");
+    const u16 gMonShinyPalette_Warwolf[] = INCBIN_U16("graphics/pokemon/new-warwolf/shiny.gbapal");
+    const u8 gMonIcon_Warwolf[] = INCBIN_U8("graphics/pokemon/new-warwolf/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Warwolf[] = INCBIN_U8("graphics/pokemon/new-warwolf/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Whimsey[] = INCBIN_U32("graphics/pokemon/new-whimsey/front.4bpp.lz");
+    const u16 gMonPalette_Whimsey[] = INCBIN_U16("graphics/pokemon/new-whimsey/normal.gbapal");
+    const u32 gMonBackPic_Whimsey[] = INCBIN_U32("graphics/pokemon/new-whimsey/back.4bpp.lz");
+    const u16 gMonShinyPalette_Whimsey[] = INCBIN_U16("graphics/pokemon/new-whimsey/shiny.gbapal");
+    const u8 gMonIcon_Whimsey[] = INCBIN_U8("graphics/pokemon/new-whimsey/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Whimsey[] = INCBIN_U8("graphics/pokemon/new-whimsey/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Wolfman[] = INCBIN_U32("graphics/pokemon/new-wolfman/front.4bpp.lz");
+    const u16 gMonPalette_Wolfman[] = INCBIN_U16("graphics/pokemon/new-wolfman/normal.gbapal");
+    const u32 gMonBackPic_Wolfman[] = INCBIN_U32("graphics/pokemon/new-wolfman/back.4bpp.lz");
+    const u16 gMonShinyPalette_Wolfman[] = INCBIN_U16("graphics/pokemon/new-wolfman/shiny.gbapal");
+    const u8 gMonIcon_Wolfman[] = INCBIN_U8("graphics/pokemon/new-wolfman/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Wolfman[] = INCBIN_U8("graphics/pokemon/new-wolfman/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_x_Azumarill_x[] = INCBIN_U32("graphics/pokemon/new-x_azumarill_x/front.4bpp.lz");
+    const u16 gMonPalette_x_Azumarill_x[] = INCBIN_U16("graphics/pokemon/new-x_azumarill_x/normal.gbapal");
+    const u32 gMonBackPic_x_Azumarill_x[] = INCBIN_U32("graphics/pokemon/new-x_azumarill_x/back.4bpp.lz");
+    const u16 gMonShinyPalette_x_Azumarill_x[] = INCBIN_U16("graphics/pokemon/new-x_azumarill_x/shiny.gbapal");
+    const u8 gMonIcon_x_Azumarill_x[] = INCBIN_U8("graphics/pokemon/new-x_azumarill_x/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_x_Azumarill_x[] = INCBIN_U8("graphics/pokemon/new-x_azumarill_x/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_x_Celebi_x[] = INCBIN_U32("graphics/pokemon/new-x_celebi_x/front.4bpp.lz");
+    const u16 gMonPalette_x_Celebi_x[] = INCBIN_U16("graphics/pokemon/new-x_celebi_x/normal.gbapal");
+    const u32 gMonBackPic_x_Celebi_x[] = INCBIN_U32("graphics/pokemon/new-x_celebi_x/back.4bpp.lz");
+    const u16 gMonShinyPalette_x_Celebi_x[] = INCBIN_U16("graphics/pokemon/new-x_celebi_x/shiny.gbapal");
+    const u8 gMonIcon_x_Celebi_x[] = INCBIN_U8("graphics/pokemon/new-x_celebi_x/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_x_Celebi_x[] = INCBIN_U8("graphics/pokemon/new-x_celebi_x/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_x_Dunsparce_x[] = INCBIN_U32("graphics/pokemon/new-x_dunsparce_x/front.4bpp.lz");
+    const u16 gMonPalette_x_Dunsparce_x[] = INCBIN_U16("graphics/pokemon/new-x_dunsparce_x/normal.gbapal");
+    const u32 gMonBackPic_x_Dunsparce_x[] = INCBIN_U32("graphics/pokemon/new-x_dunsparce_x/back.4bpp.lz");
+    const u16 gMonShinyPalette_x_Dunsparce_x[] = INCBIN_U16("graphics/pokemon/new-x_dunsparce_x/shiny.gbapal");
+    const u8 gMonIcon_x_Dunsparce_x[] = INCBIN_U8("graphics/pokemon/new-x_dunsparce_x/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_x_Dunsparce_x[] = INCBIN_U8("graphics/pokemon/new-x_dunsparce_x/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_x_Gligar_x[] = INCBIN_U32("graphics/pokemon/new-x_gligar_x/front.4bpp.lz");
+    const u16 gMonPalette_x_Gligar_x[] = INCBIN_U16("graphics/pokemon/new-x_gligar_x/normal.gbapal");
+    const u32 gMonBackPic_x_Gligar_x[] = INCBIN_U32("graphics/pokemon/new-x_gligar_x/back.4bpp.lz");
+    const u16 gMonShinyPalette_x_Gligar_x[] = INCBIN_U16("graphics/pokemon/new-x_gligar_x/shiny.gbapal");
+    const u8 gMonIcon_x_Gligar_x[] = INCBIN_U8("graphics/pokemon/new-x_gligar_x/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_x_Gligar_x[] = INCBIN_U8("graphics/pokemon/new-x_gligar_x/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_x_Wooper_x[] = INCBIN_U32("graphics/pokemon/new-x_wooper_x/front.4bpp.lz");
+    const u16 gMonPalette_x_Wooper_x[] = INCBIN_U16("graphics/pokemon/new-x_wooper_x/normal.gbapal");
+    const u32 gMonBackPic_x_Wooper_x[] = INCBIN_U32("graphics/pokemon/new-x_wooper_x/back.4bpp.lz");
+    const u16 gMonShinyPalette_x_Wooper_x[] = INCBIN_U16("graphics/pokemon/new-x_wooper_x/shiny.gbapal");
+    const u8 gMonIcon_x_Wooper_x[] = INCBIN_U8("graphics/pokemon/new-x_wooper_x/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_x_Wooper_x[] = INCBIN_U8("graphics/pokemon/new-x_wooper_x/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_x_Gible_x[] = INCBIN_U32("graphics/pokemon/new-gible/front.4bpp.lz");
+    const u16 gMonPalette_x_Gible_x[] = INCBIN_U16("graphics/pokemon/new-gible/normal.gbapal");
+    const u32 gMonBackPic_x_Gible_x[] = INCBIN_U32("graphics/pokemon/new-gible/back.4bpp.lz");
+    const u16 gMonShinyPalette_x_Gible_x[] = INCBIN_U16("graphics/pokemon/new-gible/shiny.gbapal");
+    const u8 gMonIcon_x_Gible_x[] = INCBIN_U8("graphics/pokemon/new-gible/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_x_Gible_x[] = INCBIN_U8("graphics/pokemon/new-gible/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_x_Gabite_x[] = INCBIN_U32("graphics/pokemon/new-gabite/front.4bpp.lz");
+    const u16 gMonPalette_x_Gabite_x[] = INCBIN_U16("graphics/pokemon/new-gabite/normal.gbapal");
+    const u32 gMonBackPic_x_Gabite_x[] = INCBIN_U32("graphics/pokemon/new-gabite/back.4bpp.lz");
+    const u16 gMonShinyPalette_x_Gabite_x[] = INCBIN_U16("graphics/pokemon/new-gabite/shiny.gbapal");
+    const u8 gMonIcon_x_Gabite_x[] = INCBIN_U8("graphics/pokemon/new-gabite/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_x_Gabite_x[] = INCBIN_U8("graphics/pokemon/new-gabite/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_x_Garchomp_x[] = INCBIN_U32("graphics/pokemon/new-garchomp/front.4bpp.lz");
+    const u16 gMonPalette_x_Garchomp_x[] = INCBIN_U16("graphics/pokemon/new-garchomp/normal.gbapal");
+    const u32 gMonBackPic_x_Garchomp_x[] = INCBIN_U32("graphics/pokemon/new-garchomp/back.4bpp.lz");
+    const u16 gMonShinyPalette_x_Garchomp_x[] = INCBIN_U16("graphics/pokemon/new-garchomp/shiny.gbapal");
+    const u8 gMonIcon_x_Garchomp_x[] = INCBIN_U8("graphics/pokemon/new-garchomp/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_x_Garchomp_x[] = INCBIN_U8("graphics/pokemon/new-garchomp/footprint.1bpp");
+#endif //P_FOOTPRINTS
 
     const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
     const u16 gMonPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/normal.gbapal");

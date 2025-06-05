@@ -1389,7 +1389,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_PARENTAL_BOND] =
     {
-        .name = _("Parental Bond"),
+        .name = _("Twinz"), // x_MODIFY_x
         .description = COMPOUND_STRING("Moves hit twice."),
         .aiRating = 10,
     },
@@ -2513,4 +2513,19 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Ups Fairy moves in a pinch."),
         .aiRating = 5,
     },
+
+    [ABILITY_BOMSOAKER] =
+    {
+        .name = _("Bomsoaker"),
+        .description = COMPOUND_STRING("Swaps Rain and Sunlight."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_KURSTRAW] =
+    {
+        .name = _("Kurstraw"),
+        .description = COMPOUND_STRING("Curses on contact."),
+        .aiRating = 5,
+    },
+
 };

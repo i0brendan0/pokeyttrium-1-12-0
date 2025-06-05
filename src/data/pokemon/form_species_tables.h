@@ -875,6 +875,7 @@ static const u16 sCastformFormSpeciesIdTable[] = {
     SPECIES_CASTFORM_SUNNY,
     SPECIES_CASTFORM_RAINY,
     SPECIES_CASTFORM_SNOWY,
+    SPECIES_CASTFORM_SANDY,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_CASTFORM
@@ -2195,3 +2196,11 @@ static const u16 sTerapagosFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_TERAPAGOS
+
+#if P_FAMILY_HOOTHOOT
+static const u16 sHoothootFormSpeciesIdTable[] = {
+    SPECIES_HOOTHOOT_SKANE,
+    SPECIES_HOOTHOOT,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_HOOTHOOT
