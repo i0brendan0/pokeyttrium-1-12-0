@@ -1164,3 +1164,97 @@ Common_EventScript_OddEgg::
 	.include "data/scripts/hidden_tree.inc"
 	.include "data/scripts/alt_encounter_table_flag.inc"
 	.include "data/scripts/cant_evolve.inc"
+
+	.include "data/maps/OneTown/scripts.inc"
+
+	.include "data/maps/TwoCity/scripts.inc"
+
+	.include "data/maps/ThreeCity/scripts.inc"
+
+	.include "data/maps/FourTown/scripts.inc"
+
+	.include "data/maps/FiveTown/scripts.inc"
+
+	.include "data/maps/SixTown/scripts.inc"
+
+	.include "data/maps/SevenCity/scripts.inc"
+
+	.include "data/maps/EightTown/scripts.inc"
+
+	.include "data/maps/NineTown/scripts.inc"
+
+	.include "data/maps/TenCity/scripts.inc"
+
+	.include "data/maps/ElevenCity/scripts.inc"
+
+	.include "data/maps/TwelveTown/scripts.inc"
+
+	.include "data/maps/ThirteenTown/scripts.inc"
+
+	.include "data/maps/FourteenTown/scripts.inc"
+
+	.include "data/maps/FifteenCity/scripts.inc"
+
+	.include "data/maps/SixteenTown/scripts.inc"
+
+	.include "data/maps/Route1/scripts.inc"
+
+	.include "data/maps/Route2/scripts.inc"
+
+	.include "data/maps/Route3/scripts.inc"
+
+	.include "data/maps/Route6/scripts.inc"
+
+	.include "data/maps/Route4/scripts.inc"
+
+	.include "data/maps/Route5/scripts.inc"
+
+	.include "data/maps/Route9/scripts.inc"
+
+	.include "data/maps/Route7/scripts.inc"
+
+	.include "data/maps/Route10/scripts.inc"
+
+	.include "data/maps/Route8/scripts.inc"
+
+	.include "data/maps/Route11/scripts.inc"
+
+	.include "data/maps/Route15/scripts.inc"
+
+	.include "data/maps/Route14/scripts.inc"
+
+	.include "data/maps/Route12/scripts.inc"
+
+	.include "data/maps/Route17/scripts.inc"
+
+	.include "data/maps/Route13/scripts.inc"
+
+	.include "data/maps/Route16/scripts.inc"
+
+	.include "data/maps/Route22/scripts.inc"
+
+	.include "data/maps/Route21/scripts.inc"
+
+	.include "data/maps/Route19/scripts.inc"
+
+	.include "data/maps/Route18/scripts.inc"
+
+	.include "data/maps/Route20/scripts.inc"
+
+	.include "data/maps/Route24/scripts.inc"
+
+	.include "data/maps/Route25/scripts.inc"
+
+	.include "data/maps/Route23/scripts.inc"
+
+	.include "data/maps/Route26/scripts.inc"
+
+	.include "data/maps/FrozenBeach/scripts.inc"
+
+	.include "data/maps/SandyBeach/scripts.inc"
+
+	.include "data/maps/HauntedHouse_Inside/scripts.inc"
+
+	.include "data/maps/Cemetery/scripts.inc"
+
+	.include "data/maps/HauntedHouse_Outside/scripts.inc"

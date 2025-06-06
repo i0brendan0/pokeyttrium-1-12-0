@@ -1,0 +1,122 @@
+{
+  "id": "MAP_ROUTE4",
+  "name": "Route4",
+  "layout": "LAYOUT_ROUTE4",
+  "music": "MUS_DUMMY",
+  "region_map_section": "MAPSEC_ROUTE_4",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE3",
+      "offset": -60,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_FOUR_TOWN",
+      "offset": 0,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE5",
+      "offset": 0,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "local_id": "LOCALID_SNOVER_1",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNOVER)",
+      "x": 21,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route4_EventScript_Snover_1",
+      "flag": "FLAG_HIDE_SNOVER_1"
+    },
+    {
+      "local_id": "LOCALID_SNOVER_2",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNOVER)",
+      "x": 22,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route4_EventScript_Snover_2",
+      "flag": "FLAG_HIDE_SNOVER_2"
+    }
+  ],
+  "warp_events": [],
+  "coord_events": [
+    {
+      "type": "weather",
+      "x": 14,
+      "y": 23,
+      "elevation": 3,
+      "weather": "COORD_EVENT_WEATHER_SNOW_CYCLE"
+    },
+    {
+      "type": "weather",
+      "x": 15,
+      "y": 24,
+      "elevation": 3,
+      "weather": "COORD_EVENT_WEATHER_SNOW_CYCLE"
+    },
+    {
+      "type": "weather",
+      "x": 17,
+      "y": 26,
+      "elevation": 3,
+      "weather": "COORD_EVENT_WEATHER_SNOW_CYCLE"
+    },
+    {
+      "type": "weather",
+      "x": 18,
+      "y": 27,
+      "elevation": 3,
+      "weather": "COORD_EVENT_WEATHER_SNOW_CYCLE"
+    },
+    {
+      "type": "weather",
+      "x": 11,
+      "y": 30,
+      "elevation": 3,
+      "weather": "COORD_EVENT_WEATHER_SUNNY"
+    },
+    {
+      "type": "weather",
+      "x": 10,
+      "y": 29,
+      "elevation": 3,
+      "weather": "COORD_EVENT_WEATHER_SUNNY"
+    },
+    {
+      "type": "weather",
+      "x": 14,
+      "y": 32,
+      "elevation": 3,
+      "weather": "COORD_EVENT_WEATHER_SUNNY"
+    },
+    {
+      "type": "weather",
+      "x": 15,
+      "y": 33,
+      "elevation": 3,
+      "weather": "COORD_EVENT_WEATHER_SUNNY"
+    }
+  ],
+  "bg_events": []
+}

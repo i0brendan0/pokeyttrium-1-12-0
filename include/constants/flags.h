@@ -67,12 +67,13 @@
 #define FLAG_ENABLE_SURFBOARD     0x34
 #define FLAG_ENABLE_WATERFALL     0x35
 #define FLAG_ENABLE_FLY           0x36
-#define FLAG_UNUSED_0x037    0x37 // Unused Flag
-#define FLAG_UNUSED_0x038    0x38 // Unused Flag
-#define FLAG_UNUSED_0x039    0x39 // Unused Flag
-#define FLAG_UNUSED_0x03A    0x3A // Unused Flag
-#define FLAG_UNUSED_0x03B    0x3B // Unused Flag
-#define FLAG_UNUSED_0x03C    0x3C // Unused Flag
+
+#define FLAG_HIDE_ROUTE3_GHOST    0x37
+#define FLAG_DEALT_WITH_SNOVERS   0x38
+#define FLAG_CAUGHT_ROTOM         0x39
+#define FLAG_HIDE_SNOVER_1        0x3A
+#define FLAG_HIDE_SNOVER_2        0x3B
+#define FLAG_HIDE_HOUSE_GHOST     0x3C
 #define FLAG_UNUSED_0x03D    0x3D // Unused Flag
 #define FLAG_UNUSED_0x03E    0x3E // Unused Flag
 #define FLAG_UNUSED_0x03F    0x3F // Unused Flag
