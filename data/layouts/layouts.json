@@ -4880,6 +4880,26 @@
       "secondary_tileset": "gTileset_Facility",
       "border_filepath": "data/layouts/Cemetery/border.bin",
       "blockdata_filepath": "data/layouts/Cemetery/map.bin"
+    },
+    {
+      "id": "LAYOUT_ONE_TOWN_PLAYERS_HOUSE_1F",
+      "name": "OneTown_PlayersHouse_1F_Layout",
+      "width": 11,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/OneTown_PlayersHouse_1F/border.bin",
+      "blockdata_filepath": "data/layouts/OneTown_PlayersHouse_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ONE_TOWN_PLAYERS_HOUSE_2F",
+      "name": "OneTown_PlayersHouse_2F_Layout",
+      "width": 9,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/OneTown_PlayersHouse_2F/border.bin",
+      "blockdata_filepath": "data/layouts/OneTown_PlayersHouse_2F/map.bin"
     }
   ]
 }

@@ -131,6 +131,108 @@
       "map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
       "x": 3,
       "y": 52
+    },
+    {
+      "id": "HEAL_LOCATION_EIGHT_TOWN",
+      "map": "MAP_EIGHT_TOWN",
+      "x": 15,
+      "y": 15
+    },
+    {
+      "id": "HEAL_LOCATION_ELEVEN_CITY",
+      "map": "MAP_ELEVEN_CITY",
+      "x": 23,
+      "y": 17
+    },
+    {
+      "id": "HEAL_LOCATION_FIFTEEN_CITY",
+      "map": "MAP_FIFTEEN_CITY",
+      "x": 15,
+      "y": 15
+    },
+    {
+      "id": "HEAL_LOCATION_FIVE_TOWN",
+      "map": "MAP_FIVE_TOWN",
+      "x": 23,
+      "y": 22
+    },
+    {
+      "id": "HEAL_LOCATION_FOURTEEN_TOWN",
+      "map": "MAP_FOURTEEN_TOWN",
+      "x": 15,
+      "y": 15
+    },
+    {
+      "id": "HEAL_LOCATION_FOUR_TOWN",
+      "map": "MAP_FOUR_TOWN",
+      "x": 21,
+      "y": 25
+    },
+    {
+      "id": "HEAL_LOCATION_NINE_TOWN",
+      "map": "MAP_NINE_TOWN",
+      "x": 15,
+      "y": 15
+    },
+    {
+      "id": "HEAL_LOCATION_ONE_TOWN",
+      "map": "MAP_ONE_TOWN",
+      "x": 4,
+      "y": 20
+    },
+    {
+      "id": "HEAL_LOCATION_SEVEN_CITY",
+      "map": "MAP_SEVEN_CITY",
+      "x": 17,
+      "y": 17
+    },
+    {
+      "id": "HEAL_LOCATION_SIXTEEN_TOWN",
+      "map": "MAP_SIXTEEN_TOWN",
+      "x": 47,
+      "y": 10
+    },
+    {
+      "id": "HEAL_LOCATION_SIX_TOWN",
+      "map": "MAP_SIX_TOWN",
+      "x": 10,
+      "y": 12
+    },
+    {
+      "id": "HEAL_LOCATION_TEN_CITY",
+      "map": "MAP_TEN_CITY",
+      "x": 11,
+      "y": 16
+    },
+    {
+      "id": "HEAL_LOCATION_THIRTEEN_TOWN",
+      "map": "MAP_THIRTEEN_TOWN",
+      "x": 37,
+      "y": 15
+    },
+    {
+      "id": "HEAL_LOCATION_THREE_CITY",
+      "map": "MAP_THREE_CITY",
+      "x": 54,
+      "y": 10
+    },
+    {
+      "id": "HEAL_LOCATION_TWELVE_TOWN",
+      "map": "MAP_TWELVE_TOWN",
+      "x": 15,
+      "y": 15
+    },
+    {
+      "id": "HEAL_LOCATION_TWO_CITY",
+      "map": "MAP_TWO_CITY",
+      "x": 21,
+      "y": 10
+    },
+    {
+      "id": "HEAL_LOCATION_ONE_TOWN_PLAYERS_HOUSE_2F",
+      "map": "MAP_ONE_TOWN_PLAYERS_HOUSE_2F",
+      "x": 4,
+      "y": 2
     }
   ]
 }

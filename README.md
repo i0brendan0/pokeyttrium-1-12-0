@@ -1,9 +1,5 @@
 # Pokemon Yttrium
 
-CHANGES TO DO 
-- Config changes 765a4c7b22
-- Config Changes Again 6be940ea95
-
 ## What is this hack
 
     Introducing the Skåne Region based off of Scandinavia.

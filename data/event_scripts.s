@@ -890,7 +890,7 @@ gText_PokemonCenterSign::
 	.string "POKéMON CENTER$"
 
 gText_MomOrDadMightLikeThisProgram::
-	.string "{STR_VAR_1} might like this program.\n"
+	.string "This is a good program.\n"
 	.string "… … … … … … … … … … … … … … … …\p"
 	.string "Better get going!$"
 
@@ -1258,3 +1258,7 @@ Common_EventScript_OddEgg::
 	.include "data/maps/Cemetery/scripts.inc"
 
 	.include "data/maps/HauntedHouse_Outside/scripts.inc"
+
+	.include "data/maps/OneTown_PlayersHouse_1F/scripts.inc"
+
+	.include "data/maps/OneTown_PlayersHouse_2F/scripts.inc"

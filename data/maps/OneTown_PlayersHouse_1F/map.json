@@ -1,0 +1,61 @@
+{
+  "id": "MAP_ONE_TOWN_PLAYERS_HOUSE_1F",
+  "name": "OneTown_PlayersHouse_1F",
+  "layout": "LAYOUT_ONE_TOWN_PLAYERS_HOUSE_1F",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_TOWN_1",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ONE_TOWN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 3,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ONE_TOWN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_ONE_TOWN_PLAYERS_HOUSE_2F",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_ONE_TOWN_TOWN_STATE",
+      "var_value": "1",
+      "script": "PlayersHouse_1F_CantLeaveYet"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_ONE_TOWN_TOWN_STATE",
+      "var_value": "1",
+      "script": "PlayersHouse_1F_CantLeaveYet"
+    }
+  ],
+  "bg_events": []
+}
