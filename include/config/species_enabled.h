@@ -528,7 +528,7 @@
 #define P_FAMILY_GLASTRIER               P_GEN_8_POKEMON
 #define P_FAMILY_SPECTRIER               P_GEN_8_POKEMON
 #define P_FAMILY_CALYREX                 P_GEN_8_POKEMON
-#define P_FAMILY_ENAMORUS                P_GEN_8_POKEMON
+#define P_FAMILY_ENAMORUS                FALSE
 
 #define P_FAMILY_SPRIGATITO              P_GEN_9_POKEMON
 #define P_FAMILY_FUECOCO                 P_GEN_9_POKEMON
