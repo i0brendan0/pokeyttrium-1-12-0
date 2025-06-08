@@ -49,9 +49,8 @@
 	@ NOTE: The handling for this type of event does not exist in Emerald by default; it is exclusive to FRLG.
 	.macro clone_event index:req, gfx:req, x:req, y:req, target_local_id:req, target_map_id:req
 	.byte \index
-	.byte \gfx
+	.2byte \gfx
 	.byte OBJ_KIND_CLONE
-	.space 1  @ Padding
 	.2byte \x, \y
 	.byte \target_local_id
 	.space 3  @ Padding

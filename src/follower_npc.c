@@ -228,7 +228,7 @@ static void TurnNPCIntoFollower(u32 localId, u32 followerFlags, u32 setScript, c
             FlagSet(flag);
 
             npc = *GetObjectEventTemplateByLocalIdAndMap(GetFollowerNPCData(FNPC_DATA_MAP_ID), gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-            npc.movementType = 0;
+            npc.objUnion.normal.movementType = 0;
             npc.script = script;
             npc.localId = OBJ_EVENT_ID_NPC_FOLLOWER;
             SetFollowerNPCData(FNPC_DATA_OBJ_ID, TrySpawnObjectEventTemplate(&npc, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, npcX, npcY));
@@ -959,7 +959,7 @@ void SetFollowerNPCSprite(u32 spriteIndex)
 
     clone = *GetObjectEventTemplateByLocalIdAndMap(GetFollowerNPCData(FNPC_DATA_MAP_ID), GetFollowerNPCData(FNPC_DATA_MAP_NUM), GetFollowerNPCData(FNPC_DATA_MAP_GROUP));
     clone.graphicsId = newGraphicsId;
-    clone.movementType = 0;
+    clone.objUnion.normal.movementType = 0;
     clone.localId = OBJ_EVENT_ID_NPC_FOLLOWER;
     SetFollowerNPCData(FNPC_DATA_OBJ_ID, TrySpawnObjectEventTemplate(&clone, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, clone.x, clone.y));
     if (GetFollowerNPCData(FNPC_DATA_OBJ_ID) != OBJECT_EVENTS_COUNT)
@@ -1140,19 +1140,19 @@ void CreateFollowerNPCAvatar(void)
     clone.graphicsId = GetFollowerNPCSprite();
     clone.x = player->currentCoords.x - 7;
     clone.y = player->currentCoords.y - 7;
-    clone.movementType = 0;
+    clone.objUnion.normal.movementType = 0;
     clone.localId = OBJ_EVENT_ID_NPC_FOLLOWER;
 
     switch (GetPlayerFacingDirection())
     {
     case DIR_NORTH:
-        clone.movementType = MOVEMENT_TYPE_FACE_UP;
+        clone.objUnion.normal.movementType = MOVEMENT_TYPE_FACE_UP;
         break;
     case DIR_WEST:
-        clone.movementType = MOVEMENT_TYPE_FACE_LEFT;
+        clone.objUnion.normal.movementType = MOVEMENT_TYPE_FACE_LEFT;
         break;
     case DIR_EAST:
-        clone.movementType = MOVEMENT_TYPE_FACE_RIGHT;
+        clone.objUnion.normal.movementType = MOVEMENT_TYPE_FACE_RIGHT;
         break;
     }
 
